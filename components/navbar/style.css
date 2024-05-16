@@ -1,0 +1,13 @@
+.nav-link {
+  transition: all 200ms;
+}
+.nav-link .nav-arrow {
+  transition: all 400ms;
+}
+.nav-link:hover {
+  color: green;
+  cursor: pointer;
+}
+.nav-link:hover .nav-arrow {
+  transform: rotate(-180deg);
+}/*# sourceMappingURL=style.css.map */
