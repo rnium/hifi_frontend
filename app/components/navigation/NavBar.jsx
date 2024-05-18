@@ -7,10 +7,10 @@ import hifilogo from '@/public/hifi_logo.png';
 import NavLink from './micro/NavLink';
 import DevicesIcon from '@mui/icons-material/Devices';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import '@/components/navbar/style.css'
 import { Stack, Badge, IconButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import './styles/style.css';
 
 
 function ResponsiveAppBar() {

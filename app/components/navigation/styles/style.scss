@@ -1,5 +1,26 @@
+@mixin flexer($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    transition: all 200ms;
+    .nav-arrow {
+        transition: all 400ms;
+    }
+    &:hover {
+        color: green;
+        cursor: pointer;
+        .nav-arrow {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
 .user-bar {
-    background-color: rgb(64, 104, 87);
+    background-color: rgb(45, 70, 59);
     .searchbox {
         position: relative;
         border-radius: 180px;

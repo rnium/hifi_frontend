@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Toolbar, Button, Container, AppBar, Stack } from '@mui/material';
-import '@/components/userbar/style.css';
+import './styles/style.css';
 
 const UserBar = () => {
     return (
