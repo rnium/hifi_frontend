@@ -27,7 +27,214 @@ function NavBar() {
                 <div className="content">
                   <ul>
                     <li>
-                      <Link href="#" className='category-link'>Laptop</Link>
+                      <div className="cat-item">
+                        <div className="title">Laptop</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Apple</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Asus</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Acer</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Lenovo</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Dell</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Surface</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Gaming Laptop</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Dell</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Asus</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Acer</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Desktop PC</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Dell</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Asus</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Acer</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Components</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="cat-item">
+                        <div className="title">Category</div>
+                        <div className="sub-menu">
+                          <ul>
+                            <li>
+                              <Link href="#">Processor</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Motherboard</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Casing</Link>
+                            </li>
+                            <li>
+                              <Link href="#">Cooling Fan</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
