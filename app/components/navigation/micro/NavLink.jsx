@@ -2,7 +2,7 @@ import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const NavLink = ({startIcon, label, hasMenu=false}) => {
+const NavLink = ({startIcon, label, hasMenu=false, children}) => {
   return (
     <Stack className='nav-link' direction="row" spacing={1}>
         {startIcon}
@@ -11,6 +11,7 @@ const NavLink = ({startIcon, label, hasMenu=false}) => {
             hasMenu ? 
             <ExpandMoreIcon className='nav-arrow' />: null
         }
+        {children}
     </Stack>
   )
 }

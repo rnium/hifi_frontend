@@ -8,7 +8,7 @@ const UserBar = () => {
             <AppBar position="static" color='transparent' elevation={0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <Stack sx={{width: '100%'}} direction="row" justifyContent="space-between">
+                        <Stack sx={{ width: '100%' }} direction="row" justifyContent="space-between">
                             <Box >
                                 <div className='searchbox'>
                                     <input
@@ -29,8 +29,9 @@ const UserBar = () => {
                                 </div>
                             </Box>
                             <Stack direction="row" spacing={1}>
-                                <Button variant='outlined' sx={{ backgroundColor: 'inherit', color: 'white', borderColor: 'white' }}>SignUp</Button>
-                                <Button variant='outlined' sx={{ backgroundColor: 'inherit', color: 'white', borderColor: 'white' }}>Login</Button>
+                                <Button style={{ borderRadius: '180px' }}>Login</Button>
+                                <Button variant='outlined' style={{ borderRadius: '180px' }}>SignUp</Button>
+
                             </Stack>
                         </Stack>
                     </Toolbar>

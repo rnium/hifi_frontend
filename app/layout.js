@@ -4,7 +4,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
+import 'typeface-roboto';
 
 const inter = Roboto({subsets: ['latin'], weight: '100' });
 
@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body style={{ fontFamily: 'Roboto, sans-serif' }}>{children}</body>
     </html>
   );
 }
