@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Fragment } from 'react';
 import { categories } from '@/lib/data';
@@ -17,6 +18,7 @@ const style = {
     backgroundColor: 'background.paper',
 };
 
+
 export default function Categories() {
     return (
         <List sx={style}>
@@ -27,7 +29,7 @@ export default function Categories() {
                 categories.map((cat, idx) => {
                     if (idx == categories.length - 1) {
                         return (
-                            <Link href="#">
+                            <Link href="#" className='category-link'>
                                 <ListItem>
                                     <ListItemIcon>
                                         {cat.icon}
@@ -39,8 +41,8 @@ export default function Categories() {
                     } else {
                         return (
                             <Fragment>
-                                <Link href="#">
-                                    <ListItem>
+                                <Link href="#" className='category-link'>
+                                    <ListItem >
                                         <ListItemIcon>
                                             {cat.icon}
                                         </ListItemIcon>

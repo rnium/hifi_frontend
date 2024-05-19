@@ -3,6 +3,7 @@ import Navbar from '@/app/components/navigation/NavBar';
 import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
 import Categories from './Categories';
+import './styles/style.css';
 
 const Homepage = () => {
   return (
