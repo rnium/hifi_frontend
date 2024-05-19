@@ -29,7 +29,7 @@ export default function Categories() {
                 categories.map((cat, idx) => {
                     if (idx == categories.length - 1) {
                         return (
-                            <Link href="#" className='category-link'>
+                            <Link key={idx} href="#" className='category-link'>
                                 <ListItem>
                                     <ListItemIcon>
                                         {cat.icon}
@@ -41,7 +41,7 @@ export default function Categories() {
                     } else {
                         return (
                             <Fragment>
-                                <Link href="#" className='category-link'>
+                                <Link key={idx} href="#" className='category-link'>
                                     <ListItem >
                                         <ListItemIcon>
                                             {cat.icon}

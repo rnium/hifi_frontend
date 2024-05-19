@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
 import Categories from './Categories';
+import ProductSection from './ProductSection';
 import './styles/style.css';
 
 const Homepage = () => {
@@ -15,8 +16,8 @@ const Homepage = () => {
           <Grid item xs={12} md={9}>
             <Carousel />
           </Grid>
-
         </Grid>
+        <ProductSection />
       </Container>
     </div>
   )
