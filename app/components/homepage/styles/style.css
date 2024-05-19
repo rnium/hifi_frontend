@@ -9,4 +9,14 @@
 }
 .category-link:hover .cat-icon {
   color: rgb(33, 187, 136);
+}
+
+.carousel {
+  overflow: hidden;
+}
+.carousel .carousel-item {
+  overflow: hidden;
+}
+.carousel .carousel-item img {
+  border-radius: 10px;
 }/*# sourceMappingURL=style.css.map */

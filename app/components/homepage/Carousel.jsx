@@ -2,6 +2,7 @@
 import {useEffect, useState} from 'react';
 import { Carousel } from 'antd';
 import Image from 'next/image';
+import Spinner from '../utils/Spinner';
 
 
 const contentStyle = {
@@ -22,16 +23,16 @@ const HomepageCarousel = () => {
         setIsMounted(true);
     })
     if (!isMounted) {
-        return null;
+        return <Spinner py={20} />;
     }
     return (
-        <div>
-            <Carousel afterChange={onChange} autoplay>
-                <div>
+        <div className='carousel'>
+            <Carousel afterChange={onChange}  autoplay>
+                <div className='carousel-item'>
                     <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
                 </div>
-                <div>
-                    <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
+                <div className='carousel-item'>
+                    <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
                 </div>
             </Carousel>
         </div>
