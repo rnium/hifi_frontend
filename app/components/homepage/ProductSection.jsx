@@ -3,6 +3,7 @@ import { Typography, Grid, Stack, Divider } from '@mui/material';
 import Product from '../utils/Product';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { products } from '@/lib/data';
 
 const ProductSection = () => {
     return (
@@ -18,10 +19,14 @@ const ProductSection = () => {
                 </Stack>
             </Stack>
             <Divider sx={{ mt: 1 }} />
-            <Grid container sx={{ mt: 2 }}>
-                <Grid item xs={12} md={4} lg={3}>
-                    <Product />
-                </Grid>
+            <Grid container sx={{ mt: 0 }} spacing={2}>
+                {
+                    products.map(p => (
+                        <Grid item xs={12} md={4} lg={3}>
+                            <Product product={p} />
+                        </Grid>
+                    ))
+                }
             </Grid>
         </section>
     )

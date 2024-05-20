@@ -1,3 +1,7 @@
+.mainappbar {
+  background-color: #ffffff;
+}
+
 .nav-link {
   transition: all 200ms;
 }

@@ -1,23 +1,81 @@
 import React from 'react';
-import { Stack, Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Stack, Box, Chip, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import './styles/style.css';
+import Link from 'next/link';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ShareIcon from '@mui/icons-material/Share';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const Product = () => {
+const Product = ({ product }) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card className='product' sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 alt="green iguana"
-                height="140"
-                image="https://www.ryans.com/storage/products/small/lenovo-legion-slim-5i-16irh8-intel-core-i5-13500h-11709715097.webp"
+                image={product.banner}
             />
-            <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                    Lenovo Legion Slim 5i
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                Lenovo Legion Slim 5i 16IRH8 Intel Core i5 13500H 16GB RAM, 512GB SSD 16 Inch 2.5K QHD WQXGA Display Storm Grey Gaming Laptop
-                </Typography>
-            </CardContent>
+            <div className="discount">
+                <Typography variant='body1' sx={{ fontSize: { xs: '0.8rem' } }} component="span">Save {product.discount}৳</Typography>
+            </div>
+            <div className="actions">
+                <Stack spacing={2}>
+                    <div className='action-btn'>
+                        <AddShoppingCartIcon fontSize='small' />
+                    </div>
+                    <div className='action-btn'>
+                        <VisibilityIcon fontSize='small' />
+                    </div>
+                    <div className='action-btn'>
+                        <ShareIcon fontSize='small' />
+                    </div>
+                </Stack>
+            </div>
+            <Link href="#" className='product-link'>
+                <CardContent>
+                    <Typography
+                        sx={{ textAlign: "center", fontSize: '0.8rem' }}
+                        className='product-title'
+                        gutterBottom
+                        variant="h6"
+                        component="div"
+                    >
+                        {product.title}
+                    </Typography>
+                    <Stack
+                        direction="row"
+                        spacing={2}
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{ mt: 1 }}
+                    >
+                        <Typography
+                            sx={{ textAlign: "center", fontSize: { xs: '0.8rem', md: '1rem' } }}
+                            className='product-price'
+                            gutterBottom
+                            variant="h6"
+                            component="div"
+                            color="primary"
+                        >
+                            {product.price - product.discount} Tk
+                        </Typography>
+                        {
+                            product.discount > 0 ?
+                                <Typography
+                                    sx={{ textAlign: "center", textDecoration: 'line-through', fontSize: { xs: '0.7rem', md: '0.9rem' } }}
+                                    className='product-price'
+                                    gutterBottom
+                                    variant="h5"
+                                    component="div"
+                                    color="text.secondary"
+                                >
+                                    {product.price} Tk
+                                </Typography> : null
+                        }
+                    </Stack>
+                </CardContent>
+            </Link>
+
         </Card>
     )
 }
