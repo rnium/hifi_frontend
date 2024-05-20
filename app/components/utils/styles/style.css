@@ -20,7 +20,7 @@
   opacity: 0;
   background-color: white;
   box-shadow: 2px 2px 5px rgb(129, 129, 129);
-  padding: 4px 6px;
+  padding: 4px 6px 5px;
   border-radius: 180px;
   cursor: pointer;
 }
@@ -31,10 +31,10 @@
   transition-delay: 0;
 }
 .product .actions .action-btn:nth-child(2) {
-  transition-delay: 50ms;
+  transition-delay: 75ms;
 }
 .product .actions .action-btn:nth-child(3) {
-  transition-delay: 100ms;
+  transition-delay: 150ms;
 }
 .product .discount {
   position: absolute;

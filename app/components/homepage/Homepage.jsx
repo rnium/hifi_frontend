@@ -3,6 +3,8 @@ import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
 import Categories from './Categories';
 import ProductSection from './ProductSection';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import './styles/style.css';
 
 const Homepage = () => {
@@ -17,7 +19,8 @@ const Homepage = () => {
             <Carousel />
           </Grid>
         </Grid>
-        <ProductSection />
+        <ProductSection title="Trending Products" icon={<TrendingUpIcon color='primary' fontSize='medium' />} />
+        <ProductSection title="Featured Products" icon={<BookmarksOutlinedIcon color='primary' fontSize='medium' />} />
       </Container>
     </div>
   )

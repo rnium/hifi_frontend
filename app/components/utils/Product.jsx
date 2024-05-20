@@ -8,7 +8,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const Product = ({ product }) => {
     return (
-        <Card className='product' sx={{ maxWidth: 345 }}>
+        <Card className='product'>
             <CardMedia
                 component="img"
                 alt="green iguana"
@@ -40,9 +40,9 @@ const Product = ({ product }) => {
                 </Stack>
             </div>
             <Link href="#" className='product-link'>
-                <CardContent>
+                <CardContent sx={{minHeight: '140px', display: 'flex', flexDirection: 'column'}}>
                     <Typography
-                        sx={{ textAlign: "center", fontSize: '0.8rem' }}
+                        sx={{ textAlign: "center", fontSize: '0.8rem', flexGrow: 1 }}
                         className='product-title'
                         gutterBottom
                         variant="h6"
