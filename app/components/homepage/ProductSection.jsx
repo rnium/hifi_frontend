@@ -21,11 +21,11 @@ const ProductSection = () => {
                     </Stack>
                 </Link>
             </Stack>
-            <Divider sx={{ mt: 1 }} />
+            <Divider sx={{ mt: 1 }} variant='middle' />
             <Grid container sx={{ mt: 0 }} spacing={2}>
                 {
                     products.map(p => (
-                        <Grid item xs={12} md={4} lg={3}>
+                        <Grid item key={p.id} xs={12} md={4} lg={3}>
                             <Product product={p} />
                         </Grid>
                     ))
