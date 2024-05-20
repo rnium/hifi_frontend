@@ -10,7 +10,6 @@
 }
 .nav-link .category-menu {
   position: absolute;
-  width: 98vw;
   left: -1% !important;
   top: 50%;
   background-color: transparent;

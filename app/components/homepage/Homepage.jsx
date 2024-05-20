@@ -19,8 +19,8 @@ const Homepage = () => {
             <Carousel />
           </Grid>
         </Grid>
-        <ProductSection title="Trending Products" icon={<TrendingUpIcon color='primary' fontSize='medium' />} />
-        <ProductSection title="Featured Products" icon={<BookmarksOutlinedIcon color='primary' fontSize='medium' />} />
+        <ProductSection title="Trending Products" icon={<TrendingUpIcon color='secondary' fontSize='medium' />} />
+        <ProductSection title="Featured Products" icon={<BookmarksOutlinedIcon color='secondary' fontSize='medium' />} />
       </Container>
     </div>
   )
