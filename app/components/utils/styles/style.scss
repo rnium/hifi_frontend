@@ -10,20 +10,30 @@ $active-green: rgb(33, 187, 136);
     .actions {
         position: absolute;
         top: 20%;
+        right: 0;
         z-index: 10;
         .action-btn {
             position: relative;
             transition: all 500ms;
-            left: 0;
+            right: 0;
             visibility: hidden;
             opacity: 0;
             background-color: white;
-            box-shadow: 0 2px 5px rgba(185, 185, 185, 0.863);
+            box-shadow: 2px 2px 5px rgb(129, 129, 129);
             padding: 4px 6px;
             border-radius: 180px;
             cursor: pointer;
             &:hover {
                 background-color: $active-green;
+            }
+            &:nth-child(1) {
+                transition-delay: 0;
+            }
+            &:nth-child(2) {
+                transition-delay: 50ms;
+            }
+            &:nth-child(3) {
+                transition-delay: 100ms;
             }
         }
     }
@@ -52,8 +62,8 @@ $active-green: rgb(33, 187, 136);
         .actions {
             .action-btn {
                 visibility: visible;
-                opacity: 1;
-                left: 1rem;
+                opacity: 0.9;
+                right: 1rem;
             }
         }
     }

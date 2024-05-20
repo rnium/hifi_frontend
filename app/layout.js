@@ -10,7 +10,7 @@ import Navbar from '@/app/components/navigation/NavBar';
 const inter = Roboto({subsets: ['latin'], weight: '100' });
 
 export const metadata = {
-  title: "Hifi Computer",
+  title: "Hifi Computer | Home",
   description: "Hifi Computer Homepage",
 };
 
