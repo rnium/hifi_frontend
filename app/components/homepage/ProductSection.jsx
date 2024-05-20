@@ -4,19 +4,22 @@ import Product from '../utils/Product';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { products } from '@/lib/data';
+import Link from 'next/link';
 
 const ProductSection = () => {
     return (
-        <section style={{ margin: '2rem 0' }}>
+        <section style={{ margin: '2rem 0' }} className='product-section'>
             <Stack direction="row" justifyContent='space-between'>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <TrendingUpIcon color='primary' fontSize='large' />
                     <Typography variant='h5' component='h5' color="primary">Trending Products</Typography>
                 </Stack>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                    <Typography variant='body1' component='h5' color="text.secondary">View All</Typography>
-                    <ArrowForwardIcon color='primary' />
-                </Stack>
+                <Link href="#" className='section-view-link'>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <Typography variant='body1' component='h5' color="text.secondary">View All</Typography>
+                        <ArrowForwardIcon className='arrow' color='primary' />
+                    </Stack>
+                </Link>
             </Stack>
             <Divider sx={{ mt: 1 }} />
             <Grid container sx={{ mt: 0 }} spacing={2}>

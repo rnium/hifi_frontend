@@ -2,7 +2,6 @@ import React from 'react';
 import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShareIcon from '@mui/icons-material/Share';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -15,9 +14,12 @@ const Product = ({ product }) => {
                 alt="green iguana"
                 image={product.banner}
             />
-            <div className="discount">
-                <Typography variant='body1' sx={{ fontSize: { xs: '0.8rem' } }} component="span">Save {product.discount}৳</Typography>
-            </div>
+            {
+                product.discount > 0 ?
+                    <div className="discount">
+                        <Typography variant='body1' sx={{ fontSize: { xs: '0.8rem' } }} component="span">Save {product.discount}৳</Typography>
+                    </div> : null
+            }
             <div className="actions">
                 <Stack spacing={2}>
                     <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">

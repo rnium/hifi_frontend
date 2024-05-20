@@ -22,3 +22,18 @@ $active-green: rgb(33, 187, 136);
         }
     }
 }
+
+.product-section {
+    .section-view-link {
+        h5 {
+            transition: all 200ms;
+            
+        }
+        &:hover {
+            h5 {
+                padding-right: 5px;
+                color: rgb(0, 113, 206);
+            }
+        }
+    }
+}
