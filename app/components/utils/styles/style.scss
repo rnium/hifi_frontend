@@ -49,7 +49,6 @@ $active-green: rgb(33, 187, 136);
     .product-link {
         &:hover {
             .product-title {
-                color: $active-green;
                 text-decoration: underline;
             }
         }

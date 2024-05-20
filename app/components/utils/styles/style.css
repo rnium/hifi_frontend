@@ -46,7 +46,6 @@
   opacity: 0.9;
 }
 .product .product-link:hover .product-title {
-  color: rgb(33, 187, 136);
   text-decoration: underline;
 }
 .product:hover {

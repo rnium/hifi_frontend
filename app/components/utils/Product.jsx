@@ -58,7 +58,7 @@ const Product = ({ product }) => {
                         sx={{ mt: 1 }}
                     >
                         <Typography
-                            sx={{ textAlign: "center", fontSize: { xs: '0.8rem', md: '1rem' } }}
+                            sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
                             className='product-price'
                             gutterBottom
                             variant="h6"
@@ -70,7 +70,7 @@ const Product = ({ product }) => {
                         {
                             product.discount > 0 ?
                                 <Typography
-                                    sx={{ textAlign: "center", textDecoration: 'line-through', fontSize: { xs: '0.7rem', md: '0.9rem' } }}
+                                    sx={{ textAlign: "center", textDecoration: 'line-through', fontSize: { xs: '0.8rem', md: '0.9rem' } }}
                                     className='product-price'
                                     gutterBottom
                                     variant="h5"
