@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Box, Chip, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
@@ -20,15 +20,21 @@ const Product = ({ product }) => {
             </div>
             <div className="actions">
                 <Stack spacing={2}>
-                    <div className='action-btn'>
-                        <AddShoppingCartIcon fontSize='small' />
-                    </div>
-                    <div className='action-btn'>
-                        <VisibilityIcon fontSize='small' />
-                    </div>
-                    <div className='action-btn'>
-                        <ShareIcon fontSize='small' />
-                    </div>
+                    <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
+                        <div className='action-btn'>
+                            <AddShoppingCartIcon fontSize='small' />
+                        </div>
+                    </Tooltip>
+                    <Tooltip arrow title="Get A Glimpse" TransitionComponent={Zoom} placement="left">
+                        <div className='action-btn'>
+                            <VisibilityIcon fontSize='small' />
+                        </div>
+                    </Tooltip>
+                    <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="left">
+                        <div className='action-btn'>
+                            <ShareIcon fontSize='small' />
+                        </div>
+                    </Tooltip>
                 </Stack>
             </div>
             <Link href="#" className='product-link'>
