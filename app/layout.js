@@ -19,8 +19,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body style={{ fontFamily: 'Roboto, sans-serif' }}>
-        {/* <Navbar />
-        {children} */}
+        <Navbar />
+        {children}
         <Footer />
       </body>
     </html>

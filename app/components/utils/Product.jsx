@@ -11,7 +11,7 @@ const Product = ({ product }) => {
         <Card className='product'>
             <CardMedia
                 component="img"
-                alt="green iguana"
+                alt={product.title}
                 image={product.banner}
             />
             {
