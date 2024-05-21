@@ -5,7 +5,8 @@
     align-items: center;
 }
 
-$active-green: rgb(33, 187, 136);
+$active-color: #6bb2fa;
+$menu-bg: #4c687f;
 
 .mainappbar {
     background-color: #ffffff;
@@ -64,7 +65,7 @@ $active-green: rgb(33, 187, 136);
                                     a {
                                         transition: all 200ms;
                                         &:hover {
-                                            color: $active-green;
+                                            color: $active-color;
                                         }
                                     }
                                 }
@@ -72,7 +73,7 @@ $active-green: rgb(33, 187, 136);
                         }
                         &:hover {
                             .title {
-                                color: $active-green;
+                                color: $active-color;
                                 cursor: pointer;
                             }
                             .sub-menu {
@@ -96,6 +97,64 @@ $active-green: rgb(33, 187, 136);
     &:hover > .category-menu {
         opacity: 1;
         visibility: visible;
+    }
+}
+
+.product-categories {
+    .content {
+        position: relative;
+        color: #fcfeff;
+        padding: 2px 0;
+        background-color: #4c687f;
+        ul {
+            @include flexer(row);
+            margin: 0;
+            li {
+                padding: 0 0.7rem;
+                .cat-item {
+                    position: relative;
+                    .title {
+                        font-size: 0.9rem;
+                    }
+                    .sub-menu {
+                        position: absolute;
+                        left: 0;
+                        z-index: 100;
+                        background-color: #5b788f;
+                        border-top: 3px solid #809db49d;
+                        padding: 7px 20px 7px 10px;
+                        border-radius: 5px;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all 200ms;
+                        ul {
+                            @include flexer(column);
+                            align-items: flex-start;
+                            li {
+                                font-size: 0.8rem;
+                                transition: all 200ms;
+                                a {
+                                    transition: all 200ms;
+                                    &:hover {
+                                        color: $active-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        .title {
+                            color: $active-color;
+                            cursor: pointer;
+                        }
+                        .sub-menu {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -1,0 +1,6 @@
+.footer-link-text {
+  transition: all 200ms;
+}
+.footer-link-text:hover {
+  color: rgb(0, 0, 0);
+}/*# sourceMappingURL=style.css.map */

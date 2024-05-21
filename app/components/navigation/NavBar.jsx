@@ -7,7 +7,7 @@ import hifilogo from '@/public/hifi_logo.png';
 import NavLink from './micro/NavLink';
 import DevicesIcon from '@mui/icons-material/Devices';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { Stack, Badge, IconButton, Button, Typography } from '@mui/material';
+import { Stack, Badge, IconButton, Button, Typography, Box } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -18,259 +18,255 @@ import './styles/style.css';
 function NavBar() {
   return (
     <AppBar className='mainappbar' position="static" color='transparent' elevation={1}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ py: 2 }}>
-          <Image src={hifilogo} alt='Hifi Computer Logo' width={150} />
-          <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
-            <NavLink startIcon={<DevicesIcon />} label="Products" hasMenu={true}>
-              <div className='category-menu'>
-                <div className="content">
+      <Toolbar sx={{ py: 3 }} >
+        <Image src={hifilogo} alt='Hifi Computer Logo' width={180} />
+        <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
+          <div className='searchbox'>
+            <input
+              type="text"
+              placeholder='Search Product'
+            // value={registration}
+            // onKeyDown={handleKeyDown}
+            // onChange={event => setRegistration(event.target.value)}
+            />
+            <IconButton size='small'>
+              <SearchIcon />
+            </IconButton>
+          </div>
+
+        </Stack>
+
+        <Stack sx={{ flexGrow: 0 }} direction="row" spacing={1}>
+          <IconButton>
+            <Badge badgeContent={0} color="success">
+              <FavoriteBorderIcon />
+            </Badge>
+          </IconButton>
+          <IconButton>
+            <Badge badgeContent={0} color="success">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          </IconButton>
+          <Button >Login</Button>
+          <Button variant='outlined'>Signup</Button>
+        </Stack>
+      </Toolbar>
+      <Box className="product-categories">
+        <div className="content">
+          <ul>
+            <li>
+              <div className="cat-item">
+                <div className="title">Laptop</div>
+                <div className="sub-menu">
                   <ul>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Laptop</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Apple</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Asus</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Acer</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Lenovo</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Dell</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Surface</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Apple</Link>
                     </li>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Gaming Laptop</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Dell</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Asus</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Acer</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Asus</Link>
                     </li>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Desktop PC</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Dell</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Asus</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Acer</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Acer</Link>
                     </li>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Components</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Lenovo</Link>
                     </li>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Dell</Link>
                     </li>
                     <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="cat-item">
-                        <div className="title">Category</div>
-                        <div className="sub-menu">
-                          <ul>
-                            <li>
-                              <Link href="#">Processor</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Motherboard</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Casing</Link>
-                            </li>
-                            <li>
-                              <Link href="#">Cooling Fan</Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                      <Link href="#">Surface</Link>
                     </li>
                   </ul>
                 </div>
               </div>
-            </NavLink>
-            <div className='searchbox'>
-              <input
-                type="text"
-                placeholder='Search Product'
-              // value={registration}
-              // onKeyDown={handleKeyDown}
-              // onChange={event => setRegistration(event.target.value)}
-              />
-              <IconButton size='small'>
-                <SearchIcon />
-              </IconButton>
-            </div>
-
-          </Stack>
-
-          <Stack sx={{ flexGrow: 0 }} direction="row" spacing={1}>
-            <IconButton>
-              <Badge badgeContent={0} color="success">
-                <FavoriteBorderIcon />
-              </Badge>
-            </IconButton>
-            <IconButton>
-              <Badge badgeContent={0} color="success">
-                <ShoppingCartOutlinedIcon />
-              </Badge>
-            </IconButton>
-            <Button color='success' >Login</Button>
-            <Button color='success' variant='outlined'>Signup</Button>
-          </Stack>
-        </Toolbar>
-      </Container>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Gaming Laptop</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Dell</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Asus</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Acer</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Desktop PC</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Dell</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Asus</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Acer</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Components</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="cat-item">
+                <div className="title">Category</div>
+                <div className="sub-menu">
+                  <ul>
+                    <li>
+                      <Link href="#">Processor</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Motherboard</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Casing</Link>
+                    </li>
+                    <li>
+                      <Link href="#">Cooling Fan</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </Box>
     </AppBar>
   );
 }

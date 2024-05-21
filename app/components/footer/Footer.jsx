@@ -10,6 +10,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
+import './style/style.css';
 
 
 const links = {
@@ -73,13 +74,13 @@ const Footer = () => {
                                     if (l.outside) {
                                         return (
                                             <a key={l.uri} href={l.uri} target='_blank'>
-                                                <Typography color="text.secondary" variant='body2'>{l.title}</Typography>
+                                                <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                             </a>
                                         )
                                     } else {
                                         return (
-                                            <Link key={l.uri} href={l.uri}>
-                                                <Typography color="text.secondary" variant='body2'>{l.title}</Typography>
+                                            <Link  key={l.uri} href={l.uri}>
+                                                <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                             </Link>
                                         )
                                     }
@@ -93,7 +94,7 @@ const Footer = () => {
                             {
                                 categories.map((l, idx) => (
                                     <Link key={l.slug} href={'category/' + l.slug}>
-                                        <Typography color="text.secondary" variant='body2'>{l.title}</Typography>
+                                        <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                     </Link>
                                 ))
                             }

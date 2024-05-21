@@ -1,4 +1,4 @@
-$active-green: rgb(33, 187, 136);
+$active-color: #1976d2;
 
 .category-link {
     transition: all 200ms;
@@ -6,9 +6,9 @@ $active-green: rgb(33, 187, 136);
         transition: all 200ms;
     }
     &:hover {
-        color: $active-green;
+        color: $active-color;
         .cat-icon {
-            color: $active-green;
+            color: $active-color;
         }
     }
 }
