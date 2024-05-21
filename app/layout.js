@@ -6,8 +6,9 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import 'typeface-roboto';
 import Navbar from '@/app/components/navigation/NavBar';
+import Footer from "./components/footer/Footer";
 
-const inter = Roboto({subsets: ['latin'], weight: '100' });
+const inter = Roboto({ subsets: ['latin'], weight: '100' });
 
 export const metadata = {
   title: "Hifi Computer | Home",
@@ -18,8 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body style={{ fontFamily: 'Roboto, sans-serif' }}>
-        <Navbar />
-        {children}
+        {/* <Navbar />
+        {children} */}
+        <Footer />
       </body>
     </html>
   );
