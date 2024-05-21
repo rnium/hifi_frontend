@@ -60,10 +60,9 @@ const Footer = () => {
             <Container sx={{ py: 5 }}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4}>
-                        <Stack spacing={3} sx={{ maxWidth: '300px' }} justifyContent="center">
+                        <Stack spacing={4} sx={{ maxWidth: '300px', height: '100%' }} alignItems="center" justifyContent="center">
                             <Image src={hifilogo} alt='Hifi Computer Logo' width={170} />
                             <Typography color="text.secondary" variant='body2' paragraph={true} component="body1">HIFI Computer is the most trusted and largest IT solution in Sylhet, Empowerong businesses and individuals by providing authorized products and reliable services</Typography>
-                            <Typography variant='body2' paragraph={true} component="body1">Copyright HIFI Computer </Typography>
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={2}>
@@ -90,7 +89,7 @@ const Footer = () => {
                     </Grid>
                     <Grid item xs={12} md={2}>
                         <Stack spacing={1}>
-                            <Typography variant='body1' color="primary" sx={{ pb: 1 }}>Top Categories</Typography>
+                            <Typography variant='body1' color="primary" sx={{ pb: 1 }}>TOP CATEGORIES</Typography>
                             {
                                 categories.map((l, idx) => (
                                     <Link key={l.slug} href={'category/' + l.slug}>
