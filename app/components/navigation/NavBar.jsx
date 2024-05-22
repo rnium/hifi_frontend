@@ -45,7 +45,7 @@ function NavBar() {
           </IconButton>
           <Typography variant='body2'>Wishlist</Typography>
         </Stack>
-        <Stack sx={{ flexGrow: 0, ml: 1.5 }} alignItems="center" direction="row">
+        <Stack sx={{ flexGrow: 0, ml: 3 }} alignItems="center" direction="row">
           <IconButton>
             <Badge badgeContent={1} color="primary" variant='dot'>
               <ShoppingCartOutlinedIcon />
@@ -56,7 +56,7 @@ function NavBar() {
             <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
           </Stack>
         </Stack>
-        <Divider orientation="vertical" sx={{mx: 3}} flexItem variant='middle' />
+        <Divider orientation="vertical" sx={{mx: 4}} flexItem variant='middle' />
         <UserChip />
       </Toolbar>
       <Box className="product-categories">
