@@ -9,6 +9,7 @@
 # testing
 /coverage
 t1.js
+dev_data.js
 
 # next.js
 /.next/

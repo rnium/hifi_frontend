@@ -1,12 +1,21 @@
 import React from 'react';
-import { Container, Stack, Chip, Box, Typography, Grid, Rating } from '@mui/material';
+import {
+    Container, Stack, Chip, Box, Typography,
+    Grid, Rating, List, ListItem, ListItemText, ListItemIcon
+} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import Link from 'next/link';
+import './styles/style.css';
+import { product1 } from '@/lib/dev_data';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
+const product_data = product1;
+
 
 const Product = () => {
     return (
-        <Container sx={{ my: 4 }}>
-            <Grid container spacing={3}>
+        <Container sx={{ my: 10 }}>
+            <Grid container spacing={3} sx={{ bgcolor: '#ffffff' }} className='rounded-lg p-3'>
                 <Grid item xs={12} md={5}>
                     <Box>
                         <img src='https://www.ryans.com/storage/products/main/lenovo-legion-slim-5i-16irh8-intel-core-i5-13500h-11709715097.webp' width="100%" />
@@ -44,8 +53,23 @@ const Product = () => {
                             </Stack>
                         </Link>
                     </Stack>
+                    <List dense={true}>
+                        {
+                            product_data.key_features.map((f, idx) => (
+                                <ListItem key={idx} dense={true} sx={{px: 0, py: 0.1}}>
+                                    <ListItemIcon>
+                                        <CheckCircleOutlineIcon />
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        {f}
+                                    </ListItemText>
+                                </ListItem>
+                            ))
+                        }
+                    </List>
 
                 </Grid>
+
             </Grid>
         </Container>
     )
