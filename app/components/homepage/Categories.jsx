@@ -16,6 +16,7 @@ const style = {
     border: '1px solid',
     borderColor: 'divider',
     backgroundColor: 'background.paper',
+    zIndex: 0
 };
 
 

@@ -126,7 +126,7 @@ $shadow: rgba(126, 125, 125, 0.2);
                         color: #4c687f;
                         // border: 1px solid #fa6363;
                         border-top: 3px solid #fa6363;
-                        backdrop-filter: blur(5px);
+                        backdrop-filter: blur(10px);
                         padding: 10px 20px 10px 10px;
                         box-shadow: 2px 2px 5px $shadow, -2px 2px 5px $shadow;
                         border-radius: 5px;
@@ -188,7 +188,7 @@ $shadow: rgba(126, 125, 125, 0.2);
     }
     button {
         transition: all 200ms;
-        background-color: rgba(198, 211, 210, 0.6);
+        background-color: rgba(211, 198, 198, 0.6);
     }
     img.icon {
         width: 25px;
@@ -203,7 +203,7 @@ $shadow: rgba(126, 125, 125, 0.2);
     &:focus-within {
         outline: 1px solid rgb(183, 194, 206);
         button {
-            background-color: rgba(149, 196, 192, 0.6);
+            background-color: rgba(196, 149, 149, 0.6);
         }
     }
 }

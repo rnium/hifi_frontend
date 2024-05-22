@@ -1,23 +1,25 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import Image from 'next/image';
 import hifilogo from '@/public/hifi_logo.png';
-import NavLink from './micro/NavLink';
-import DevicesIcon from '@mui/icons-material/Devices';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { Stack, Badge, IconButton, Button, Typography, Box } from '@mui/material';
+import { Stack, Badge, IconButton, Button, Typography, Box, Divider } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
+import UserChip from './micro/UserChip';
 import './styles/style.css';
 
 
 function NavBar() {
   return (
     <AppBar className='mainappbar' position="static" color='transparent' elevation={1}>
+      {/* <Box className="topstrip">
+        <Stack>
+          <Typography variant='body1'>Phone:</Typography>
+        </Stack>
+      </Box> */}
       <Toolbar sx={{ py: 3 }} >
         <Image src={hifilogo} alt='Hifi Computer Logo' width={180} />
         <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
@@ -35,21 +37,27 @@ function NavBar() {
           </div>
 
         </Stack>
-
-        <Stack sx={{ flexGrow: 0 }} direction="row" spacing={1}>
+        <Stack sx={{ flexGrow: 0 }} alignItems="center" direction="row">
           <IconButton>
-            <Badge badgeContent={0} color="success">
+            <Badge badgeContent={0} color="primary" variant='dot'>
               <FavoriteBorderIcon />
             </Badge>
           </IconButton>
+          <Typography variant='body2'>Wishlist</Typography>
+        </Stack>
+        <Stack sx={{ flexGrow: 0, ml: 1.5 }} alignItems="center" direction="row">
           <IconButton>
-            <Badge badgeContent={0} color="success">
+            <Badge badgeContent={1} color="primary" variant='dot'>
               <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>
-          <Button >Login</Button>
-          <Button variant='outlined'>Signup</Button>
+          <Stack>
+            <Typography variant='body2'>My Cart</Typography>
+            <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
+          </Stack>
         </Stack>
+        <Divider orientation="vertical" sx={{mx: 3}} flexItem variant='middle' />
+        <UserChip />
       </Toolbar>
       <Box className="product-categories">
         <div className="content">
