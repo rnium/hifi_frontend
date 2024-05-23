@@ -50,7 +50,7 @@ const Product = () => {
                                 readOnly
                             />
                             <Link href="#">
-                                <Stack direction="row" spacing={1}>
+                                <Stack direction="row" spacing={1} alignItems="center">
                                     <Typography variant='body1' container="span">3.5</Typography>
                                     <Typography variant='body2' container="span" color="text.secondary">out of 156 Reviews</Typography>
                                 </Stack>
@@ -75,7 +75,7 @@ const Product = () => {
                                 ))
                             }
                         </List>
-                        <ProductAction />
+                        <ProductAction product={product_data} />
                     </Stack>
 
                 </Grid>

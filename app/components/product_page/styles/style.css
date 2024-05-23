@@ -23,4 +23,18 @@
 .bgred {
   background-color: red;
   border: 1px solid red;
+}
+
+.color-box {
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgb(255, 255, 255);
+  outline: 1px solid rgba(184, 184, 184, 0.712);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: outline 50ms;
+}
+
+.color-box.active {
+  outline: 2px solid rgb(0, 196, 147);
 }/*# sourceMappingURL=style.css.map */
