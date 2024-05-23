@@ -1,3 +1,27 @@
 .product-container {
     background-color: white;
 }
+
+.slide-img-container {
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 50ms;
+    img {
+        transition: all 200ms;
+        opacity: 0.6;
+    }
+}
+
+.slide-img-container.active {
+    border: 2px solid rgb(0, 179, 125);
+    img {
+        opacity: 1;
+        // transform: scale(1.1);
+    }
+}
+
+.bgred {
+    background-color: red;
+    border: 1px solid red;
+}

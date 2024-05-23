@@ -2,7 +2,7 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
-import hifilogo from '@/public/hifi_logo.png';
+import hifilogo from '@/public/f5s2df.svg';
 import { Stack, Badge, IconButton, Button, Typography, Box, Divider } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -20,8 +20,8 @@ function NavBar() {
           <Typography variant='body1'>Phone:</Typography>
         </Stack>
       </Box> */}
-      <Toolbar sx={{ py: 3 }} >
-        <Image src={hifilogo} alt='Hifi Computer Logo' width={180} />
+      <Toolbar sx={{ py: 1.5 }} >
+        <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
         <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
           <div className='searchbox'>
             <input
