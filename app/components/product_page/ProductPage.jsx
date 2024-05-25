@@ -17,6 +17,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ImageSlider from './ImageSlider';
 import { Image } from 'antd';
 import DisplayImage from './mircro/DisplayImage';
+import Review from './mircro/Review';
 const product_data = product1;
 
 
@@ -35,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Product = () => {
     return (
-        <Container sx={{ my: 10 }}>
+        <Container sx={{ mt: 5, mb: 10 }}>
             <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }} >
                 <Grid container spacing={4} >
                     <Grid item xs={12} md={5}>
@@ -103,7 +104,7 @@ const Product = () => {
             <Box sx={{ mt: 2 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p:3 }}>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
                             <Typography
                                 variant='h6'
                                 color="primary"
@@ -160,8 +161,25 @@ const Product = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p:3 }}>
-                            
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
+                            <Typography
+                                variant='h6'
+                                color="primary"
+                            >
+                                Customer Reviews
+                            </Typography>
+                            <Typography
+                                variant='body2'
+                                color="text.secondary"
+                                sx={{ mb: 2 }}
+                            >
+                                What our valuable customers say
+                            </Typography>
+                            {
+                                product_data.reviews.map(r => (
+                                    <Review sx={{mb: 1.5, p: 1}} review={r} />
+                                ))
+                            }
                         </Box>
                     </Grid>
                 </Grid>
