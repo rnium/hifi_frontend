@@ -18,6 +18,8 @@ import ImageSlider from './ImageSlider';
 import { Empty } from 'antd';
 import DisplayImage from './mircro/DisplayImage';
 import Review from './mircro/Review';
+import Question from './mircro/Question';
+import ReviewForm from './mircro/ReviewForm';
 const product_data = product1;
 
 
@@ -108,7 +110,7 @@ const Product = () => {
                             <Typography
                                 variant='h6'
                                 color="primary"
-                                sx={{ mb: 2 }}
+                                sx={{ mb: 1 }}
                             >
                                 Laptop Specifications
                             </Typography>
@@ -165,46 +167,48 @@ const Product = () => {
                             <Typography
                                 variant='h6'
                                 color="primary"
+                                sx={{mb: 1}}
                             >
                                 Customer Reviews
-                            </Typography>
-                            <Typography
-                                variant='body2'
-                                color="text.secondary"
-                                sx={{ mb: 2 }}
-                            >
-                                What our valuable customers say
                             </Typography>
                             {
                                 product_data.reviews.length > 0 ?
                                     product_data.reviews.map(r => (
                                         <Review sx={{ mb: 1.5, p: 1 }} review={r} />
                                     )) :
-                                    <Stack justifyContent="center" alignItems="center">
-                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                    <Stack justifyContent="center" alignItems="center" sx={{my: 5}}>
+                                        <Empty 
+                                            image={Empty.PRESENTED_IMAGE_SIMPLE}
+                                            description = {<Typography variant='body1'>No Reviews Yet</Typography>}
+                                        />
                                     </Stack>
                             }
 
                             <Divider sx={{ my: 2 }} />
-                            <Stack alignItems="center" spacing={1}>
-                                <Typography color="primary" variant='body1'>Review This Product</Typography>
-                                <Rating
-                                    value={0}
-                                    max={5}
-                                    precision={0.5}
-                                    sx={{ mt: 1 }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    label="Write Your Review"
-                                    variant='filled'
-                                    color='secondary'
-                                    multiline
-                                    rows={3}
-                                />
-                                <Button variant='contained' fullWidth>Post Review</Button>
+                            <ReviewForm />
+                        </Box>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', mt: 2, p: 3 }}>
+                            <Typography
+                                variant='h6'
+                                color="primary"
+                                sx={{mb: 1}}
+                            >
+                                Questions
+                            </Typography>
+                            {
+                                product_data.reviews.length > 0 ?
+                                    product_data.questions.map(r => (
+                                        <Question sx={{ mb: 1.5, p: 1 }} question={r} />
+                                    )) :
+                                    <Stack justifyContent="center" alignItems="center" sx={{my: 5}}>
+                                        <Empty 
+                                            image={Empty.PRESENTED_IMAGE_SIMPLE}
+                                            description = {<Typography variant='body1'>No Questions Yet</Typography>}
+                                        />
+                                    </Stack>
+                            }
 
-                            </Stack>
+                            <Divider sx={{ my: 2 }} />
                         </Box>
                     </Grid>
                 </Grid>
