@@ -1,8 +1,13 @@
-import React from 'react';
+'use client'
+
+import { Fragment } from 'react';
 import {
     Container, Stack, Chip, Box, Typography,
-    Grid, Rating, List, ListItem, ListItemText, ListItemIcon
+    Grid, Rating, List, ListItem, ListItemText,
+    TableContainer, Table, TableBody, TableRow, TableCell,
+    Alert
 } from '@mui/material';
+import { styled } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import Link from 'next/link';
 import './styles/style.css';
@@ -13,74 +18,154 @@ import ImageSlider from './ImageSlider';
 const product_data = product1;
 
 
+const DataCell = styled(TableCell)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    }
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    'td': {
+        border: 0,
+    },
+}));
+
+
 const Product = () => {
     return (
         <Container sx={{ my: 10 }}>
-            <Grid container spacing={3} sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }}>
-                <Grid item xs={12} md={5}>
-                    <Box>
-                        <img src='https://www.ryans.com/storage/products/main/lenovo-legion-slim-5i-16irh8-intel-core-i5-13500h-11709715097.webp' width="100%" />
-                    </Box>
-                    <ImageSlider images={product_data.images} />
-                </Grid>
-                <Grid item xs={12} md={7}>
-                    <Stack spacing={1}>
-                        <Typography variant='h5'>Lenovo Legion Slim 5i 16IRH8 Intel Core i5 13500H 16GB RAM, 512GB SSD 16 Inch 2.5K QHD WQXGA Display Storm Grey Gaming Laptop</Typography>
-                        <Stack direction="row" spacing={1}>
-                            <Chip
-                                label="In Stock"
-                                icon={<CheckIcon />}
-                                size='small'
-                                color='secondary'
-                                sx={{ p: 1 }}
-                            />
-                            <Chip
-                                label="Brand: Lenovo"
-                                size='small'
-                                color='secondary'
-                                variant='outlined'
-                                sx={{ p: 1 }}
-                            />
-                        </Stack>
-                        <Stack direction="row" spacing={2} alignItems="center">
-                            <Rating
-                                value={3.5}
-                                max={5}
-                                precision={0.1}
-                                readOnly
-                            />
-                            <Link href="#">
-                                <Stack direction="row" spacing={1} alignItems="center">
-                                    <Typography variant='body1' container="span">3.5</Typography>
-                                    <Typography variant='body2' container="span" color="text.secondary">out of 156 Reviews</Typography>
-                                </Stack>
-                            </Link>
-                        </Stack>
-                        <Stack direction="row" spacing={3} alignItems="center">
-                            <Stack direction="row" spacing={1} alignItems="flex-start">
-                                <Typography variant='h6' color="text.secondary">৳</Typography>
-                                <Typography variant='h4' color="">1,75,000</Typography>
+            <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }} >
+                <Grid container spacing={4} >
+                    <Grid item xs={12} md={5}>
+                        <Box>
+                            <img src='https://www.ryans.com/storage/products/main/lenovo-legion-slim-5i-16irh8-intel-core-i5-13500h-11709715097.webp' width="100%" />
+                        </Box>
+                        <ImageSlider images={product_data.images} />
+                    </Grid>
+                    <Grid item xs={12} md={7}>
+                        <Stack spacing={1}>
+                            <Typography variant='h5'>Lenovo Legion Slim 5i 16IRH8 Intel Core i5 13500H 16GB RAM, 512GB SSD 16 Inch 2.5K QHD WQXGA Display Storm Grey Gaming Laptop</Typography>
+                            <Stack direction="row" spacing={1}>
+                                <Chip
+                                    label="In Stock"
+                                    icon={<CheckIcon />}
+                                    size='small'
+                                    color='secondary'
+                                    sx={{ p: 1 }}
+                                />
+                                <Chip
+                                    label="Brand: Lenovo"
+                                    size='small'
+                                    color='secondary'
+                                    variant='outlined'
+                                    sx={{ p: 1 }}
+                                />
                             </Stack>
-                            <Typography variant='h6' className='line-through decoration-gray-400' color="text.secondary">1,87,000</Typography>
+                            <Stack direction="row" spacing={2} alignItems="center">
+                                <Rating
+                                    value={3.5}
+                                    max={5}
+                                    precision={0.1}
+                                    readOnly
+                                />
+                                <Link href="#">
+                                    <Stack direction="row" spacing={1} alignItems="center">
+                                        <Typography variant='body1' container="span">3.5</Typography>
+                                        <Typography variant='body2' container="span" color="text.secondary">out of 156 Reviews</Typography>
+                                    </Stack>
+                                </Link>
+                            </Stack>
+                            <Stack direction="row" spacing={3} alignItems="center">
+                                <Stack direction="row" spacing={1} alignItems="flex-start">
+                                    <Typography variant='h6' color="text.secondary">৳</Typography>
+                                    <Typography variant='h4' color="">1,75,000</Typography>
+                                </Stack>
+                                <Typography variant='h6' className='line-through decoration-gray-400' color="text.secondary">1,87,000</Typography>
+                            </Stack>
+                            <List dense={true}>
+                                {
+                                    product_data.key_features.map((f, idx) => (
+                                        <ListItem key={idx} dense={true} sx={{ px: 0, py: 0.1 }}>
+                                            <CheckCircleOutlineIcon color='info' sx={{ mr: 1 }} />
+                                            <ListItemText>
+                                                {f}
+                                            </ListItemText>
+                                        </ListItem>
+                                    ))
+                                }
+                            </List>
+                            <ProductAction product={product_data} />
                         </Stack>
-                        <List dense={true}>
-                            {
-                                product_data.key_features.map((f, idx) => (
-                                    <ListItem key={idx} dense={true} sx={{ px: 0, py: 0.1 }}>
-                                        <CheckCircleOutlineIcon color='info' sx={{ mr: 1 }} />
-                                        <ListItemText>
-                                            {f}
-                                        </ListItemText>
-                                    </ListItem>
-                                ))
-                            }
-                        </List>
-                        <ProductAction product={product_data} />
-                    </Stack>
 
+                    </Grid>
                 </Grid>
+            </Box>
+            <Box sx={{ mt: 2 }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={8}>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }}>
+                            <Typography
+                                variant='h6'
+                                color="primary"
+                                sx={{ mb: 2 }}
+                            >
+                                Laptop Specifications
+                            </Typography>
+                            <Fragment>
+                                <TableContainer sx={{ mb: 2 }}>
+                                    <Table>
+                                        <TableBody>
+                                            <StyledTableRow>
+                                                <TableCell sx={{ px: 0 }} colSpan={2}>
+                                                    <Alert sx={{ mx: 0 }} icon={false} severity='error'>
+                                                        Quick Overview
+                                                    </Alert>
+                                                </TableCell>
+                                            </StyledTableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                            <StyledTableRow >
+                                                <TableCell sx={{ px: 0 }} colSpan={2}>
+                                                    <Alert sx={{ mx: 0, mt: 2 }} icon={false} severity='error'>
+                                                        Display
+                                                    </Alert>
+                                                </TableCell>
+                                            </StyledTableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <DataCell>Spec Title</DataCell>
+                                                <DataCell>Lorem ipsum dolor sit amet consectetur adipisicing.</DataCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Fragment>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }}>
 
-            </Grid>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
         </Container>
     )
 }
