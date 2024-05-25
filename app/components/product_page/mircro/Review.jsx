@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Avatar, Stack, Paper, Rating } from '@mui/material';
+import dateFormat from 'dateformat';
 
 const Review = (props) => {
     let review = props.review;
@@ -9,7 +10,7 @@ const Review = (props) => {
                 <Avatar src={review.user_avatar} sx={{ width: 40, height: 40 }} />
                 <Stack>
                     <Typography color="secondary" variant='body1'>{review.name}</Typography>
-                    <Typography color="text.secondary" variant='caption'>{review.posted_on}</Typography>
+                    <Typography color="text.secondary" variant='caption'>{dateFormat(review.posted_on, "h:MM TT, mmmm dS, yyyy")}</Typography>
                 </Stack>
 
             </Stack>

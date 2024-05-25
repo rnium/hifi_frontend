@@ -5,7 +5,7 @@ import {
     Container, Stack, Chip, Box, Typography,
     Grid, Rating, List, ListItem, ListItemText,
     TableContainer, Table, TableBody, TableRow, TableCell,
-    Alert
+    Alert, TextField, Divider, Button
 } from '@mui/material';
 import { styled } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
@@ -15,7 +15,7 @@ import { product1 } from '@/lib/dev_data';
 import ProductAction from './ProductAction';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ImageSlider from './ImageSlider';
-import { Image } from 'antd';
+import { Empty } from 'antd';
 import DisplayImage from './mircro/DisplayImage';
 import Review from './mircro/Review';
 const product_data = product1;
@@ -176,10 +176,35 @@ const Product = () => {
                                 What our valuable customers say
                             </Typography>
                             {
-                                product_data.reviews.map(r => (
-                                    <Review sx={{mb: 1.5, p: 1}} review={r} />
-                                ))
+                                product_data.reviews.length > 0 ?
+                                    product_data.reviews.map(r => (
+                                        <Review sx={{ mb: 1.5, p: 1 }} review={r} />
+                                    )) :
+                                    <Stack justifyContent="center" alignItems="center">
+                                        <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                    </Stack>
                             }
+
+                            <Divider sx={{ my: 2 }} />
+                            <Stack alignItems="center" spacing={1}>
+                                <Typography color="primary" variant='body1'>Review This Product</Typography>
+                                <Rating
+                                    value={0}
+                                    max={5}
+                                    precision={0.5}
+                                    sx={{ mt: 1 }}
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="Write Your Review"
+                                    variant='filled'
+                                    color='secondary'
+                                    multiline
+                                    rows={3}
+                                />
+                                <Button variant='contained' fullWidth>Post Review</Button>
+
+                            </Stack>
                         </Box>
                     </Grid>
                 </Grid>
