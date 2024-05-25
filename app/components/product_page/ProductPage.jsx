@@ -103,7 +103,7 @@ const Product = () => {
             <Box sx={{ mt: 2 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }}>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p:3 }}>
                             <Typography
                                 variant='h6'
                                 color="primary"
@@ -160,8 +160,8 @@ const Product = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }}>
-
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p:3 }}>
+                            
                         </Box>
                     </Grid>
                 </Grid>

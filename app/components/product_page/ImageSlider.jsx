@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Grid, Box, IconButton, Stack } from '@mui/material';
+import { Box, IconButton, Stack, Skeleton } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -13,10 +13,26 @@ import { FreeMode, Thumbs } from 'swiper/modules';
 
 
 const ImageSlider = ({ images }) => {
-    // const slides = sliceImages(images);
-    const [selectedImage, setSelectedImage] = useState(images[0]?.id)
+    const [isMounted, setIsMounted] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(images[0]?.id);
+    
+    useEffect(() => {
+        setIsMounted(true);
+    })
+
+    if (!isMounted) {
+        return (
+            <Stack sx={{mt: 1}} direction="row" spacing={2}>
+                {
+                    images.slice(0, 4).map((i, idx) => (
+                        <Skeleton animation="wave" key={`skeleton-${idx}`} variant='rounded' width={90} height={90} />
+                    ))
+                }
+            </Stack>
+        )
+    }
     return (
-        <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" className='image-slider'>
+        <Stack sx={{mt: 1}} direction="row" spacing={1} alignItems="center" justifyContent="center" className='image-slider'>
             <Swiper
                 slidesPerView={5}
                 spaceBetween={8}
