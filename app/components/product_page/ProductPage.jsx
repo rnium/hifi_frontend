@@ -15,6 +15,8 @@ import { product1 } from '@/lib/dev_data';
 import ProductAction from './ProductAction';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ImageSlider from './ImageSlider';
+import { Image } from 'antd';
+import DisplayImage from './mircro/DisplayImage';
 const product_data = product1;
 
 
@@ -37,9 +39,7 @@ const Product = () => {
             <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }} >
                 <Grid container spacing={4} >
                     <Grid item xs={12} md={5}>
-                        <Box>
-                            <img src='https://www.ryans.com/storage/products/main/lenovo-legion-slim-5i-16irh8-intel-core-i5-13500h-11709715097.webp' width="100%" />
-                        </Box>
+                        <DisplayImage images={product_data.images} />
                         <ImageSlider images={product_data.images} />
                     </Grid>
                     <Grid item xs={12} md={7}>

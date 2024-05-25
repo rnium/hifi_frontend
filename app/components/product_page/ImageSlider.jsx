@@ -9,22 +9,23 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Mousewheel, Thumbs } from 'swiper/modules';
+import { FreeMode, Thumbs } from 'swiper/modules';
 
 
 const ImageSlider = ({ images }) => {
     // const slides = sliceImages(images);
-    const [selectedImage, setSelectedImage] = useState(images[0].id)
+    const [selectedImage, setSelectedImage] = useState(images[0]?.id)
     return (
         <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" className='image-slider'>
             <Swiper
                 slidesPerView={5}
                 spaceBetween={8}
+                freeMode={true}
                 pagination={{
                     clickable: false,
 
                 }}
-                modules={[Mousewheel, Thumbs]}
+                modules={[FreeMode, Thumbs]}
                 className="mySwiper"
             >
                 {
