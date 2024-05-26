@@ -19,6 +19,7 @@ import DisplayImage from './mircro/DisplayImage';
 import Review from './mircro/Review';
 import Question from './mircro/Question';
 import ReviewForm from './mircro/ReviewForm';
+import QuestionForm from './mircro/QuestionForm';
 const product_data = product1;
 
 
@@ -207,6 +208,7 @@ const Product = () => {
                             }
 
                             <Divider sx={{ my: 2 }} />
+                            <QuestionForm />
                         </Box>
                     </Grid>
                 </Grid>
