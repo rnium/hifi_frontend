@@ -14,7 +14,6 @@ import './styles/style.css';
 import { product1 } from '@/lib/dev_data';
 import ProductAction from './ProductAction';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import ImageSlider from './ImageSlider';
 import { Empty } from 'antd';
 import DisplayImage from './mircro/DisplayImage';
 import Review from './mircro/Review';
@@ -43,7 +42,6 @@ const Product = () => {
                 <Grid container spacing={4} >
                     <Grid item xs={12} md={5}>
                         <DisplayImage images={product_data.images} />
-                        <ImageSlider images={product_data.images} />
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <Stack spacing={1}>
