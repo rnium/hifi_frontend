@@ -23,7 +23,7 @@ const Product = ({ product }) => {
                         <Link href={product_link}>
                             <Typography
                                 sx={{ textAlign: "center", fontSize: '0.8rem' }}
-                                className='hover:text-red-700'
+                                className='hover:text-red-700 hover:underline'
                                 gutterBottom
                                 variant="h6"
                                 component="div"
