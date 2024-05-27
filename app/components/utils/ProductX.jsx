@@ -11,35 +11,34 @@ import Link from 'next/link';
 const Product = ({ product }) => {
     const product_link = "/product/" + product.slug;
     return (
-        <Paper sx={{ mb: 1, px: 2, py: 1.5 }} elevation={2}>
+        <Paper sx={{ mb: 1, px: 2, py: 2 }} elevation={0} className='border-b last:border-0'>
             <Stack direction="row">
                 <Stack justifyContent="center">
                     <Link href={product_link}>
                         <img src={product.banner} alt="" width="200px" />
                     </Link>
                 </Stack>
-                <Stack alignItems="center" sx={{ minHeight: '110px' }}>
-                    <Link href={product_link}>
-                        <Typography
-                            sx={{ textAlign: "center", fontSize: '0.8rem', flexGrow: 1 }}
-                            className='product-title'
-                            gutterBottom
-                            variant="h6"
-                            component="div"
-                        >
-                            {product.title}
-                        </Typography>
+                <Stack alignItems="center" sx={{ minHeight: '120px' }} spacing={1}>
+                    <Box flexGrow={1}>
+                        <Link href={product_link}>
+                            <Typography
+                                sx={{ textAlign: "center", fontSize: '0.8rem' }}
+                                className='hover:text-red-700'
+                                gutterBottom
+                                variant="h6"
+                                component="div"
+                            >
+                                {product.title}
+                            </Typography>
 
-                    </Link>
-                    <Stack direction="row" spacing={1}>
-                        <Chip label="Add to cart" size='small' variant='outlined' color='primary' />
-                    </Stack>
+                        </Link>
+                    </Box>
+
                     <Stack
                         direction="row"
                         spacing={2}
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ mt: 1 }}
                     >
                         <Typography
                             sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
@@ -47,9 +46,9 @@ const Product = ({ product }) => {
                             gutterBottom
                             variant="h6"
                             component="div"
-                            // color="primary"
+                            flexGrow={1}
                         >
-                            {product.price - product.discount} Tk
+                            {new Number(product.price - product.discount).toLocaleString('en-IN')} Tk
                         </Typography>
                         {
                             product.discount > 0 ?
@@ -61,9 +60,12 @@ const Product = ({ product }) => {
                                     component="div"
                                     color="text.secondary"
                                 >
-                                    {product.price} Tk
+                                    {new Number(product.price).toLocaleString('en-IN')} Tk
                                 </Typography> : null
                         }
+                    </Stack>
+                    <Stack direction="row" spacing={1}>
+                        <Chip sx={{ px: 1 }} icon={<AddShoppingCartIcon />} label="Add to cart" size='small' variant='outlined' color='primary' />
                     </Stack>
                 </Stack>
             </Stack>
