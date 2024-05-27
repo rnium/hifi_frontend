@@ -20,6 +20,7 @@ import Review from './mircro/Review';
 import Question from './mircro/Question';
 import ReviewForm from './mircro/ReviewForm';
 import QuestionForm from './mircro/QuestionForm';
+import ProductX from '../utils/ProductX';
 const product_data = product1;
 
 
@@ -162,11 +163,25 @@ const Product = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', mt: 2, p: 3 }}>
                             <Typography
                                 variant='h6'
                                 color="primary"
-                                sx={{mb: 1}}
+                                sx={{ mb: 1 }}
+                            >
+                                Similar Products
+                            </Typography>
+                            {
+                                product1.related_products.map(p => (
+                                    <ProductX key={`rp-${p.id}`} product={p} />
+                                ))
+                            }
+                        </Box>
+                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', mt: 2, p: 3 }}>
+                            <Typography
+                                variant='h6'
+                                color="primary"
+                                sx={{ mb: 1 }}
                             >
                                 Customer Reviews
                             </Typography>
@@ -175,10 +190,10 @@ const Product = () => {
                                     product_data.reviews.map(r => (
                                         <Review sx={{ mb: 1.5, p: 1 }} review={r} />
                                     )) :
-                                    <Stack justifyContent="center" alignItems="center" sx={{my: 5}}>
-                                        <Empty 
+                                    <Stack justifyContent="center" alignItems="center" sx={{ my: 5 }}>
+                                        <Empty
                                             image={Empty.PRESENTED_IMAGE_SIMPLE}
-                                            description = {<Typography variant='body1'>No Reviews Yet</Typography>}
+                                            description={<Typography variant='body1'>No Reviews Yet</Typography>}
                                         />
                                     </Stack>
                             }
@@ -190,19 +205,19 @@ const Product = () => {
                             <Typography
                                 variant='h6'
                                 color="primary"
-                                sx={{mb: 1}}
+                                sx={{ mb: 1 }}
                             >
                                 Questions
                             </Typography>
                             {
-                                product_data.reviews.length > 0 ?
+                                product_data.questions.length > 0 ?
                                     product_data.questions.map(r => (
                                         <Question sx={{ mb: 1.5, p: 1 }} question={r} />
                                     )) :
-                                    <Stack justifyContent="center" alignItems="center" sx={{my: 5}}>
-                                        <Empty 
+                                    <Stack justifyContent="center" alignItems="center" sx={{ my: 5 }}>
+                                        <Empty
                                             image={Empty.PRESENTED_IMAGE_SIMPLE}
-                                            description = {<Typography variant='body1'>No Questions Yet</Typography>}
+                                            description={<Typography variant='body1'>No Questions Yet</Typography>}
                                         />
                                     </Stack>
                             }
