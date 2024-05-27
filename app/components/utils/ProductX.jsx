@@ -11,7 +11,7 @@ import Link from 'next/link';
 const Product = ({ product }) => {
     const product_link = "/product/" + product.slug;
     return (
-        <Paper sx={{ mb: 1, px: 2, py: 2 }} elevation={0} className='border-b last:border-0'>
+        <Paper sx={{ mb: 1, px: 2, py: 2 }} elevation={0} className='border'>
             <Stack direction="row">
                 <Stack justifyContent="center">
                     <Link href={product_link}>
