@@ -41,7 +41,7 @@ export default function Categories() {
                         )
                     } else {
                         return (
-                            <Fragment>
+                            <Fragment key={idx}>
                                 <Link key={idx} href="#" className='category-link'>
                                     <ListItem >
                                         <ListItemIcon>

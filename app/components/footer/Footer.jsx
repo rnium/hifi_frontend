@@ -110,8 +110,8 @@ const Footer = () => {
                             </Stack>
                             <Stack direction="row" >
                                 {
-                                    links.socials.map(l => (
-                                        <a href={l.url} target='_blank'>
+                                    links.socials.map((l, idx) => (
+                                        <a href={l.url} key={idx} target='_blank'>
                                             <IconButton>
                                                 {l.icon}
                                             </IconButton>

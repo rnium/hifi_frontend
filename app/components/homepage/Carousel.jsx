@@ -21,7 +21,7 @@ const HomepageCarousel = () => {
     };
     useEffect(() => {
         setIsMounted(true);
-    })
+    }, [])
     if (!isMounted) {
         return <Spinner py={20} />;
     }

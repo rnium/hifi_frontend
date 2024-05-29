@@ -52,8 +52,8 @@ const DisplayImage = ({ images }) => {
                     className="mySwiper"
                 >
                     {
-                        images.map(i => (
-                            <SwiperSlide>
+                        images.map((i, idx) => (
+                            <SwiperSlide key={idx}>
                                 <Box onClick={() => setSelectedImage(i.id)} className={selectedImage === i.id ? "slide-img-container active" : "slide-img-container"}>
                                     <img width="100px" src={i.url} className='w-full' />
                                 </Box>

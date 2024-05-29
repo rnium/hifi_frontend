@@ -187,8 +187,8 @@ const Product = () => {
                             </Typography>
                             {
                                 product_data.reviews.length > 0 ?
-                                    product_data.reviews.map(r => (
-                                        <Review sx={{ mb: 1.5, p: 1 }} review={r} />
+                                    product_data.reviews.map((r, idx) => (
+                                        <Review key={idx} sx={{ mb: 1.5, p: 1 }} review={r} />
                                     )) :
                                     <Stack justifyContent="center" alignItems="center" sx={{ my: 5 }}>
                                         <Empty
@@ -211,8 +211,8 @@ const Product = () => {
                             </Typography>
                             {
                                 product_data.questions.length > 0 ?
-                                    product_data.questions.map(r => (
-                                        <Question sx={{ mb: 1.5, p: 1 }} question={r} />
+                                    product_data.questions.map((r, idx) => (
+                                        <Question key={idx} sx={{ mb: 1.5, p: 1 }} question={r} />
                                     )) :
                                     <Stack justifyContent="center" alignItems="center" sx={{ my: 5 }}>
                                         <Empty

@@ -54,7 +54,7 @@ const ProductY = ({ product }) => {
                         <ul>
                             {
                                 product1.key_features.map((f, idx) => (
-                                    <li>
+                                    <li key={idx}>
                                         <Typography
                                             variant='caption'
                                             color="text.secondary"

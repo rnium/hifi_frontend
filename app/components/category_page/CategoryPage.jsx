@@ -11,6 +11,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
 import CategoryPagination from './CategoryPagination';
+import { Pagination } from 'antd';
 
 let cat_hiararchy = [
     {
@@ -133,8 +134,8 @@ const CategoryPage = (props) => {
                 </Typography>
                 <Box sx={{ mt: 1 }}>
                     {
-                        children_categories.map(c => (
-                            <Link href={`/category/${c.slug}`}>
+                        children_categories.map((c, idx) => (
+                            <Link key={idx} href={`/category/${c.slug}`}>
                                 <Chip sx={{ mr: 1, mb: 1 }} label={c.title} />
                             </Link>
                         ))
@@ -214,8 +215,8 @@ const CategoryPage = (props) => {
                             <AccordionDetails>
                                 <FormGroup >
                                     {
-                                        processor_types.map(p => (
-                                            <FormControlLabel name='availibility' control={<Checkbox />} label={p.title} />
+                                        processor_types.map((p, idx) => (
+                                            <FormControlLabel key={idx} name='availibility' control={<Checkbox />} label={p.title} />
                                         ))
                                     }
 
@@ -226,8 +227,12 @@ const CategoryPage = (props) => {
                     </Grid>
                     <Grid item xs={0} md={9} >
                         <ProductGrid />
-                        <Box sx={{mt: 2}}>
-                            <CategoryPagination />
+                        <Box sx={{ mt: 2 }}>
+                            <Pagination 
+                             defaultCurrent={6} 
+                             total={500}
+                             pageSizeOptions={[25, 50, 75, 100]}
+                             />
                         </Box>
                     </Grid>
                 </Grid>

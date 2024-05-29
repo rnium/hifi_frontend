@@ -13,8 +13,8 @@ const ProductAction = ({ product }) => {
             <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>
                 <Typography variant='body1' color="text.secondary">Product Colors</Typography>
                 {
-                    product.product_colors.map(c => (
-                        <Tooltip title={c.color_name} placement='top' arrow>
+                    product.product_colors.map((c, idx) => (
+                        <Tooltip key={idx} title={c.color_name} placement='top' arrow>
                             <div onClick={() => setSelectedColor(c.code)} className={selectedColor == c.code ? "color-box active" : "color-box"} style={{ backgroundColor: c.code }}></div>
                         </Tooltip>
                     ))
