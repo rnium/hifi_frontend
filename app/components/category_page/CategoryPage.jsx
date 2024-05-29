@@ -10,6 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
+import CategoryPagination from './CategoryPagination';
 
 let cat_hiararchy = [
     {
@@ -225,6 +226,9 @@ const CategoryPage = (props) => {
                     </Grid>
                     <Grid item xs={0} md={9} >
                         <ProductGrid />
+                        <Box sx={{mt: 2}}>
+                            <CategoryPagination />
+                        </Box>
                     </Grid>
                 </Grid>
             </Container>
