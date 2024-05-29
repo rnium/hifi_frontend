@@ -228,11 +228,7 @@ const CategoryPage = (props) => {
                     <Grid item xs={0} md={9} >
                         <ProductGrid />
                         <Box sx={{ mt: 2 }}>
-                            <Pagination 
-                             defaultCurrent={6} 
-                             total={500}
-                             pageSizeOptions={[25, 50, 75, 100]}
-                             />
+                            <CategoryPagination />
                         </Box>
                     </Grid>
                 </Grid>

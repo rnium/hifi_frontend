@@ -24,8 +24,7 @@ const CategoryPagination = () => {
                 count={count}
                 onChange={(e, value) => setPage(value-1)}
                 page={page + 1}
-                color="primary"
-                variant='outlined'
+                color="secondary"
             />
             <TablePagination
                 component="div"
