@@ -1,6 +1,6 @@
 $active-green: #21bb88;
 
-.product {
+.product, .product-y {
     transition: all 300ms;
     position: relative;
     img {
@@ -65,5 +65,11 @@ $active-green: #21bb88;
                 right: 1rem;
             }
         }
+    }
+}
+
+.product-y {
+    .actions {
+        top: 5%;
     }
 }
