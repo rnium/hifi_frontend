@@ -71,7 +71,7 @@ const ProductY = ({ product }) => {
                         spacing={2}
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 2 }}
                     >
                         <Typography
                             sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
