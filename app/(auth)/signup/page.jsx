@@ -8,57 +8,46 @@ import banner from '@/public/images/11786050_4816248.svg'
 
 const page = () => {
     return (
-        <Box  className="border-b">
-            <Container sx={{ py: 10 }} >
-                <Grid container justifyContent="center" alignItems="center" spacing={5}>
-                    <Grid item xs={12} md={6}>
-                        <Image src={banner} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Paper sx={{ py: 4, px: 3 }} elevation={0} className='rounded-xl border'>
-                            <Stack spacing={1} alignItems="center">
-                                <Image src={hifilogo} width={80} />
-                                <Typography variant='h6'>User Signup</Typography>
-                                <TextField
-                                    label="Name"
-                                    name='name'
-                                    fullWidth
-                                />
-                                <TextField
-                                    label="Phone"
-                                    name='phone'
-                                    fullWidth
-                                />
-                                <TextField
-                                    label="Email"
-                                    type="email"
-                                    name='email'
-                                    fullWidth
-                                />
-                                <TextField
-                                    label="Password"
-                                    type="password"
-                                    name='password'
-                                    fullWidth
-                                />
-                                <TextField
-                                    label="Retype Password"
-                                    type="password"
-                                    name='re_password'
-                                    fullWidth
-                                />
-                                <Stack className='w-full' direction="row" alignItems="center" justifyContent="space-between">
-                                    <Typography variant='body1'>
-                                    Have an account? <Link className='text-green-500 transition-all hover:underline' href="/login">Login Here</Link>
-                                    </Typography>
-                                    <Button variant='contained'>Sign Up</Button>
-                                </Stack>
-                            </Stack>
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </Container>
-        </Box>
+        <Paper sx={{ py: 4, px: 3 }} elevation={0} className='rounded-xl border'>
+            <Stack spacing={1} alignItems="center">
+                <Image src={hifilogo} width={80} />
+                <Typography variant='h6'>User Signup</Typography>
+                <TextField
+                    label="Name"
+                    name='name'
+                    fullWidth
+                />
+                <TextField
+                    label="Phone"
+                    name='phone'
+                    fullWidth
+                />
+                <TextField
+                    label="Email"
+                    type="email"
+                    name='email'
+                    fullWidth
+                />
+                <TextField
+                    label="Password"
+                    type="password"
+                    name='password'
+                    fullWidth
+                />
+                <TextField
+                    label="Retype Password"
+                    type="password"
+                    name='re_password'
+                    fullWidth
+                />
+                <Stack className='w-full' direction="row" alignItems="center" justifyContent="space-between">
+                    <Typography variant='body1'>
+                        Have an account? <Link className='text-green-500 transition-all hover:underline' href="/login">Login Here</Link>
+                    </Typography>
+                    <Button variant='contained'>Sign Up</Button>
+                </Stack>
+            </Stack>
+        </Paper>
     )
 }
 

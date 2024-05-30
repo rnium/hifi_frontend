@@ -8,44 +8,36 @@ import banner from '@/public/images/20547283_6310505.svg'
 
 const page = () => {
   return (
-    <Box className="border-b">
-      <Container sx={{ py: 10 }} >
-        <Grid container justifyContent="center" alignItems="center" spacing={5}>
-          <Grid item xs={12} md={6}>
-            <Image src={banner} />
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Paper sx={{ py: 5, px: 3 }} elevation={0} className='rounded-xl border'>
-              <Stack spacing={1} alignItems="center">
-                <Image src={hifilogo} width={80} />
-                <Typography variant='h6'>User Login</Typography>
-                <TextField
-                  label="Email"
-                  type="email"
-                  name='email'
-                  fullWidth
-                />
-                <TextField
-                  label="Password"
-                  type="password"
-                  name='password'
-                  fullWidth
-                />
-                <Stack className='w-full pt-5' direction="row" alignItems="center" justifyContent="space-between">
-                  <Typography variant='body1'>
-                    Need an account? <Link className='text-green-500 transition-all hover:underline' href="/signup">Signup Here</Link>
-                  </Typography>
-                  <Button variant='contained'>Login</Button>
-                </Stack>
-              </Stack>
-            </Paper>
-            <Typography variant='body2' textAlign="center" sx={{mt: 2}}>
-              <Link className='text-green-800 transition-all hover:underline' href="#">Forgot Password?</Link>
+    <>
+      <Paper sx={{ py: 5, px: 3 }} elevation={0} className='rounded-xl border'>
+        <Stack spacing={1} alignItems="center">
+          <Image src={hifilogo} width={80} />
+          <Typography variant='h6'>User Login</Typography>
+          <TextField
+            label="Email"
+            type="email"
+            name='email'
+            fullWidth
+          />
+          <TextField
+            label="Password"
+            type="password"
+            name='password'
+            fullWidth
+          />
+          <Stack className='w-full pt-5' direction="row" alignItems="center" justifyContent="space-between">
+            <Typography variant='body1'>
+              Need an account? <Link className='text-green-500 transition-all hover:underline' href="/signup">Signup Here</Link>
             </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+            <Button variant='contained'>Login</Button>
+          </Stack>
+        </Stack>
+      </Paper>
+      <Typography variant='body2' textAlign="center" sx={{ mt: 2 }}>
+        <Link className='text-green-800 transition-all hover:underline' href="#">Forgot Password?</Link>
+      </Typography>
+    </>
+
   )
 }
 
