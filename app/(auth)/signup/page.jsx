@@ -3,7 +3,6 @@ import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button } fro
 import Image from 'next/image';
 import Link from 'next/link';
 import hifilogo from '@/public/f5s2df.svg'
-import banner from '@/public/images/11786050_4816248.svg'
 
 
 const page = () => {

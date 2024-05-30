@@ -3,7 +3,6 @@ import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button, Divi
 import Image from 'next/image';
 import Link from 'next/link';
 import hifilogo from '@/public/f5s2df.svg'
-import banner from '@/public/images/20547283_6310505.svg'
 
 
 const page = () => {
@@ -12,7 +11,10 @@ const page = () => {
       <Paper sx={{ py: 5, px: 3 }} elevation={0} className='rounded-xl border'>
         <Stack spacing={1} alignItems="center">
           <Image src={hifilogo} width={80} />
-          <Typography variant='h6'>User Login</Typography>
+          <Stack textAlign="center" sx={{pb: 2}}>
+            <Typography variant='h5'>User Login</Typography>
+            <Typography variant='body2'>Welcome back</Typography>
+          </Stack>
           <TextField
             label="Email"
             type="email"

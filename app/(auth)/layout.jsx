@@ -1,6 +1,6 @@
 import { Container, Grid, Box } from '@mui/material'
 import Image from 'next/image';
-import banner from '@/public/images/20547283_6310505.svg';
+import banner from '@/public/images/5573512_2919973.svg';
 
 export default function AuthLayout({ children }) {
     return (
