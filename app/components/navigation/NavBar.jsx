@@ -21,7 +21,9 @@ function NavBar() {
         </Stack>
       </Box> */}
       <Toolbar sx={{ py: 1.5 }} >
-        <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
+        <Link href="/">
+          <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
+        </Link>
         <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
           <div className='searchbox'>
             <input
@@ -56,7 +58,7 @@ function NavBar() {
             <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
           </Stack>
         </Stack>
-        <Divider orientation="vertical" sx={{mx: 4}} flexItem variant='middle' />
+        <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
         <UserChip />
       </Toolbar>
       <Box className="product-categories">

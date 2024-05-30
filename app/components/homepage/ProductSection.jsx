@@ -16,12 +16,6 @@ const ProductSection = (props) => {
                         <Typography variant='h5' component='h5' color="secondary">{props.title}</Typography>
                     </Stack>
                 </Divider>
-                <Link href="#" className='section-view-link'>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                        <Typography variant='body1' component='h5' color="text.secondary">View All</Typography>
-                        <ArrowForwardIcon className='arrow' color='primary' />
-                    </Stack>
-                </Link>
             </Stack>
             {/* <Divider sx={{ mt: 1 }} variant='middle' /> */}
             <Grid container sx={{ mt: 0 }} spacing={3}>
