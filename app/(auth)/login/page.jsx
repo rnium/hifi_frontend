@@ -5,12 +5,13 @@ import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button, Divi
 import Image from 'next/image';
 import Link from 'next/link';
 import hifilogo from '@/public/f5s2df.svg';
-import { usePost } from '@/hooks/useApi';
+import { useLogin } from '@/hooks/useAuth';
 import { useFormik } from 'formik';
 
 
 const page = ({ searchParams }) => {
-  const [data, loading, error, login] = usePost("http://127.0.0.1:8000/auth/token/login/", false)
+  console.log(process.env.API_HOST);
+  const {success, loading, login, error} = useLogin();
   const formik = useFormik({
     initialValues: {
       email: null,
