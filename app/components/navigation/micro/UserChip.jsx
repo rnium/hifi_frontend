@@ -11,7 +11,7 @@ const UserChip = () => {
                 sx={{ width: 36, height: 36 }}
                 alt='Avatar'
             />
-            <Link href="#">
+            <Link href="/login">
                 <Typography sx={{"&:hover": {color: 'primary'}}} >Login</Typography>
             </Link>
         </Stack>
