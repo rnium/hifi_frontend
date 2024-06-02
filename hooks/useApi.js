@@ -26,7 +26,7 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
             setData(res.data);
             setSuccess(true);
         } catch (error) {
-            setError(error);
+            setError(error?.response?.data);
         } finally {
             setLoading(false);
         }
