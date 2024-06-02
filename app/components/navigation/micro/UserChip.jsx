@@ -18,4 +18,4 @@ const UserChip = () => {
     )
 }
 
-export default UserChip
+export default UserChip;

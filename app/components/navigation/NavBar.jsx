@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import UserChip from './micro/UserChip';
 import './styles/style.css';
+import { ReduxProvider } from '@/redux/store';
 
 
 function NavBar() {
@@ -59,7 +60,9 @@ function NavBar() {
           </Stack>
         </Stack>
         <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
-        <UserChip />
+        <ReduxProvider>
+          <UserChip />
+        </ReduxProvider>
       </Toolbar>
       <Box className="product-categories">
         <div className="content">
