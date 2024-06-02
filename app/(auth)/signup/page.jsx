@@ -7,7 +7,7 @@ import Link from 'next/link';
 import hifilogo from '@/public/f5s2df.svg';
 import { useFormik } from 'formik';
 import { useSignup } from '@/hooks/useAuth';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 
 const page = ({ searchParams }) => {
