@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 export const useLogin = () => {
     const {data, loading, success, error, perform_post} = usePost(process.env.NEXT_PUBLIC_API_HOST + 'auth/token/login', false)
     useEffect(() => {
-        console.log('data', data);
         if (data?.auth_token) {
             localStorage.setItem("hifi_user_t", data.auth_token);
         }
@@ -25,7 +24,6 @@ export const useSignup = () => {
 
     useEffect(() => {
         if (success) {
-            console.log('Signup success');
             login(userData);
         }
     }, [success])

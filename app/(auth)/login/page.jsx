@@ -10,7 +10,6 @@ import { useFormik } from 'formik';
 
 
 const page = ({ searchParams }) => {
-  console.log(process.env.API_HOST);
   const {success, loading, login, error} = useLogin();
   const formik = useFormik({
     initialValues: {

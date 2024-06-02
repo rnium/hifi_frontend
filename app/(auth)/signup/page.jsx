@@ -1,16 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button } from '@mui/material'
 import Image from 'next/image';
 import Link from 'next/link';
 import hifilogo from '@/public/f5s2df.svg';
 import { useFormik } from 'formik';
 import { useSignup } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation'
 
 
-const page = () => {
-    const {signup_success, login_success, loading, error, perform_signup} = useSignup();
+const page = ({ searchParams }) => {
+    const { signup_success, login_success, loading, error, perform_signup } = useSignup();
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -23,6 +24,12 @@ const page = () => {
             perform_signup(values);
         }
     })
+    const router = useRouter();
+    useEffect(() => {
+        if (signup_success && login_success) {
+            router.push(searchParams?.next ? searchParams.next : '/');
+        }
+    }, [login_success])
     return (
         <Paper sx={{ py: 4, px: 3 }} elevation={0} className='rounded-xl border'>
             <Stack spacing={1} alignItems="center">
@@ -31,6 +38,7 @@ const page = () => {
                 <TextField
                     label="Name"
                     name='name'
+                    color='secondary'
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     fullWidth
@@ -38,6 +46,7 @@ const page = () => {
                 <TextField
                     label="Phone"
                     name='phone'
+                    color='secondary'
                     value={formik.values.phone}
                     onChange={formik.handleChange}
                     fullWidth
@@ -46,6 +55,7 @@ const page = () => {
                     label="Email"
                     type="email"
                     name='email'
+                    color='secondary'
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     fullWidth
@@ -54,6 +64,7 @@ const page = () => {
                     label="Password"
                     type="password"
                     name='password'
+                    color='secondary'
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     fullWidth
@@ -62,13 +73,14 @@ const page = () => {
                     label="Retype Password"
                     type="password"
                     name='re_password'
+                    color='secondary'
                     value={formik.values.re_password}
                     onChange={formik.handleChange}
                     fullWidth
                 />
                 <Stack className='w-full' direction="row" alignItems="center" justifyContent="space-between">
                     <Typography variant='body1'>
-                        Have an account? <Link className='text-green-500 transition-all hover:underline' href="/login">Login Here</Link>
+                        Have an account? <Link className='text-blue-600 transition-all hover:underline' href="/login">Login Here</Link>
                     </Typography>
                     <Button onClick={formik.handleSubmit} variant='contained'>Sign Up</Button>
                 </Stack>
