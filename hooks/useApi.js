@@ -12,6 +12,7 @@ const postDefaultConfig = {
 export const usePost = (url, auth_required = true, config = postDefaultConfig) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
 
@@ -23,11 +24,12 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
         try {
             let res = await axios.post(url, payload, config);
             setData(res.data);
+            setSuccess(true);
         } catch (error) {
             setError(error);
         } finally {
             setLoading(false);
         }
     })
-    return [data, loading, error, perform_post];
+    return {data, loading, success, error, perform_post};
 }
