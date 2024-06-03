@@ -18,7 +18,7 @@ export const useUser = () => {
     }, [])
 
     useEffect(() => {
-        if (success && data) {
+        if ( !userIsLoaded && !loading && success && data) {
             dispatch(setData(data));
             dispatch(setLoaded(true));
             dispatch(setAuthenticated(true));
@@ -28,4 +28,5 @@ export const useUser = () => {
         }
     }, [data, success, error])
     
+    return {userInfo, userIsAuthenticated, userIsLoaded, loadingUser: loading};
 }

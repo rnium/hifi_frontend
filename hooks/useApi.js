@@ -18,7 +18,7 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
 
     const perform_post = useCallback(async payload => {
         if (auth_required && config?.headers) {
-            config.headers.Authtoken = `Token ${localStorage.getItem('hifi_user_t')}`
+            config.headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
         }
         setLoading(true);
         try {
@@ -46,7 +46,7 @@ export const useGet = (url, auth_required = true) => {
     const perform_get = useCallback(async (params = {}) => {
         let headers = {}
         if (auth_required) {
-            headers.Authtoken = `Token ${localStorage.getItem('hifi_user_t')}`
+            headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
         }
         setLoading(true);
         try {
