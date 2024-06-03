@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react';
 import { Avatar, Typography, Stack, Skeleton } from '@mui/material';
 import Link from 'next/link';
+import { useSelector, useDispatch } from 'react-redux';
 
 const UserChip = () => {
     const [isMounted, setisMounted] = useState(false);
+    
 
     useEffect(() => {
-        setisMounted(true)
+        setisMounted(true);
     }, [])
 
     if (!isMounted) {
