@@ -12,7 +12,7 @@ import UserChip from './micro/UserChip';
 import './styles/style.css';
 import { ReduxProvider } from '@/redux/store';
 import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
-import { RiArrowDownSLine, RiCustomerService2Line, RiMailLine } from '@remixicon/react';
+import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from '../homepage/Categories';
 import { navLinks } from '@/lib/data';
 
@@ -84,7 +84,7 @@ function NavBar() {
             <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
           </Link>
           <Link href="/">
-            <Typography color="primary" variant='h4'>Hi-Fi Computer</Typography>
+            <Typography className='brand' color="primary" variant='h3'>Hi-Fi Computer</Typography>
           </Link>
         </Stack>
 
