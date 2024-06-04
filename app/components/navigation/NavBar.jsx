@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
 import hifilogo from '@/public/f5s2df.svg';
-import { Stack, Badge, IconButton, Button, Typography, Box, Divider } from '@mui/material';
+import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,20 +11,83 @@ import Link from 'next/link';
 import UserChip from './micro/UserChip';
 import './styles/style.css';
 import { ReduxProvider } from '@/redux/store';
+import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
+import { RiArrowDownSLine, RiCustomerService2Line, RiMailLine } from '@remixicon/react';
+import Categories from '../homepage/Categories';
+import { navLinks } from '@/lib/data';
 
 
 function NavBar() {
   return (
-    <AppBar className='mainappbar' position="static" color='transparent' elevation={1}>
-      {/* <Box className="topstrip">
-        <Stack>
-          <Typography variant='body1'>Phone:</Typography>
+    <AppBar className='mainappbar' position="static" color='transparent' elevation={0}>
+      <Box className="topstrip">
+        <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <div className="t-item ">
+              <RiGlobalFill
+                size={20}
+                className='icon'
+              />
+              <div className="text">www.hificomputer.com</div>
+            </div>
+            <div className="divider"></div>
+            <div className="t-item social">
+              <a href="https://facebook.com/hificomputer">
+                <RiFacebookCircleFill
+                  size={20}
+                  className='icon'
+                />
+              </a>
+            </div>
+            <div className="t-item social">
+              <a href="https://instagram.com/hificomputer">
+                <RiInstagramFill
+                  size={20}
+                  className='icon'
+                />
+              </a>
+            </div>
+            <div className="t-item social">
+              <a href="https://instagram.com/hificomputer">
+                <RiLinkedinFill
+                  size={20}
+                  className='icon'
+                />
+              </a>
+            </div>
+
+          </Stack>
+          <Stack direction="row" spacing={2}>
+            <div className="t-item">
+              <a href="mailto:sirony@gmail.com">
+                <RiMailOpenFill
+                  size={20}
+                  className='icon'
+                />
+                <div className="text">contact@hificomputer.com</div>
+              </a>
+            </div>
+            <div className="t-item">
+              <RiCustomerService2Line
+                size={20}
+                className='icon'
+              />
+              <div className="text">+880966-544412</div>
+            </div>
+          </Stack>
+        </Container>
+      </Box>
+      <Toolbar sx={{ py: 2 }} >
+
+        <Stack alignItems="center" direction="row" spacing={2}>
+          <Link href="/">
+            <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
+          </Link>
+          <Link href="/">
+            <Typography color="primary" variant='h4'>Hi-Fi Computer</Typography>
+          </Link>
         </Stack>
-      </Box> */}
-      <Toolbar sx={{ py: 1.5 }} >
-        <Link href="/">
-          <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
-        </Link>
+
         <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
           <div className='searchbox'>
             <input
@@ -38,7 +101,6 @@ function NavBar() {
               <SearchIcon />
             </IconButton>
           </div>
-
         </Stack>
         <Stack sx={{ flexGrow: 0 }} alignItems="center" direction="row">
           <IconButton>
@@ -64,222 +126,37 @@ function NavBar() {
           <UserChip />
         </ReduxProvider>
       </Toolbar>
-      <Box className="product-categories">
-        <div className="content">
-          <ul>
-            <li>
-              <div className="cat-item">
-                <div className="title">Laptop</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Apple</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Asus</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Acer</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Lenovo</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Dell</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Surface</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Gaming Laptop</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Dell</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Asus</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Acer</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Desktop PC</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Dell</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Asus</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Acer</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Components</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="cat-item">
-                <div className="title">Category</div>
-                <div className="sub-menu">
-                  <ul>
-                    <li>
-                      <Link href="#">Processor</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Motherboard</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Casing</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Cooling Fan</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
+      <Divider />
+      <Container sx={{ display: 'flex', flexDirection: "row", alignItems: 'center' }}>
+        <div className='category-container' >
+          <div className="btn">
+            <RiMenuLine
+              size={24}
+              className='icon'
+            />
+            <div className="title">Browse Categories</div>
+            <RiArrowDownSLine
+              size={20}
+              className='arrow-icon'
+            />
+          </div>
+          <div className="cat-menu-container">
+            <Categories />
+          </div>
         </div>
-      </Box>
+        <ul className='navlinks' >
+          {
+            navLinks.map((l, idx) => (
+              <Link href={l.uri}>
+                <li key={idx}>
+                  {l.title}
+                </li>
+              </Link>
+            ))
+          }
+        </ul>
+        <div className="search-btn"></div>
+      </Container>
     </AppBar>
   );
 }

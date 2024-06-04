@@ -1,6 +1,95 @@
 .mainappbar {
   background-color: #ffffff;
 }
+.mainappbar .topstrip {
+  background-color: #3d4953;
+  padding: 5px 0;
+}
+.mainappbar .topstrip .t-item .icon, .mainappbar .topstrip .t-item .text {
+  display: inline;
+  color: #e1e7ec;
+  transition: all 200ms;
+}
+.mainappbar .topstrip .t-item .text {
+  margin-left: 5px;
+  font-size: 0.9rem;
+}
+.mainappbar .topstrip .t-item:hover .icon, .mainappbar .topstrip .t-item:hover .text {
+  color: #9daebd;
+}
+.mainappbar .topstrip .divider {
+  height: 20px;
+  border-left: 1px solid gray;
+}
+
+.category-container {
+  display: inline-block;
+  position: relative;
+}
+.category-container .btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 1rem;
+  background-color: #8a8a8a;
+  cursor: pointer;
+}
+.category-container .btn .icon, .category-container .btn .title {
+  color: white;
+}
+.category-container .btn .icon {
+  margin-right: 20px;
+}
+.category-container .btn .arrow-icon {
+  margin-left: 5px;
+  color: #d3d3d3;
+  transition: all 600ms;
+}
+.category-container .cat-menu-container {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+}
+
+ul.navlinks {
+  padding: 0;
+  margin: 0;
+  margin-left: 1rem;
+}
+ul.navlinks li {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-right: 20px;
+  padding: 6px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.6s;
+  color: #4c687f;
+}
+ul.navlinks li:hover {
+  color: black;
+  border-bottom-color: #4c687f;
+}
+
+.search-con {
+  position: relative;
+  justify-self: flex-end;
+}
+.search-con input {
+  border: 1px solid #c2c2c2;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+.search-con .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+}
+
+.bgred {
+  background-color: red;
+}
 
 .product-categories .content {
   position: relative;
@@ -68,10 +157,10 @@
 
 .searchbox {
   position: relative;
-  border-radius: 180px;
+  border-radius: 10px;
   background-color: white;
   border: 2px solid rgb(255, 255, 255);
-  outline: 1px solid rgb(216, 201, 201);
+  outline: 1px solid rgb(228, 228, 228);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -93,7 +182,7 @@
 }
 .searchbox button {
   transition: all 200ms;
-  background-color: rgba(211, 198, 198, 0.6);
+  background-color: rgba(212, 212, 212, 0.6);
 }
 .searchbox img.icon {
   width: 25px;
@@ -109,4 +198,13 @@
 }
 .searchbox:focus-within button {
   background-color: rgba(196, 149, 149, 0.6);
+}
+
+@keyframes rotate180 {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 180;
+  }
 }/*# sourceMappingURL=style.css.map */

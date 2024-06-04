@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@reduxjs/toolkit": "^2.2.5",
+    "@remixicon/react": "^4.2.0",
     "antd": "^5.17.2",
     "axios": "^1.7.2",
     "dateformat": "^5.0.3",

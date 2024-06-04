@@ -12,6 +12,95 @@ $shadow: rgba(126, 125, 125, 0.2);
 
 .mainappbar {
     background-color: #ffffff;
+    .topstrip {
+        background-color: #3d4953;
+        padding: 5px 0;
+        .t-item {
+            .icon, .text {
+                display: inline;
+                color: #e1e7ec;
+                transition: all 200ms;
+            }
+            .text {
+                margin-left: 5px;
+                font-size: 0.9rem;
+            }
+            &:hover .icon, &:hover .text {
+                color: #9daebd;
+            }
+        }
+        .divider {
+            height: 20px;
+            border-left: 1px solid gray;
+        }
+    }
+}
+
+.category-container {
+    display: inline-block;
+    position: relative;
+    .btn {
+        @include flexer(row);
+        padding: 7px 1rem;
+        background-color: #8a8a8a;
+        cursor: pointer;
+        .icon, .title {
+            color: white;
+        }
+        .icon {
+            margin-right: 20px;
+        }
+        .arrow-icon {
+            margin-left: 5px;
+            color: #d3d3d3;
+            transition: all 600ms;
+        }
+        
+    }
+    .cat-menu-container {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+    }
+}
+
+ul.navlinks {
+    padding: 0;
+    margin: 0;
+    margin-left: 1rem;
+    li {
+        display: inline-block;
+        text-transform: uppercase;
+        margin-right: 20px;
+        padding: 6px;
+        border-bottom: 2px solid transparent;
+        transition: all 0.6s;
+        color: #4c687f;
+        &:hover {
+            color: black;
+            border-bottom-color: #4c687f;
+        }
+    }
+}
+
+.search-con {
+    position: relative;
+    justify-self: flex-end;
+    input {
+        border: 1px solid #c2c2c2;
+        padding: 0 5px;
+        border-radius: 5px;
+    }
+    .icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5px;
+    }
+}
+
+.bgred {
+    background-color: red;
 }
 
 .product-categories {
@@ -78,11 +167,11 @@ $shadow: rgba(126, 125, 125, 0.2);
 
 .searchbox {
     position: relative;
-    border-radius: 180px;
+    border-radius: 10px;
     background-color: white;
     border: 2px solid rgb(255, 255, 255);
     // box-shadow: -5px 0px 10px rgba(220, 222, 223, 0.384);
-    outline: 1px solid rgb(216, 201, 201);
+    outline: 1px solid rgb(228, 228, 228);
     @include flexer(row);
     input {
         background-color: inherit;
@@ -100,7 +189,7 @@ $shadow: rgba(126, 125, 125, 0.2);
     }
     button {
         transition: all 200ms;
-        background-color: rgba(211, 198, 198, 0.6);
+        background-color: rgba(212, 212, 212, 0.6);
     }
     img.icon {
         width: 25px;
@@ -118,4 +207,9 @@ $shadow: rgba(126, 125, 125, 0.2);
             background-color: rgba(196, 149, 149, 0.6);
         }
     }
+}
+
+@keyframes rotate180 {
+    from {rotate: 0;}
+    to {rotate: 180;}
 }

@@ -12,7 +12,7 @@ import { Stack, ListItemIcon } from '@mui/material';
 const style = {
     py: 0,
     width: '100%',
-    borderRadius: 2,
+    borderRadius: 0,
     border: '1px solid',
     borderColor: 'divider',
     backgroundColor: 'background.paper',
@@ -23,9 +23,6 @@ const style = {
 export default function Categories() {
     return (
         <List sx={style}>
-            <ListItem>
-                <ListItemText primary="Featured Categories" sx={{backgroundColor: 'aliceblue', p:1, borderRadius: '5px', textAlign: 'center'}} />
-            </ListItem>
             {
                 categories.map((cat, idx) => {
                     if (idx == categories.length - 1) {

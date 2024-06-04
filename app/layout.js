@@ -5,14 +5,14 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import 'typeface-roboto';
-import Navbar from '@/app/components/navigation/NavBar';
 import Footer from "./components/footer/Footer";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material";
-import "@fontsource/poppins/300.css"; 
-import "@fontsource/poppins/400.css"; 
-import "@fontsource/poppins/500.css"; 
-import "@fontsource/poppins/700.css"; 
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/700.css";
+
 
 const inter = Roboto({ subsets: ['latin'], weight: '100' });
 
@@ -24,13 +24,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: 'Poppins' }}>
-        <ThemeProvider theme={theme}>
-          <Navbar />
+      <ThemeProvider theme={theme}>
+        <body style={{ fontFamily: 'Poppins' }}>
           {children}
           <Footer />
-        </ThemeProvider>
-      </body>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
