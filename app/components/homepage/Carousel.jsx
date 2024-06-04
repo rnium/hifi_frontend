@@ -1,8 +1,10 @@
 "use client";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
 import Image from 'next/image';
 import Spinner from '../utils/Spinner';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules';
 
 
 const contentStyle = {
@@ -14,28 +16,31 @@ const contentStyle = {
     background: '#364d79',
 };
 
+import "swiper/css";
+
+
+
 const HomepageCarousel = () => {
-    const [isMounted, setIsMounted] = useState(false);
-    const onChange = (currentSlide) => {
-        console.log(currentSlide);
-    };
-    useEffect(() => {
-        setIsMounted(true);
-    }, [])
-    if (!isMounted) {
-        return <Spinner py={20} />;
-    }
     return (
-        <div className='carousel'>
-            <Carousel afterChange={onChange}  autoplay>
-                <div className='carousel-item'>
-                    <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
-                </div>
-                <div className='carousel-item'>
-                    <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
-                </div>
-            </Carousel>
-        </div>
+        <Swiper
+            modules={[Autoplay, Pagination]}
+            autoplay={{
+                delay: 3000,
+            }}
+            pagination={{
+                el: '.pagination',
+                clickable: true
+            }}
+
+        >
+            <SwiperSlide>
+                <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
+            </SwiperSlide>
+            <SwiperSlide>
+                <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
+            </SwiperSlide>
+            <div className="pagination"></div>
+        </Swiper>
     )
 }
 

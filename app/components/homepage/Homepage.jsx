@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
-import Categories from './Categories';
 import ProductSection from './ProductSection';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
