@@ -58,7 +58,7 @@ export const useGet = (url, auth_required = true) => {
             setError(null);
         } catch (error) {
             setSuccess(false);
-            setError(error?.response?.data);
+            setError(error?.response?.data ? error?.response?.data : "Error Occured");
         } finally {
             setLoading(false);
         }

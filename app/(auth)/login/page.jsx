@@ -9,7 +9,7 @@ import { useLogin } from '@/hooks/useAuth';
 import { useFormik } from 'formik';
 
 
-const page = ({ searchParams }) => {
+const LoginPage = ({ searchParams }) => {
   const {success, loading, login, error} = useLogin();
   const formik = useFormik({
     initialValues: {
@@ -65,4 +65,4 @@ const page = ({ searchParams }) => {
   )
 }
 
-export default page
+export default LoginPage;

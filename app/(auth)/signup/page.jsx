@@ -12,7 +12,7 @@ import { message } from 'antd';
 import * as yup from 'yup';
 
 
-const page = ({ searchParams }) => {
+const SignupPage = ({ searchParams }) => {
     const { signup_success, login_success, loading, error, perform_signup } = useSignup();
     const formik = useFormik({
         initialValues: {
@@ -41,6 +41,8 @@ const page = ({ searchParams }) => {
     useEffect(() => {
         if (error?.non_field_errors) {
             message.error(error?.non_field_errors);
+        } else if (error) {
+            message.error(error);
         }
     }, [error])
     return (
@@ -116,4 +118,4 @@ const page = ({ searchParams }) => {
     )
 }
 
-export default page
+export default SignupPage;
