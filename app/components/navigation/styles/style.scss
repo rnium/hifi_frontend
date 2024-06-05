@@ -12,6 +12,7 @@ $shadow: rgba(126, 125, 125, 0.2);
 
 .mainappbar {
     background-color: #ffffff;
+    z-index: 99999;
     .topstrip {
         background-color: #3d4953;
         padding: 5px 0;
@@ -67,6 +68,17 @@ $shadow: rgba(126, 125, 125, 0.2);
     }
 }
 
+.category-link {
+    position: relative;
+    z-index: 99999;
+    .submenu {
+        position: absolute;
+        z-index: 9999999;
+        left: 100%;
+        background-color: #8e9caa;
+    }
+}
+
 ul.navlinks {
     padding: 0;
     margin: 0;
@@ -93,9 +105,9 @@ ul.navlinks {
 .product-categories {
     .content {
         position: relative;
-        color: #fcfeff;
+        color: #415864;
         padding: 2px 0;
-        background-color: $menu-bg;
+        // background-color: $menu-bg;
         ul {
             @include flexer(row);
             margin: 0;
@@ -109,18 +121,19 @@ ul.navlinks {
                     .sub-menu {
                         position: absolute;
                         left: 0;
+                        top: 110%;
                         z-index: 100;
                         background-color: rgba(255, 255, 255, 0.9);
-                        color: #4c687f;
+                        color: #566877;
                         // border: 1px solid #fa6363;
                         border-top: 3px solid #fa6363;
                         backdrop-filter: blur(10px);
                         padding: 10px 20px 10px 10px;
                         box-shadow: 2px 2px 5px $shadow, -2px 2px 5px $shadow;
-                        border-radius: 5px;
+                        border-radius: 0 0 3px 3px;
                         opacity: 0;
                         visibility: hidden;
-                        transition: all 200ms;
+                        transition: all 150ms;
                         ul {
                             @include flexer(column);
                             align-items: flex-start;
@@ -138,7 +151,7 @@ ul.navlinks {
                     }
                     &:hover {
                         .title {
-                            color: $active-color;
+                            color: #566877;
                             cursor: pointer;
                         }
                         .sub-menu {

@@ -13,7 +13,8 @@ import './styles/style.css';
 import { ReduxProvider } from '@/redux/store';
 import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
 import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
-import Categories from '../homepage/Categories';
+import Categories from './Categories';
+import CategoryNav from './micro/CategoryNav';
 import { navLinks } from '@/lib/data';
 
 
@@ -144,7 +145,7 @@ function NavBar() {
             <Categories />
           </div>
         </div>
-        <ul className='navlinks' >
+        {/* <ul className='navlinks' >
           {
             navLinks.map((l, idx) => (
               <Link href={l.uri}>
@@ -154,7 +155,8 @@ function NavBar() {
               </Link>
             ))
           }
-        </ul>
+        </ul> */}
+        <CategoryNav />
         <div className="search-btn"></div>
       </Container>
     </AppBar>
