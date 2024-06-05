@@ -11,14 +11,30 @@
   color: #d32f2f;
 }
 
-.carousel {
-  overflow: hidden;
+.myswiper {
+  position: relative;
 }
-.carousel .carousel-item {
-  overflow: hidden;
+.myswiper .swiper-slide {
+  z-index: 1;
 }
-.carousel .carousel-item img {
-  border-radius: 10px;
+.myswiper .pagination {
+  z-index: 2;
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.myswiper .pagination .swiper-pagination-bullet {
+  height: 2px;
+  width: 20px;
+  border-radius: 2px;
+  background-color: white;
+  transition: all 200ms;
+}
+.myswiper .pagination .swiper-pagination-bullet-active {
+  height: 2px;
+  width: 25px;
 }
 
 .product-section .section-view-link h5 {

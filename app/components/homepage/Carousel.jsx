@@ -17,6 +17,7 @@ const contentStyle = {
 };
 
 import "swiper/css";
+import "swiper/css/pagination";
 
 
 
@@ -31,10 +32,14 @@ const HomepageCarousel = () => {
                 el: '.pagination',
                 clickable: true
             }}
+            className='myswiper'
 
         >
             <SwiperSlide>
                 <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
+            </SwiperSlide>
+            <SwiperSlide>
+                <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
             </SwiperSlide>
             <SwiperSlide>
                 <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
