@@ -8,7 +8,9 @@ import ProductW from './micro/ProductW';
 
 const cursorTypography = {
     cursor: 'pointer'
-}
+};
+
+const all_products = [products[0], products[2], products[1]]
 
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -44,16 +46,26 @@ const Shoppingbtn = () => {
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center',
-                  }}
+                }}
                 transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
+                    vertical: 'top',
+                    horizontal: 'center',
                 }}
             >
-                <Box sx={{width: {xs: '250px', md: '350px'}}} className='p-3'>
+                <Box sx={{ width: { xs: '250px', md: '350px' } }} className='p-3'>
+                    <Typography sx={{ textAlign: 'center' }}>My Wishlist</Typography>
+                    <Typography
+                        variant='caption'
+                        sx={{ textAlign: 'center', mb: 1 }}
+                        component="div"
+                        color="text.secondary"
+                    >
+                        3 Items
+                    </Typography>
                     <Stack spacing={1} >
+
                         {
-                            products.map(p => (
+                            all_products.map(p => (
                                 <ProductW product={p} />
                             ))
                         }

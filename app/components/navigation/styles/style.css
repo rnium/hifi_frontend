@@ -199,6 +199,22 @@ ul.navlinks li:hover {
   background-color: rgba(196, 149, 149, 0.6);
 }
 
+.shoppinglist-btn {
+  font-size: 0.6rem;
+  background-color: #ffffff;
+  padding: 3px 10px;
+  box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
+  border-radius: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.shoppinglist-btn .icon {
+  color: rebeccapurple;
+  margin-right: 5px;
+}
+
 @keyframes rotate180 {
   from {
     rotate: 0;

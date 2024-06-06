@@ -209,6 +209,19 @@ ul.navlinks {
     }
 }
 
+.shoppinglist-btn {
+    font-size: 0.6rem;
+    background-color: #ffffff;
+    padding: 3px 10px;
+    box-shadow: inset 2px 2px 4px 0 rgb(0 0 0 / 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
+    border-radius: 180px;
+    @include flexer(row);
+    .icon {
+        color: rebeccapurple;
+        margin-right: 5px;
+    }
+}
+
 @keyframes rotate180 {
     from {rotate: 0;}
     to {rotate: 180;}
