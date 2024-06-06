@@ -1,11 +1,11 @@
+'use client'
+
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
 import hifilogo from '@/public/f5s2df.svg';
 import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import UserChip from './micro/UserChip';
@@ -16,11 +16,12 @@ import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from './Categories';
 import CategoryNav from './micro/CategoryNav';
 import { navLinks } from '@/lib/data';
+import Shoppingbtn from './Shoppingbtn';
 
 
 function NavBar() {
   return (
-    <AppBar className='mainappbar' position="static" color='transparent' elevation={0}>
+    <AppBar className='mainappbar border-b' position="static" color='transparent' elevation={0}>
       <Box className="topstrip">
         <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Stack direction="row" spacing={2} alignItems="center">
@@ -103,25 +104,8 @@ function NavBar() {
             </IconButton>
           </div>
         </Stack>
-        <Stack sx={{ flexGrow: 0 }} alignItems="center" direction="row">
-          <IconButton>
-            <Badge badgeContent={0} color="primary" variant='dot'>
-              <FavoriteBorderIcon />
-            </Badge>
-          </IconButton>
-          <Typography variant='body2'>Wishlist</Typography>
-        </Stack>
-        <Stack sx={{ flexGrow: 0, ml: 3 }} alignItems="center" direction="row">
-          <IconButton>
-            <Badge badgeContent={1} color="primary" variant='dot'>
-              <ShoppingCartOutlinedIcon />
-            </Badge>
-          </IconButton>
-          <Stack>
-            <Typography variant='body2'>My Cart</Typography>
-            <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
-          </Stack>
-        </Stack>
+        <Shoppingbtn />
+        
         <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
         <ReduxProvider>
           <UserChip />
