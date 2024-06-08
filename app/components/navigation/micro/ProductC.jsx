@@ -10,7 +10,7 @@ function ProductC({ product }) {
     const product_link = "/product/" + product.slug;
     return (
         <Card
-            className='rounded shadow-md transition-all hover:shadow-xl'
+            className='rounded shadow-md  transition-all hover:shadow-xl'
             sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -31,12 +31,23 @@ function ProductC({ product }) {
                         {product.title}
                     </Link>
                 </Typography>
-                <Stack sx={{mt: 1}} direction="row" alignItems="center">
+                <Stack direction="row" alignItems="center" gap={1}>
+                    <Typography variant='caption' color="secondary">Unit Price: </Typography>
+                    <Typography variant='caption'>{product.price.toLocaleString('en-in') + "৳"}</Typography>
+                </Stack>
+                <Stack sx={{ mt: 1 }} direction="row" alignItems="center" gap={2} justifyContent="space-between">
                     <div className="p-count-inp">
                         <button>+</button>
                         <div className="count">1</div>
                         <button>-</button>
                     </div>
+                    <button className='shoppinglist-btn danger'>
+                        <RiCloseLine 
+                            size={15}
+                            className='icon'
+                        />
+                        <div className="text">Remove</div>
+                    </button>
                 </Stack>
             </Stack>
         </Card>
