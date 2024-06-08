@@ -15,7 +15,7 @@ const all_products = [products[0], products[2], products[1]]
 
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [drawerOpen, setDrawerOpen] = useState(true);
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const open = Boolean(anchorEl);
 
     const handleWishlistClick = event => {

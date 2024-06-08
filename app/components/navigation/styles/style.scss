@@ -220,26 +220,25 @@ ul.navlinks {
     .icon {
         margin-right: 5px;
     }
+    box-shadow: inset 2px 2px 4px 0 var(--shadow-1), inset -2px -1px 0 0 var(--shadow-2);
+    .icon, .text {
+        color: var(--textcolor);
+    }
+    &:hover {
+        box-shadow: inset -2px -1px 0 0 var(--shadow-1), inset 2px 2px 4px 0 var(--shadow-1);
+    }
 }
 
 .shoppinglist-btn.success {
-    box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.2), inset -2px -1px 0 0 rgba(56, 56, 56, 0.15);
-    .icon, .text {
-        color: rebeccapurple;
-    }
-    &:hover {
-        box-shadow: inset -2px 2px 4px 0 rgb(0 0 0 / 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
-    }
+    --textcolor: rebeccapurple;
+    --shadow-1: rgba(0, 0, 0, 0.2);
+    --shadow-2: rgba(56, 56, 56, 0.15);
 }
 
 .shoppinglist-btn.danger {
-    box-shadow: inset 2px 2px 4px 0 rgba(255, 0, 0, 0.2), inset -2px -1px 0 0 rgba(255, 175, 175, 0.2);
-    .icon, .text {
-        color: $active-color-dark;
-    }
-    &:hover {
-        box-shadow: inset -2px -1px 0 0 rgba(255, 0, 0, 0.2), inset 2px 2px 4px 0 rgba(255, 0, 0, 0.2);
-    }
+    --textcolor: $active-color-dark;
+    --shadow-1: rgba(255, 0, 0, 0.2);
+    --shadow-2: rgba(255, 175, 175, 0.2);
 }
 
 .p-count-inp {
