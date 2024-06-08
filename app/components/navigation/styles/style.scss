@@ -43,6 +43,7 @@ $shadow: rgba(126, 125, 125, 0.2);
 .category-container {
     display: inline-block;
     position: relative;
+    z-index: 99;
     .btn {
         @include flexer(row);
         padding: 7px 1rem;
@@ -59,12 +60,41 @@ $shadow: rgba(126, 125, 125, 0.2);
             color: #d3d3d3;
             transition: all 600ms;
         }
-        
     }
     .cat-menu-container {
         position: absolute;
         width: 100%;
         top: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 200ms;
+        box-shadow: 0 5px 20px gray;
+    }
+    &:hover {
+        .cat-menu-container {
+            visibility: visible;
+            opacity: 1;
+        }
+        .btn {
+            .arrow-icon {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+.category-container.homepage {
+    .cat-menu-container {
+        box-shadow: none;
+        visibility: visible;
+        opacity: 1;
+    }
+    &:hover {
+        .btn {
+            .arrow-icon {
+                transform: none;
+            }
+        }
     }
 }
 

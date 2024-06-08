@@ -29,6 +29,7 @@
 .category-container {
   display: inline-block;
   position: relative;
+  z-index: 99;
 }
 .category-container .btn {
   display: flex;
@@ -54,6 +55,26 @@
   position: absolute;
   width: 100%;
   top: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 200ms;
+  box-shadow: 0 5px 20px gray;
+}
+.category-container:hover .cat-menu-container {
+  visibility: visible;
+  opacity: 1;
+}
+.category-container:hover .btn .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.category-container.homepage .cat-menu-container {
+  box-shadow: none;
+  visibility: visible;
+  opacity: 1;
+}
+.category-container.homepage:hover .btn .arrow-icon {
+  transform: none;
 }
 
 .category-link {

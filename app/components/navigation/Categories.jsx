@@ -33,9 +33,6 @@ export default function Categories() {
                                         {cat.icon}
                                     </ListItemIcon>
                                     <ListItemText primary={cat.title} />
-                                    {/* {
-                                        cat.subcategories ? <CategoySubmenu subcategories={cat.subcategories} /> : null
-                                    } */}
                                 </ListItem>
                             </Link>
                         )

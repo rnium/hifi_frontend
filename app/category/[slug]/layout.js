@@ -1,12 +1,12 @@
 import NavBar from '@/app/components/navigation/NavBar'
 export const metadata = {
-  title: "Product Title",
-  description: "Product description"
+  title: "Category Title",
+  description: "Category description"
 }
 
 import React from 'react'
 
-const ProductLayout = ({ children }) => {
+const CategoryLayout = ({ children }) => {
   return (
     <>
     <NavBar />
@@ -17,4 +17,4 @@ const ProductLayout = ({ children }) => {
   )
 }
 
-export default ProductLayout
+export default CategoryLayout;
