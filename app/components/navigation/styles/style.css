@@ -200,19 +200,66 @@ ul.navlinks li:hover {
 }
 
 .shoppinglist-btn {
-  font-size: 0.6rem;
   background-color: #ffffff;
+  font-size: 0.6rem;
   padding: 3px 10px;
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
   border-radius: 180px;
+  transition: all 150ms;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .shoppinglist-btn .icon {
-  color: rebeccapurple;
   margin-right: 5px;
+}
+
+.shoppinglist-btn.success {
+  box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.2), inset -2px -1px 0 0 rgba(56, 56, 56, 0.15);
+}
+.shoppinglist-btn.success .icon, .shoppinglist-btn.success .text {
+  color: rebeccapurple;
+}
+.shoppinglist-btn.success:hover {
+  box-shadow: inset -2px 2px 4px 0 rgba(0, 0, 0, 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
+}
+
+.shoppinglist-btn.danger {
+  box-shadow: inset 2px 2px 4px 0 rgba(255, 0, 0, 0.2), inset -2px -1px 0 0 rgba(255, 175, 175, 0.2);
+}
+.shoppinglist-btn.danger .icon, .shoppinglist-btn.danger .text {
+  color: #d32f2f;
+}
+
+.p-count-inp {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.p-count-inp button {
+  --btn-color: rgb(130, 151, 145);
+  --btn-color-dark: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  width: 20px;
+  height: 20px;
+  padding-top: 2px;
+  border: 1px solid var(--btn-color);
+  color: var(--btn-color);
+  text-align: center;
+  transition: all 200ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.p-count-inp button:hover {
+  color: var(--btn-color-dark);
+}
+.p-count-inp .count {
+  text-align: center;
 }
 
 @keyframes rotate180 {

@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
 
 
-export function ProductW({ product }) {
+function ProductC({ product }) {
     const product_link = "/product/" + product.slug;
     return (
         <Card
-            className='rounded shadow-lg border-t border-l transition-all hover:shadow-xl'
+            className='rounded shadow-md transition-all hover:shadow-xl'
             sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -31,26 +31,17 @@ export function ProductW({ product }) {
                         {product.title}
                     </Link>
                 </Typography>
-                <Stack direction="row" sx={{mt: 1}} spacing={1}>
-                    <button className='shoppinglist-btn success'>
-                        <RiShoppingCartLine 
-                            size={15}
-                            className='icon'
-                        />
-                        <div className="text">Add to Cart</div>
-                    </button>
-                    <button className='shoppinglist-btn danger'>
-                        <RiCloseLine 
-                            size={15}
-                            className='icon'
-                        />
-                        <div className="text">Remove</div>
-                    </button>
+                <Stack sx={{mt: 1}} direction="row" alignItems="center">
+                    <div className="p-count-inp">
+                        <button>+</button>
+                        <div className="count">1</div>
+                        <button>-</button>
+                    </div>
                 </Stack>
             </Stack>
-
         </Card>
     )
 }
 
-export default ProductW;
+export default ProductC;
+

@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { products } from '@/lib/data';
 import ProductW from './micro/ProductW';
+import CartDrawer from './CartDrawer';
 
 const cursorTypography = {
     cursor: 'pointer'
@@ -14,20 +15,25 @@ const all_products = [products[0], products[2], products[1]]
 
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [drawerOpen, setDrawerOpen] = useState(true);
     const open = Boolean(anchorEl);
 
-    const handleClick = event => {
+    const handleWishlistClick = event => {
         setAnchorEl(event.currentTarget);
     }
 
-    const handleClose = event => {
+    const handleWishlistClose = event => {
         setAnchorEl(null);
+    }
+
+    const handleCartClick = event => {
+        setDrawerOpen(true);
     }
 
 
     return (
         <>
-            <Stack sx={{ flexGrow: 0 }} onHover={handleClick} onClick={handleClick} alignItems="center" direction="row">
+            <Stack sx={{ flexGrow: 0 }} onClick={handleWishlistClick} alignItems="center" direction="row">
                 <IconButton>
                     <Badge badgeContent={0} color="primary" variant='dot'>
                         <FavoriteBorderIcon />
@@ -39,7 +45,7 @@ const Shoppingbtn = () => {
                 id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={handleWishlistClose}
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
                 }}
@@ -72,17 +78,18 @@ const Shoppingbtn = () => {
                     </Stack>
                 </Box>
             </Menu>
-            <Stack sx={{ flexGrow: 0, ml: 3 }} alignItems="center" direction="row">
+            <Stack sx={{ flexGrow: 0, ml: 3 }} onClick={handleCartClick} alignItems="center" direction="row">
                 <IconButton>
                     <Badge badgeContent={1} color="primary" variant='dot'>
                         <ShoppingCartOutlinedIcon />
                     </Badge>
                 </IconButton>
-                <Stack>
-                    <Typography variant='body2'>My Cart</Typography>
+                <Stack style={cursorTypography}>
+                    <Typography variant='body2' >My Cart</Typography>
                     <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
                 </Stack>
             </Stack>
+            <CartDrawer open={drawerOpen} setOpen={setDrawerOpen} />
         </>
     )
 }

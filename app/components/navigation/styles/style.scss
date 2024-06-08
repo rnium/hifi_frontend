@@ -210,15 +210,56 @@ ul.navlinks {
 }
 
 .shoppinglist-btn {
-    font-size: 0.6rem;
     background-color: #ffffff;
+    font-size: 0.6rem;
     padding: 3px 10px;
     box-shadow: inset 2px 2px 4px 0 rgb(0 0 0 / 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
     border-radius: 180px;
+    transition: all 150ms;
     @include flexer(row);
     .icon {
-        color: rebeccapurple;
         margin-right: 5px;
+    }
+}
+
+.shoppinglist-btn.success {
+    box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.2), inset -2px -1px 0 0 rgba(56, 56, 56, 0.15);
+    .icon, .text {
+        color: rebeccapurple;
+    }
+    &:hover {
+        box-shadow: inset -2px 2px 4px 0 rgb(0 0 0 / 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
+    }
+}
+
+.shoppinglist-btn.danger {
+    box-shadow: inset 2px 2px 4px 0 rgba(255, 0, 0, 0.2), inset -2px -1px 0 0 rgba(255, 175, 175, 0.2);
+    .icon, .text {
+        color: $active-color-dark;
+    }
+}
+
+.p-count-inp {
+    @include flexer(row);
+    gap: 10px;
+    button {
+        --btn-color: rgb(130, 151, 145);
+        --btn-color-dark: rgb(0, 0, 0);
+        font-size: 1.2rem;
+        width: 20px;
+        height: 20px;
+        padding-top: 2px;
+        border: 1px solid var(--btn-color);
+        color: var(--btn-color);
+        text-align: center;
+        transition: all 200ms;
+        @include flexer(column);
+        &:hover {
+            color: var(--btn-color-dark);
+        }
+    }
+    .count {
+        text-align: center;
     }
 }
 
