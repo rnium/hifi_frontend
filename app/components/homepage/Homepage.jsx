@@ -5,12 +5,12 @@ import ProductSection from './ProductSection';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import './styles/style.css';
-import NavBarHomepage from '../navigation/NavBarHomepage';
+import NavBar from '../navigation/NavBar';
 
 const Homepage = () => {
   return (
     <div>
-      <NavBarHomepage />
+      <NavBar homepage={true} />
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={3}>
           <Grid item xs={0} md={3}>

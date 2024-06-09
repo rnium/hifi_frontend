@@ -15,11 +15,10 @@ import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, Ri
 import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from './Categories';
 import CategoryNav from './micro/CategoryNav';
-import { navLinks } from '@/lib/data';
 import Shoppingbtn from './Shoppingbtn';
 
 
-function NavBar() {
+function NavBar({homepage = false}) {
   return (
     <AppBar className='mainappbar border-b' position="static" color='transparent' elevation={0}>
       <Box className="topstrip">
@@ -113,7 +112,7 @@ function NavBar() {
       </Toolbar>
       <Divider />
       <Container sx={{ display: 'flex', flexDirection: "row", alignItems: 'center' }}>
-        <div className='category-container' >
+        <div className={homepage ? 'category-container homepage' : 'category-container'} >
           <div className="btn">
             <RiMenuLine
               size={24}
