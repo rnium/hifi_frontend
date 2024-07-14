@@ -11,7 +11,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
 import CategoryPagination from './CategoryPagination';
-import { Pagination } from 'antd';
+import CategoryChoices from './CategoryChoices';
 
 let cat_hiararchy = [
     {
@@ -59,37 +59,7 @@ const children_categories = [
     },
 ]
 
-const processor_types = [
-    {
-        slug: 'corei3',
-        title: 'Intel Core i3'
-    },
-    {
-        slug: 'corei5',
-        title: 'Intel Core i5'
-    },
-    {
-        slug: 'corei7',
-        title: 'Intel Core i7'
-    },
-    {
-        slug: 'ryzen3',
-        title: 'Ryzen 3'
-    },
-    {
-        slug: 'ryzen5',
-        title: 'Ryzen 5'
-    },
-]
-
-const minPrice = 25000
-const maxPrice = 352000
-
 const CategoryPage = (props) => {
-    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
-    function pricetext(value) {
-        return `${new Number(value).toLocaleString('en-IN')} Tk`;
-    }
     return (
         <>
             <Paper
@@ -145,84 +115,7 @@ const CategoryPage = (props) => {
             <Container sx={{ my: 2 }}>
                 <Grid container sx={{ mt: 1 }} spacing={2}>
                     <Grid item xs={0} md={3} >
-                        <Accordion
-                            defaultExpanded={true}
-                        >
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                            >
-                                <Typography
-                                    variant='h6'
-                                    color="text.primary"
-                                    fontSize="1.1rem"
-                                >
-                                    Price Range
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box sx={{ px: 2 }}>
-                                    <Slider
-                                        getAriaLabel={() => 'Price range'}
-                                        value={priceRange}
-                                        onChange={e => setPriceRange(e.target.value)}
-                                        valueLabelDisplay="auto"
-                                        getAriaValueText={pricetext}
-                                        min={minPrice}
-                                        max={maxPrice}
-                                    />
-                                </Box>
-                                <Stack sx={{ mt: 2 }} direction="row" justifyContent="space-between">
-                                    <Chip sx={{ px: 0.5 }} variant='outlined' size='small' label={"Min: " + priceRange[0].toLocaleString('en-IN') + "৳"} />
-                                    <Chip sx={{ px: 0.5 }} size='small' label={"Max: " + priceRange[1].toLocaleString('en-IN') + "৳"} />
-                                </Stack>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion
-                            defaultExpanded={true}
-                        >
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                            >
-                                <Typography
-                                    variant='h6'
-                                    color="text.primary"
-                                    fontSize="1.1rem"
-                                >
-                                    Availability
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <FormGroup sx={{ px: 1 }}>
-                                    <FormControlLabel name='availibility' control={<Checkbox defaultChecked />} label="In Stock" />
-                                    <FormControlLabel name='availibility' control={<Checkbox />} label="Out of Stock" />
-                                </FormGroup>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion
-                            defaultExpanded={true}
-                        >
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                            >
-                                <Typography
-                                    variant='h6'
-                                    color="text.primary"
-                                    fontSize="1.1rem"
-                                >
-                                    Processor Type
-                                </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <FormGroup >
-                                    {
-                                        processor_types.map((p, idx) => (
-                                            <FormControlLabel key={idx} name='availibility' control={<Checkbox />} label={p.title} />
-                                        ))
-                                    }
-
-                                </FormGroup>
-                            </AccordionDetails>
-                        </Accordion>
+                        <CategoryChoices />
 
                     </Grid>
                     <Grid item xs={0} md={9} >

@@ -15,6 +15,12 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
+    const reset = useCallback(() => {
+        setData(null);
+        setLoading(false);
+        setSuccess(false);
+        setError(null)
+    }, [url])
 
     const perform_post = useCallback(async payload => {
         if (auth_required && config?.headers) {
@@ -32,16 +38,22 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
         } finally {
             setLoading(false);
         }
-    })
+    }, [url])
     return { data, loading, success, error, perform_post };
 }
 
-export const useGet = (url, auth_required = true) => {
-    const [data, setData] = useState(null);
+export const useGet = (url, auth_required = true, initialData = null) => {
+    const [data, setData] = useState(initialData);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
+    const reset = useCallback(() => {
+        setData(initialData);
+        setLoading(false);
+        setSuccess(false);
+        setError(null)
+    }, [url, initialData])
 
     const perform_get = useCallback(async (params = {}) => {
         let headers = {}
@@ -62,6 +74,7 @@ export const useGet = (url, auth_required = true) => {
         } finally {
             setLoading(false);
         }
-    })
-    return { data, loading, success, error, perform_get };
+    }, [url])
+    
+    return { data, loading, success, error, perform_get, reset };
 }
