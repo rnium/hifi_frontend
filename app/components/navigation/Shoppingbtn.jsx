@@ -71,8 +71,8 @@ const Shoppingbtn = () => {
                     <Stack spacing={1} >
 
                         {
-                            all_products.map(p => (
-                                <ProductW product={p} />
+                            all_products.map((p, idx) => (
+                                <ProductW key={idx} product={p} />
                             ))
                         }
                     </Stack>

@@ -58,8 +58,8 @@ export default function CartDrawer({ open, setOpen }) {
         </Box>
         <Stack sx={{mt: 1}} spacing={1} >
           {
-            all_products.map(p => (
-              <ProductC product={p} />
+            all_products.map((p, idx) => (
+              <ProductC key={idx} product={p} />
             ))
           }
         </Stack>

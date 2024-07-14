@@ -32,7 +32,7 @@ const minPrice = 25000
 const maxPrice = 352000
 
 
-const CategoryChoices = () => {
+const CategoryChoices = ({ groups }) => {
     const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
     function pricetext(value) {
         return `${new Number(value).toLocaleString('en-IN')} Tk`;
@@ -92,10 +92,15 @@ const CategoryChoices = () => {
                     </FormGroup>
                 </AccordionDetails>
             </Accordion>
-            <TagGroup
-                title="Processor"
-                tags={processor_types}
-            />
+            {
+                groups.map((group, idx) => (
+                    <TagGroup
+                        key={idx}
+                        title={group.title}
+                        tags={group.categories}
+                    />
+                ))
+            }
         </>
     )
 }

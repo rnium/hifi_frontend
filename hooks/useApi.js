@@ -9,7 +9,7 @@ const postDefaultConfig = {
     }
 }
 
-export const usePost = (url, auth_required = true, config = postDefaultConfig) => {
+export const usePost = (url, auth_required = false, config = postDefaultConfig) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -42,8 +42,9 @@ export const usePost = (url, auth_required = true, config = postDefaultConfig) =
     return { data, loading, success, error, perform_post };
 }
 
-export const useGet = (url, auth_required = true, initialData = null) => {
+export const useGet = (url, auth_required = false, initialData = null) => {
     const [data, setData] = useState(initialData);
+    const [loaded, setLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
@@ -52,10 +53,12 @@ export const useGet = (url, auth_required = true, initialData = null) => {
         setData(initialData);
         setLoading(false);
         setSuccess(false);
+        setLoaded(false);
         setError(null)
     }, [url, initialData])
 
     const perform_get = useCallback(async (params = {}) => {
+        console.log('performing get', url);
         let headers = {}
         if (auth_required) {
             headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
@@ -67,6 +70,7 @@ export const useGet = (url, auth_required = true, initialData = null) => {
             });
             setData(res.data);
             setSuccess(true);
+            setLoaded(true)
             setError(null);
         } catch (error) {
             setSuccess(false);
@@ -76,5 +80,5 @@ export const useGet = (url, auth_required = true, initialData = null) => {
         }
     }, [url])
     
-    return { data, loading, success, error, perform_get, reset };
+    return { data, loading, loaded, success, error, perform_get, reset };
 }

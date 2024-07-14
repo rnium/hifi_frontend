@@ -23,8 +23,8 @@ const TagGroup = ({ title, tags }) => {
             <AccordionDetails>
                 <FormGroup >
                     {
-                        tags.map((p, idx) => (
-                            <FormControlLabel key={idx} name='availibility' control={<Checkbox />} label={p.title} />
+                        tags.map(tag => (
+                            <FormControlLabel key={tag.id} name='availibility' control={<Checkbox />} label={tag.short_title || tag.title} />
                         ))
                     }
                 </FormGroup>

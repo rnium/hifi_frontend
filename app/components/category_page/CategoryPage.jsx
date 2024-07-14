@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Container, Grid, Paper, Box, Chip, Stack, Typography, Breadcrumbs, Slider,
     FormGroup, Checkbox, FormControlLabel, Accordion, AccordionSummary, AccordionDetails
@@ -12,6 +12,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
 import CategoryPagination from './CategoryPagination';
 import CategoryChoices from './CategoryChoices';
+import { api_endpoints } from '@/lib/data';
+import { useGet } from '@/hooks/useApi';
 
 let cat_hiararchy = [
     {
@@ -59,7 +61,22 @@ const children_categories = [
     },
 ]
 
-const CategoryPage = (props) => {
+const CategoryPage = ({params}) => {
+    const {
+        data, perform_get, loaded, error
+    } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}/`);
+
+    useEffect(() => {
+        if (!loaded) {
+            perform_get();
+        }
+    }, [])
+
+    if (!loaded) {
+        return <div>Loading...</div>
+    }
+    
+
     return (
         <>
             <Paper
@@ -115,7 +132,9 @@ const CategoryPage = (props) => {
             <Container sx={{ my: 2 }}>
                 <Grid container sx={{ mt: 1 }} spacing={2}>
                     <Grid item xs={0} md={3} >
-                        <CategoryChoices />
+                        <CategoryChoices 
+                            groups={data?.groups || []}
+                        />
 
                     </Grid>
                     <Grid item xs={0} md={9} >
