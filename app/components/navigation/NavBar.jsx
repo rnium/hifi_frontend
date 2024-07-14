@@ -20,7 +20,7 @@ import Shoppingbtn from './Shoppingbtn';
 
 function NavBar({homepage = false}) {
   return (
-    <AppBar className='mainappbar border-b' position="static" color='transparent' elevation={0}>
+    <AppBar className='mainappbar border-b' position="static" style={{backgroundColor: 'white'}} elevation={0}>
       <Box className="topstrip">
         <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Stack direction="row" spacing={2} alignItems="center">

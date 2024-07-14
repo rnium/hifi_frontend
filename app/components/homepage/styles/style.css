@@ -1,16 +1,3 @@
-.category-link {
-  transition: all 200ms;
-}
-.category-link .cat-icon {
-  transition: all 200ms;
-}
-.category-link:hover {
-  color: #d32f2f;
-}
-.category-link:hover .cat-icon {
-  color: #d32f2f;
-}
-
 .myswiper {
   position: relative;
 }

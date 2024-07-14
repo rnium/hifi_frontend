@@ -32,7 +32,7 @@ const UserChip = () => {
                         />
                         <Stack justifyItems="center">
                         <Typography variant='caption' color="text.secondary" sx={{ "&:hover": { color: 'primary' }, fontSize: '0.7rem' }} >Welcome</Typography>
-                            <Typography variant='body1' sx={{ "&:hover": { color: 'primary' } }} >{userInfo.first_name}</Typography>
+                            <Typography variant='body1' color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >{userInfo.first_name}</Typography>
                             
                         </Stack>
                     </> :
@@ -42,7 +42,7 @@ const UserChip = () => {
                             alt='Avatar'
                         />
                         <Link href="/login">
-                            <Typography sx={{ "&:hover": { color: 'primary' } }} >User Login</Typography>
+                            <Typography color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >User Login</Typography>
                         </Link>
                     </>
             }

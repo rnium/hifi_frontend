@@ -1,42 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     Box, Chip, Stack, Typography, Slider,
     FormGroup, Checkbox, FormControlLabel, Accordion, AccordionSummary, AccordionDetails
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useRouter } from 'next/navigation';
 import TagGroup from './TagGroup';
-const processor_types = [
-    {
-        slug: 'corei3',
-        title: 'Intel Core i3'
-    },
-    {
-        slug: 'corei5',
-        title: 'Intel Core i5'
-    },
-    {
-        slug: 'corei7',
-        title: 'Intel Core i7'
-    },
-    {
-        slug: 'ryzen3',
-        title: 'Ryzen 3'
-    },
-    {
-        slug: 'ryzen5',
-        title: 'Ryzen 5'
-    },
-]
 
 const minPrice = 25000
 const maxPrice = 352000
 
 
-const CategoryChoices = ({ groups }) => {
+const CategoryChoices = ({ groups, slug }) => {
+    const [selectedTags, setSelectedTags] = useState([]);
+    const router = useRouter();
     const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
     function pricetext(value) {
         return `${new Number(value).toLocaleString('en-IN')} Tk`;
     }
+    const addId = (id) => {
+        setSelectedTags([...selectedTags, id]);
+    }
+    useEffect(() => {
+        console.log(selectedTags);
+    }, [selectedTags])
+
+    useEffect(() => {
+        const query = selectedTags.length > 0 ? selectedTags.join(',') : '';
+        router.push(`/category/${slug}?filter=${query}`);
+      }, [selectedTags, router]);
+    
     return (
         <>
             <Accordion
@@ -98,6 +91,7 @@ const CategoryChoices = ({ groups }) => {
                         key={idx}
                         title={group.title}
                         tags={group.categories}
+                        addId={addId}
                     />
                 ))
             }

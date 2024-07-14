@@ -1,18 +1,5 @@
 $active-color: #d32f2f;
 
-.category-link {
-    transition: all 200ms;
-    .cat-icon {
-        transition: all 200ms;
-    }
-    &:hover {
-        color: $active-color;
-        .cat-icon {
-            color: $active-color;
-        }
-    }
-}
-
 .myswiper {
     position: relative;
     .swiper-slide {

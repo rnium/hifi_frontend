@@ -12,7 +12,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
 import CategoryPagination from './CategoryPagination';
 import CategoryChoices from './CategoryChoices';
-import { api_endpoints } from '@/lib/data';
 import { useGet } from '@/hooks/useApi';
 
 let cat_hiararchy = [
@@ -61,20 +60,20 @@ const children_categories = [
     },
 ]
 
-const CategoryPage = ({params}) => {
-    const {
-        data, perform_get, loaded, error
-    } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}/`);
+const CategoryPage = ({cat_data}) => {
+    // const {
+    //     data, perform_get, loaded, error
+    // } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}/`);
 
-    useEffect(() => {
-        if (!loaded) {
-            perform_get();
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!loaded) {
+    //         perform_get();
+    //     }
+    // }, [])
 
-    if (!loaded) {
-        return <div>Loading...</div>
-    }
+    // if (!loaded) {
+    //     return <div>Loading...</div>
+    // }
     
 
     return (
@@ -90,7 +89,7 @@ const CategoryPage = ({params}) => {
                     >
                         <HomeIcon />
                         {
-                            cat_hiararchy.map(cat => (
+                            cat_data.category_tree.map(cat => (
                                 <Link key={cat.id} href={`/category/${cat.slug}`}>
                                     <Typography
                                         variant='body2'
@@ -121,7 +120,7 @@ const CategoryPage = ({params}) => {
                 </Typography>
                 <Box sx={{ mt: 1 }}>
                     {
-                        children_categories.map((c, idx) => (
+                        cat_data.childs.filter(child => child.cat_type != 'tag').map((c, idx) => (
                             <Link key={idx} href={`/category/${c.slug}`}>
                                 <Chip sx={{ mr: 1, mb: 1 }} label={c.title} />
                             </Link>
@@ -133,7 +132,8 @@ const CategoryPage = ({params}) => {
                 <Grid container sx={{ mt: 1 }} spacing={2}>
                     <Grid item xs={0} md={3} >
                         <CategoryChoices 
-                            groups={data?.groups || []}
+                            groups={cat_data?.groups || []}
+                            slug={cat_data.slug}
                         />
 
                     </Grid>

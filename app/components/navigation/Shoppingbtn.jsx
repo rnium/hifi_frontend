@@ -39,7 +39,7 @@ const Shoppingbtn = () => {
                         <FavoriteBorderIcon />
                     </Badge>
                 </IconButton>
-                <Typography style={cursorTypography} variant='body2'>Wishlist</Typography>
+                <Typography style={cursorTypography} color="text.primary" variant='body2'>Wishlist</Typography>
             </Stack>
             <Menu
                 id="basic-menu"
@@ -85,7 +85,7 @@ const Shoppingbtn = () => {
                     </Badge>
                 </IconButton>
                 <Stack style={cursorTypography}>
-                    <Typography variant='body2' >My Cart</Typography>
+                    <Typography variant='body2' color="text.primary">My Cart</Typography>
                     <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
                 </Stack>
             </Stack>

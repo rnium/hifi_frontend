@@ -78,14 +78,19 @@
 }
 
 .category-link {
-  position: relative;
-  z-index: 99999;
+  transition: all 200ms;
 }
-.category-link .submenu {
-  position: absolute;
-  z-index: 9999999;
-  left: 100%;
-  background-color: #8e9caa;
+.category-link .cat-icon, .category-link .cat-text {
+  transition: all 200ms;
+}
+.category-link .cat-text {
+  color: black;
+}
+.category-link:hover .cat-icon {
+  color: #d32f2f;
+}
+.category-link:hover .cat-text {
+  color: #d32f2f;
 }
 
 ul.navlinks {

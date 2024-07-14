@@ -32,7 +32,7 @@ export default function Categories() {
                                     <ListItemIcon>
                                         {cat.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={cat.title} />
+                                    <ListItemText className='cat-text' primary={cat.title} />
                                 </ListItem>
                             </Link>
                         )
@@ -44,7 +44,7 @@ export default function Categories() {
                                         <ListItemIcon>
                                             {cat.icon}
                                         </ListItemIcon>
-                                        <ListItemText primary={cat.title} />
+                                        <ListItemText  className='cat-text' primary={cat.title} />
                                     </ListItem>
                                 </Link>
                                 <Divider variant="middle" component="li" />

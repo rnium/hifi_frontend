@@ -98,14 +98,33 @@ $shadow: rgba(126, 125, 125, 0.2);
     }
 }
 
+// .category-link {
+//     position: relative;
+//     z-index: 99999;
+//     .submenu {
+//         position: absolute;
+//         z-index: 9999999;
+//         left: 100%;
+//         background-color: #8e9caa;
+//     }
+// }
+
+
 .category-link {
-    position: relative;
-    z-index: 99999;
-    .submenu {
-        position: absolute;
-        z-index: 9999999;
-        left: 100%;
-        background-color: #8e9caa;
+    transition: all 200ms;
+    .cat-icon, .cat-text {
+        transition: all 200ms;
+    }
+    .cat-text {
+        color: black;
+    }
+    &:hover {
+        .cat-icon {
+            color: $menu-bg;
+        }
+        .cat-text {
+            color: $menu-bg;
+        }
     }
 }
 
