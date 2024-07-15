@@ -18,7 +18,7 @@ import { api_endpoints, api_suffixes } from '@/lib/data';
 
 
 
-const CategoryPage = ({params, cat_data}) => {
+const CategoryPage = ({ params, cat_data }) => {
     const {
         data: paginated_data, perform_get, loaded, loading, error
     } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}${api_suffixes.all_products}`);
@@ -33,14 +33,14 @@ const CategoryPage = ({params, cat_data}) => {
     //     return <div>Loading...</div>
     // }
     const [selectedTags, setSelectedTags] = useState([]);
-    
+
     const addId = (id) => {
         setSelectedTags([...selectedTags, id]);
     }
     useEffect(() => {
         console.log(selectedTags);
     }, [selectedTags])
-    
+
 
     return (
         <>
@@ -49,7 +49,7 @@ const CategoryPage = ({params, cat_data}) => {
                 elevation={0}
                 className='border'
             >
-                <Stack direction="row" justifyContent="space-between">
+                <Stack direction="row" justifyContent="space-between" alignItems='center'>
                     <Breadcrumbs
                         separator={<NavigateNextIcon fontSize='small' />}
                     >
@@ -67,7 +67,11 @@ const CategoryPage = ({params, cat_data}) => {
                             ))
                         }
                     </Breadcrumbs>
-                    <img width={"120px"} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/AsusTek-black-logo.png/1200px-AsusTek-black-logo.png"} />
+                    {
+                        cat_data?.logo ? 
+                        <img style={{maxWidth: '120px', maxHeight: '60px'}} src={cat_data.logo} />
+                        : null
+                    }
                 </Stack>
                 <Typography
                     variant='h5'
@@ -75,15 +79,18 @@ const CategoryPage = ({params, cat_data}) => {
                     sx={{ mt: 1 }}
                     color="primary"
                 >
-                    Asus Laptop Price in Bangladesh
+                    {cat_data?.seo_title || cat_data.title}
                 </Typography>
-                <Typography
-                    variant='body2'
-                    component="h3"
-                    color="text.secondary"
-                >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor esse exercitationem odit enim est fugiat libero recusandae quo tempore rem excepturi perferendis ratione doloremque doloribus tenetur iste, autem vero ut quas harum? Explicabo soluta quo voluptates labore, nam, officiis eum officia ducimus molestiae laudantium harum ab animi, id nulla corrupti.
-                </Typography>
+                {
+                    cat_data?.description ?
+                        <Typography
+                            variant='body2'
+                            component="h3"
+                            color="text.secondary"
+                        >
+                            {cat_data.description}
+                        </Typography> : null
+                }
                 <Box sx={{ mt: 1 }}>
                     {
                         cat_data.childs.filter(child => child.cat_type != 'tag').map((c, idx) => (
@@ -97,7 +104,7 @@ const CategoryPage = ({params, cat_data}) => {
             <Container sx={{ my: 2 }}>
                 <Grid container sx={{ mt: 1 }} spacing={2}>
                     <Grid item xs={0} md={3} >
-                        <CategoryChoices 
+                        <CategoryChoices
                             groups={cat_data?.groups || []}
                             slug={cat_data.slug}
                             addId={addId}
@@ -107,8 +114,8 @@ const CategoryPage = ({params, cat_data}) => {
                     <Grid item xs={0} md={9} >
                         {
                             loaded && !loading ?
-                            <ProductGrid products={paginated_data?.results} /> :
-                            <ProductsSkeleton num={8} />
+                                <ProductGrid products={paginated_data?.results} /> :
+                                <ProductsSkeleton num={8} />
                         }
                         <Box sx={{ mt: 2 }}>
                             <CategoryPagination />

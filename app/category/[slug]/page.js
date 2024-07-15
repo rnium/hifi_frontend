@@ -3,7 +3,7 @@ import CategoryPage from '@/app/components/category_page/CategoryPage';
 import { api_endpoints } from '@/lib/data';
 
 const getData = async (slug) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${slug}/`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${slug}/`, {cache: 'no-store'});
   const res_code = res.status;
   if (!res.ok) {
     throw new Error(`${res_code} (${res.statusText})`);
