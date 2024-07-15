@@ -10,17 +10,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
+import ProductsSkeleton from './ProductsSkeleton';
 import CategoryPagination from './CategoryPagination';
 import CategoryChoices from './CategoryChoices';
 import { useGet } from '@/hooks/useApi';
-import { api_endpoints } from '@/lib/data';
+import { api_endpoints, api_suffixes } from '@/lib/data';
 
 
 
 const CategoryPage = ({params, cat_data}) => {
     const {
-        data, perform_get, loaded, error
-    } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_tag_category}${params?.slug}/products/`);
+        data: paginated_data, perform_get, loaded, loading, error
+    } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}${api_suffixes.all_products}`);
 
     useEffect(() => {
         if (!loaded) {
@@ -39,8 +40,6 @@ const CategoryPage = ({params, cat_data}) => {
     useEffect(() => {
         console.log(selectedTags);
     }, [selectedTags])
-
-    console.log(data)
     
 
     return (
@@ -106,7 +105,11 @@ const CategoryPage = ({params, cat_data}) => {
 
                     </Grid>
                     <Grid item xs={0} md={9} >
-                        <ProductGrid />
+                        {
+                            loaded && !loading ?
+                            <ProductGrid products={paginated_data?.results} /> :
+                            <ProductsSkeleton num={8} />
+                        }
                         <Box sx={{ mt: 2 }}>
                             <CategoryPagination />
                         </Box>

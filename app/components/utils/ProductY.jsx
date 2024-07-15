@@ -1,5 +1,6 @@
 import React from 'react';
-import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom, 
+import {
+    Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom,
     Chip, Divider, Box
 } from '@mui/material';
 import './styles/style.css';
@@ -17,11 +18,11 @@ const ProductY = ({ product }) => {
             <CardMedia
                 component="img"
                 alt={product.title}
-                image={product.banner}
+                image={product.cover}
             />
             <div className="actions">
                 <Stack spacing={2}>
-                    <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
+                    <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="left">
                         <div className='action-btn'>
                             <FavoriteBorderIcon fontSize='small' />
                         </div>
@@ -39,7 +40,7 @@ const ProductY = ({ product }) => {
                 </Stack>
             </div>
             <CardContent sx={{ minHeight: '340px', display: 'flex', flexDirection: 'column' }}>
-                <Link href="#" className='product-link'>
+                <Link href={`/product/${product.slug}`} className='product-link'>
                     <Typography
                         sx={{ textAlign: "center", fontSize: '0.9rem', flexGrow: 1 }}
                         className='product-title'
@@ -49,11 +50,11 @@ const ProductY = ({ product }) => {
                     >
                         {product.title.substring(0, 70) + (product.title.length > 70 ? "..." : '')}
                     </Typography>
-                    <Divider sx={{my: 1}} variant='middle' />
+                    <Divider sx={{ my: 1 }} variant='middle' />
                     <Box flexGrow={1}>
                         <ul>
                             {
-                                product1.key_features.map((f, idx) => (
+                                product.key_features.map((f, idx) => (
                                     <li key={idx}>
                                         <Typography
                                             variant='caption'
@@ -73,28 +74,40 @@ const ProductY = ({ product }) => {
                         alignItems="center"
                         sx={{ mt: 2 }}
                     >
-                        <Typography
-                            sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
-                            className='product-price'
-                            gutterBottom
-                            variant="h6"
-                            component="div"
-                            color="primary"
-                        >
-                            {new Number(product.price - product.discount).toLocaleString("en-IN")} Tk
-                        </Typography>
                         {
-                            product.discount > 0 ?
+                            product.priceSale ?
+                                <>
+                                    <Typography
+                                        sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
+                                        className='product-price'
+                                        gutterBottom
+                                        variant="h6"
+                                        component="div"
+                                        color="primary"
+                                    >
+                                        {product.priceSale.toLocaleString("en-IN")} Tk
+                                    </Typography>
+                                    <Typography
+                                        sx={{ textAlign: "center", textDecoration: 'line-through', fontSize: { xs: '0.8rem', md: '0.9rem' } }}
+                                        className='product-price'
+                                        gutterBottom
+                                        variant="h5"
+                                        component="div"
+                                        color="text.secondary"
+                                    >
+                                        {product.price.toLocaleString("en-IN")} Tk
+                                    </Typography>
+                                </> :
                                 <Typography
-                                    sx={{ textAlign: "center", textDecoration: 'line-through', fontSize: { xs: '0.8rem', md: '0.9rem' } }}
+                                    sx={{ textAlign: "center", fontSize: { xs: '0.9rem', md: '1rem' } }}
                                     className='product-price'
                                     gutterBottom
-                                    variant="h5"
+                                    variant="h6"
                                     component="div"
-                                    color="text.secondary"
+                                    color="primary"
                                 >
                                     {product.price.toLocaleString("en-IN")} Tk
-                                </Typography> : null
+                                </Typography>
                         }
                     </Stack>
                 </Link>
