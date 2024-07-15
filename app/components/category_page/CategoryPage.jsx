@@ -29,9 +29,6 @@ const CategoryPage = ({ params, cat_data }) => {
         }
     }, [])
 
-    // if (!loaded) {
-    //     return <div>Loading...</div>
-    // }
     const [selectedTags, setSelectedTags] = useState([]);
 
     const addId = (id) => {

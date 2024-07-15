@@ -10,7 +10,7 @@ const ProductAction = ({ product }) => {
     const [selectedColor, setSelectedColor] = useState(product.product_colors[0].code)
     return (
         <Fragment>
-            <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>
+            {/* <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>
                 <Typography variant='body1' color="text.secondary">Product Colors</Typography>
                 {
                     product.product_colors.map((c, idx) => (
@@ -19,8 +19,8 @@ const ProductAction = ({ product }) => {
                         </Tooltip>
                     ))
                 }
-            </Stack>
-            <Stack direction="row" spacing={2} alignItems="center">
+            </Stack> */}
+            <Stack direction="row" spacing={2} alignItems="center" sx={{pt: 3}}>
                 <Button variant="contained" sx={{ px: 6 }}>Buy Now</Button>
                 <Button variant="outlined" sx={{ px: 5 }}>Add To Cart</Button>
             </Stack >

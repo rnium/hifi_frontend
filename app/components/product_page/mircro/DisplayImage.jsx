@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Fragment } from 'react';
-import { Image } from 'antd';
+import { Image as AntdImage } from 'antd';
 import { Box, Stack, Skeleton } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -35,7 +35,7 @@ const DisplayImage = ({ images }) => {
     return (
         <Fragment>
             <Box>
-                <Image
+                <AntdImage
                     src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'}
                 />
             </Box>
@@ -52,10 +52,10 @@ const DisplayImage = ({ images }) => {
                     className="mySwiper"
                 >
                     {
-                        images.map((i, idx) => (
+                        images.map((img, idx) => (
                             <SwiperSlide key={idx}>
-                                <Box onClick={() => setSelectedImage(i.id)} className={selectedImage === i.id ? "slide-img-container active" : "slide-img-container"}>
-                                    <img width="100px" src={i.url} className='w-full' />
+                                <Box onClick={() => setSelectedImage(img.id)} className={selectedImage === img.id ? "slide-img-container active" : "slide-img-container"}>
+                                    <img src={img.url} width={100} height={100} />
                                 </Box>
                             </SwiperSlide>
                         ))
