@@ -2,6 +2,10 @@
   background-color: white;
 }
 
+.mySwiper {
+  width: 100%;
+}
+
 .slide-img-container {
   border-radius: 5px;
   overflow: hidden;

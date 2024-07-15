@@ -7,7 +7,7 @@ import { InputNumber } from 'antd';
 
 
 const ProductAction = ({ product }) => {
-    const [selectedColor, setSelectedColor] = useState(product.product_colors[0].code)
+    // const [selectedColor, setSelectedColor] = useState(product?.product_colors[0].code)
     return (
         <Fragment>
             {/* <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>

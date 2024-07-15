@@ -27,7 +27,13 @@ const theme = createTheme({
             defaultProps: {
                 disableElevation: true,
             }
+        },
+        MuiContainer: {
+            defaultProps: {
+                disableGutters: true,
+            }
         }
+        
     }
 })
 

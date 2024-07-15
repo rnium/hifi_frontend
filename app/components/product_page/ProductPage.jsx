@@ -16,13 +16,12 @@ import ProductSpecTables from './ProductSpecTables';
 import ProductReviews from './ProductReviews';
 import ProductQuestions from './ProductQuestions';
 import ProductX from '../utils/ProductX';
-const product_data = product1;
 
 
 
 const Product = ({ product }) => {
     return (
-        <Container sx={{ mt: 5, mb: 10 }}>
+        <Container sx={{ mt: 5, mb: 10}} >
             <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }} >
                 <Grid container spacing={4} >
                     <Grid item xs={12} md={5}>
@@ -91,7 +90,7 @@ const Product = ({ product }) => {
                                     ))
                                 }
                             </List>
-                            <ProductAction product={product_data} />
+                            <ProductAction product={product} />
                         </Stack>
 
                     </Grid>
@@ -115,9 +114,9 @@ const Product = ({ product }) => {
                         <Stack
                             spacing={2}
                         >
-                            {/* <ProductReviews reviews={product_data.reviews} /> */}
-                            {/* <ProductQuestions questions={product_data.questions} /> */}
-                            <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3, }}>
+                            <ProductReviews reviews={[]} />
+                            <ProductQuestions questions={[]} />
+                            {/* <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3, }}>
                                 <Typography
                                     variant='h6'
                                     color="primary"
@@ -126,11 +125,11 @@ const Product = ({ product }) => {
                                     Similar Products
                                 </Typography>
                                 {
-                                    product1.related_products.map(p => (
+                                    product_data.related_products.map(p => (
                                         <ProductX key={`rp-${p.id}`} product={p} />
                                     ))
                                 }
-                            </Box>
+                            </Box> */}
                         </Stack>
                     </Grid>
                 </Grid>
