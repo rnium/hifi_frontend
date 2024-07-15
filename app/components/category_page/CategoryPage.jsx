@@ -13,67 +13,34 @@ import ProductGrid from './ProductGrid';
 import CategoryPagination from './CategoryPagination';
 import CategoryChoices from './CategoryChoices';
 import { useGet } from '@/hooks/useApi';
+import { api_endpoints } from '@/lib/data';
 
-let cat_hiararchy = [
-    {
-        id: 1,
-        title: "Laptop",
-        slug: 'laptop',
-    },
-    {
-        id: 2,
-        title: "All Laptop",
-        slug: 'all-laptop',
-    },
-    {
-        id: 15,
-        title: "Lenovo",
-        slug: 'lenovo',
-    },
-]
 
-const children_categories = [
-    {
-        id: 54,
-        title: 'Lenovo',
-        slug: 'lenovo'
-    },
-    {
-        id: 51,
-        title: 'Asus',
-        slug: 'asus'
-    },
-    {
-        id: 51,
-        title: 'Asus',
-        slug: 'asus'
-    },
-    {
-        id: 51,
-        title: 'Asus',
-        slug: 'asus'
-    },
-    {
-        id: 51,
-        title: 'Asus',
-        slug: 'asus'
-    },
-]
 
-const CategoryPage = ({cat_data}) => {
-    // const {
-    //     data, perform_get, loaded, error
-    // } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}/`);
+const CategoryPage = ({params, cat_data}) => {
+    const {
+        data, perform_get, loaded, error
+    } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_tag_category}${params?.slug}/products/`);
 
-    // useEffect(() => {
-    //     if (!loaded) {
-    //         perform_get();
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (!loaded) {
+            perform_get();
+        }
+    }, [])
 
     // if (!loaded) {
     //     return <div>Loading...</div>
     // }
+    const [selectedTags, setSelectedTags] = useState([]);
+    
+    const addId = (id) => {
+        setSelectedTags([...selectedTags, id]);
+    }
+    useEffect(() => {
+        console.log(selectedTags);
+    }, [selectedTags])
+
+    console.log(data)
     
 
     return (
@@ -134,6 +101,7 @@ const CategoryPage = ({cat_data}) => {
                         <CategoryChoices 
                             groups={cat_data?.groups || []}
                             slug={cat_data.slug}
+                            addId={addId}
                         />
 
                     </Grid>

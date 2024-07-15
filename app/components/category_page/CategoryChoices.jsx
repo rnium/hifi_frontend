@@ -11,25 +11,11 @@ const minPrice = 25000
 const maxPrice = 352000
 
 
-const CategoryChoices = ({ groups, slug }) => {
-    const [selectedTags, setSelectedTags] = useState([]);
-    const router = useRouter();
+const CategoryChoices = ({ groups, slug, addId }) => {
     const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
     function pricetext(value) {
-        return `${new Number(value).toLocaleString('en-IN')} Tk`;
+        return new Number(value).toLocaleString('en-IN');
     }
-    const addId = (id) => {
-        setSelectedTags([...selectedTags, id]);
-    }
-    useEffect(() => {
-        console.log(selectedTags);
-    }, [selectedTags])
-
-    useEffect(() => {
-        const query = selectedTags.length > 0 ? selectedTags.join(',') : '';
-        router.push(`/category/${slug}?filter=${query}`);
-      }, [selectedTags, router]);
-    
     return (
         <>
             <Accordion
