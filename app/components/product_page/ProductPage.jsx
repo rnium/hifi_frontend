@@ -3,8 +3,11 @@
 import {
     Container, Stack, Chip, Box, Typography,
     Grid, Rating, List, ListItem, ListItemText,
+    Breadcrumbs
 } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
 import CheckIcon from '@mui/icons-material/Check';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { ErrorOutline } from '@mui/icons-material';
 import Link from 'next/link';
 import './styles/style.css';
@@ -21,7 +24,31 @@ import ProductX from '../utils/ProductX';
 
 const Product = ({ product }) => {
     return (
-        <Container sx={{ mt: 5, mb: 10}} >
+        <Container sx={{ mb: 10 }} >
+            <Stack
+                sx={{ my: 2 }}
+                alignItems='center'
+            >
+                <Breadcrumbs
+                    separator={<NavigateNextIcon fontSize='small' />}
+                >
+                    <Link href='/'>
+                        <HomeIcon className='hover:text-red-600' />
+                    </Link>
+                    {
+                        product.category_tree.map(cat => (
+                            <Link key={cat.id} href={`/category/${cat.slug}`}>
+                                <Typography
+                                    variant='body2'
+                                    className='hover:text-red-600'
+                                >
+                                    {cat.title}
+                                </Typography>
+                            </Link>
+                        ))
+                    }
+                </Breadcrumbs>
+            </Stack>
             <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', px: 3, py: 4 }} >
                 <Grid container spacing={4} >
                     <Grid item xs={12} md={5}>
