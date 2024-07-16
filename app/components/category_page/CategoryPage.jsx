@@ -19,6 +19,10 @@ import { api_endpoints, api_suffixes } from '@/lib/data';
 
 
 const CategoryPage = ({ params, cat_data }) => {
+    // const [page, setPage] = useState(1);
+    // const [count, setCount] = useState(0);
+    // const [rowsPerPage, setRowsPerPage] = useState(0);
+
     const {
         data: paginated_data, perform_get, loaded, loading, error
     } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}${api_suffixes.all_products}`);
@@ -113,12 +117,17 @@ const CategoryPage = ({ params, cat_data }) => {
                     <Grid item xs={0} md={9} >
                         {
                             loaded && !loading ?
-                                <ProductGrid products={paginated_data?.results} /> :
+                                <>
+                                    <ProductGrid products={paginated_data?.results} />
+                                    <Box sx={{ mt: 2 }}>
+                                        <CategoryPagination 
+                                            data={paginated_data}
+                                            perform_get={perform_get}
+                                        />
+                                    </Box>
+                                </> :
                                 <ProductsSkeleton num={8} />
                         }
-                        <Box sx={{ mt: 2 }}>
-                            <CategoryPagination />
-                        </Box>
                     </Grid>
                 </Grid>
             </Container>

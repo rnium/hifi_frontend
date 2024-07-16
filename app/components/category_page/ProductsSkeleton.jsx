@@ -7,7 +7,7 @@ const ProductsSkeleton = ({num}) => {
         <Grid container spacing={2}>
             {
                 skel_arr.map(id => (
-                    <Grid key={id} item xs={12} md={4} lg={3}>
+                    <Grid key={id} item xs={12} md={4}>
                         <Skeleton variant='rounded' height={300} />
                     </Grid>
                 ))

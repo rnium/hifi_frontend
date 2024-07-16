@@ -1,39 +1,24 @@
-'use client';
-
 import React, { useState } from 'react';
 import { Pagination, TablePagination, Stack } from '@mui/material';
 
-const CategoryPagination = () => {
-    const [page, setPage] = useState(2);
-    const [count, setCount] = useState(500);
-    const [rowsPerPage, setRowsPerPage] = useState(25);
-
-    const handleChange = (e, newPage) => {
-        setPage(newPage);
-    }
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
+const CategoryPagination = ({data, perform_get}) => {
 
     return (
         <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Pagination
-                count={count}
-                onChange={(e, value) => setPage(value-1)}
-                page={page + 1}
+                count={data.total_pages}
+                onChange={(e, value) => perform_get({page: value})}
+                page={data.current_page}
                 color="secondary"
             />
-            <TablePagination
+            {/* <TablePagination
                 component="div"
-                count={count}
-                page={page}
+                count={data.total_pages}
+                page={data.current_page}
                 onPageChange={handleChange}
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+            /> */}
         </Stack>
     )
 }

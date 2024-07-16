@@ -1,9 +1,6 @@
 import React from 'react';
 import { Typography, Grid, Stack, Divider } from '@mui/material';
 import ProductY from '../utils/ProductY';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { products } from '@/lib/data';
-import Link from 'next/link';
 import Image from 'next/image';
 import no_data from '@/public/images/no_data.svg';
 
@@ -30,7 +27,7 @@ const ProductGrid = ({products}) => {
             <Grid container spacing={2}>
                 {
                     products.map(p => (
-                        <Grid item key={p.id} xs={12} md={4} lg={3}>
+                        <Grid item key={p.id} xs={12} md={4}>
                             <ProductY product={p} />
                         </Grid>
                     ))

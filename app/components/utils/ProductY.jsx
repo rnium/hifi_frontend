@@ -54,7 +54,7 @@ const ProductY = ({ product }) => {
                     <Box flexGrow={1}>
                         <ul>
                             {
-                                product.key_features.map((f, idx) => (
+                                product.key_features.slice(0,6).map((f, idx) => (
                                     <li key={idx}>
                                         <Typography
                                             variant='caption'
