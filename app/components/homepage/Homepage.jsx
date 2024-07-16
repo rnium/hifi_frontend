@@ -2,8 +2,6 @@ import React from 'react';
 import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
 import ProductSection from './ProductSection';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import './styles/style.css';
 import NavBar from '../navigation/NavBar';
 import { getAPIData } from '@/utils/fetchData';
@@ -24,8 +22,11 @@ const Homepage = async () => {
             <Carousel carousel_data={data.carousels} />
           </Grid>
         </Grid>
-        <ProductSection title="Trending Products" icon={<TrendingUpIcon color='secondary' fontSize='medium' />} />
-        <ProductSection title="Featured Products" icon={<BookmarksOutlinedIcon color='secondary' fontSize='medium' />} />
+        {
+          data.collections.map((collection, idx) => (
+            <ProductSection key={idx} section_data={collection} />
+          ))
+        }
       </Container>
     </div>
   )

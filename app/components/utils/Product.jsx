@@ -12,7 +12,7 @@ const Product = ({ product }) => {
             <CardMedia
                 component="img"
                 alt={product.title}
-                image={product.banner}
+                image={product.cover}
             />
             {
                 product.discount > 0 ?
@@ -65,7 +65,7 @@ const Product = ({ product }) => {
                             component="div"
                             color="primary"
                         >
-                            {product.price - product.discount} Tk
+                            {new Number(product.price - product.discount).toLocaleString('en-IN')} Tk
                         </Typography>
                         {
                             product.discount > 0 ?
@@ -77,7 +77,7 @@ const Product = ({ product }) => {
                                     component="div"
                                     color="text.secondary"
                                 >
-                                    {product.price} Tk
+                                    {product.price.toLocaleString('en-IN')} Tk
                                 </Typography> : null
                         }
                     </Stack>

@@ -18,7 +18,7 @@ import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 
 
-async function NavBar({homepage = false}) {
+const NavBar = async ({homepage = false}) => {
   const mainCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
   return (
     <AppBar className='mainappbar border-b' position="static" style={{backgroundColor: 'white'}} elevation={0}>

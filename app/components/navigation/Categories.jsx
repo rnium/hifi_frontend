@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import CategoryIcon from '@mui/icons-material/Category';
 import Link from 'next/link';
 import { Stack, ListItemIcon } from '@mui/material';
-import { icon_mapping } from '@/lib/data';
+import { cat_icon_mapping } from '@/lib/data';
 
 const style = {
     py: 0,
@@ -31,7 +31,7 @@ export default function Categories({ cat_data }) {
                         <Link key={idx} href={`/category/${cat.slug}`} className='category-link'>
                             <ListItem >
                                 <ListItemIcon>
-                                    {icon_mapping[cat.slug] || <CategoryIcon />}
+                                    {cat_icon_mapping[cat.slug] || <CategoryIcon />}
                                 </ListItemIcon>
                                 <ListItemText className='cat-text' primary={cat.title} />
                             </ListItem>
