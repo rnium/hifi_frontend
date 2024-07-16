@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Box, Stack, Typography, Divider, Grid, IconButton } from '@mui/material';
 import Image from 'next/image';
 import hifilogo from '@/public/hifi_logo.png';
-import { categories } from '@/lib/data';
+// import { categories } from '@/lib/data';
 import Link from 'next/link';
 import { Input, Button } from 'antd';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -10,6 +10,8 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
+import { getAPIData } from '@/utils/fetchData';
+import { api_endpoints } from '@/lib/data';
 import './style/style.css';
 
 
@@ -55,7 +57,8 @@ const links = {
     ]
 }
 
-const Footer = () => {
+const Footer = async () => {
+    const topCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
     return (
         <Box sx={{ backgroundColor: '#ffffff' }}>
             <Container sx={{ py: 5 }}>
@@ -92,7 +95,7 @@ const Footer = () => {
                         <Stack spacing={1}>
                             <Typography variant='body1' color="primary" sx={{ pb: 1 }}>TOP CATEGORIES</Typography>
                             {
-                                categories.map((l, idx) => (
+                                topCategories.map((l, idx) => (
                                     <Link key={l.slug} href={'category/' + l.slug}>
                                         <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                     </Link>

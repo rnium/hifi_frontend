@@ -80,13 +80,13 @@ const Shoppingbtn = () => {
             </Menu>
             <Stack sx={{ flexGrow: 0, ml: 3 }} onClick={handleCartClick} alignItems="center" direction="row">
                 <IconButton>
-                    <Badge badgeContent={1} color="primary" variant='dot'>
+                    <Badge badgeContent={0} color="primary" variant='dot'>
                         <ShoppingCartOutlinedIcon />
                     </Badge>
                 </IconButton>
                 <Stack style={cursorTypography}>
                     <Typography variant='body2' color="text.primary">My Cart</Typography>
-                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 1200</Typography>
+                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 0</Typography>
                 </Stack>
             </Stack>
             <CartDrawer open={drawerOpen} setOpen={setDrawerOpen} />

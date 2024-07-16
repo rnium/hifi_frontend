@@ -30,7 +30,7 @@ const NavBar = async ({homepage = false}) => {
                 size={20}
                 className='icon'
               />
-              <div className="text">www.hificomputer.com</div>
+              <div className="text">www.hificomputerbd.com</div>
             </div>
             <div className="divider"></div>
             <div className="t-item social">
@@ -66,7 +66,7 @@ const NavBar = async ({homepage = false}) => {
                   size={20}
                   className='icon'
                 />
-                <div className="text">contact@hificomputer.com</div>
+                <div className="text">contact@hificomputerbd.com</div>
               </a>
             </div>
             <div className="t-item">
@@ -74,7 +74,7 @@ const NavBar = async ({homepage = false}) => {
                 size={20}
                 className='icon'
               />
-              <div className="text">+880966-544412</div>
+              <div className="text">+8801973809453</div>
             </div>
           </Stack>
         </Container>

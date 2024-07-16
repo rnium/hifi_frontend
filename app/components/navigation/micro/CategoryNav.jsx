@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Link from "next/link";
 import React from 'react';
-import { with_subcategories } from "@/lib/data";
+import { nav_categories } from "@/lib/data";
 
 const CategoryNav = () => {
     return (
@@ -9,7 +9,7 @@ const CategoryNav = () => {
             <div className="content">
                 <ul>
                     {
-                        with_subcategories.map((cat, idx) => (
+                        nav_categories.map((cat, idx) => (
                             <li key={idx}>
                                 <div className="cat-item">
                                     <div className="title">{cat.title}</div>
@@ -18,7 +18,7 @@ const CategoryNav = () => {
                                             {
                                                 cat.subcategories.map(scat => (
                                                     <li key={scat.slug}>
-                                                        <Link href="#">{scat.title}</Link>
+                                                        <Link href={`/category/${scat.slug}`}>{scat.title}</Link>
                                                     </li>
                                                 ))
                                             }
