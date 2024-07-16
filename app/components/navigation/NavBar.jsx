@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,9 +14,12 @@ import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from './Categories';
 import CategoryNav from './micro/CategoryNav';
 import Shoppingbtn from './Shoppingbtn';
+import { getAPIData } from '@/utils/fetchData';
+import { api_endpoints } from '@/lib/data';
 
 
-function NavBar({homepage = false}) {
+async function NavBar({homepage = false}) {
+  const mainCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
   return (
     <AppBar className='mainappbar border-b' position="static" style={{backgroundColor: 'white'}} elevation={0}>
       <Box className="topstrip">
@@ -125,7 +126,7 @@ function NavBar({homepage = false}) {
             />
           </div>
           <div className="cat-menu-container">
-            <Categories />
+            <Categories cat_data={mainCategories} />
           </div>
         </div>
         {/* <ul className='navlinks' >

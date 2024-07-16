@@ -50,7 +50,9 @@ const CategoryPage = ({ params, cat_data }) => {
                     <Breadcrumbs
                         separator={<NavigateNextIcon fontSize='small' />}
                     >
-                        <HomeIcon />
+                        <Link href='/'>
+                            <HomeIcon className='hover:text-red-600' />
+                        </Link>
                         {
                             cat_data.category_tree.map(cat => (
                                 <Link key={cat.id} href={`/category/${cat.slug}`}>
@@ -65,9 +67,9 @@ const CategoryPage = ({ params, cat_data }) => {
                         }
                     </Breadcrumbs>
                     {
-                        cat_data?.logo ? 
-                        <img style={{maxWidth: '120px', maxHeight: '60px'}} src={cat_data.logo} />
-                        : null
+                        cat_data?.logo ?
+                            <img style={{ maxWidth: '120px', maxHeight: '60px' }} src={cat_data.logo} />
+                            : null
                     }
                 </Stack>
                 <Typography

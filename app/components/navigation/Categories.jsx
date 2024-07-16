@@ -6,8 +6,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import CategoryIcon from '@mui/icons-material/Category';
 import Link from 'next/link';
 import { Stack, ListItemIcon } from '@mui/material';
+import { icon_mapping } from '@/lib/data';
 
 const style = {
     py: 0,
@@ -20,38 +22,25 @@ const style = {
 };
 
 
-export default function Categories() {
+export default function Categories({ cat_data }) {
     return (
         <List sx={style}>
             {
-                categories.map((cat, idx) => {
-                    if (idx == categories.length - 1) {
-                        return (
-                            <Link key={idx} href="#" className='category-link'>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        {cat.icon}
-                                    </ListItemIcon>
-                                    <ListItemText className='cat-text' primary={cat.title} />
-                                </ListItem>
-                            </Link>
-                        )
-                    } else {
-                        return (
-                            <Fragment key={idx}>
-                                <Link key={idx} href="#" className='category-link'>
-                                    <ListItem >
-                                        <ListItemIcon>
-                                            {cat.icon}
-                                        </ListItemIcon>
-                                        <ListItemText  className='cat-text' primary={cat.title} />
-                                    </ListItem>
-                                </Link>
-                                <Divider variant="middle" component="li" />
-                            </Fragment>
-                        )
-                    }
-                })
+                cat_data.map((cat, idx) => (
+                    <Fragment key={idx}>
+                        <Link key={idx} href={`/category/${cat.slug}`} className='category-link'>
+                            <ListItem >
+                                <ListItemIcon>
+                                    {icon_mapping[cat.slug] || <CategoryIcon />}
+                                </ListItemIcon>
+                                <ListItemText className='cat-text' primary={cat.title} />
+                            </ListItem>
+                        </Link>
+                        {
+                            idx < cat_data.length - 1 ? <Divider variant="middle" component="li" /> : null
+                        }
+                    </Fragment>
+                ))
             }
         </List>
     );

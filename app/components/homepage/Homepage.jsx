@@ -6,8 +6,12 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import './styles/style.css';
 import NavBar from '../navigation/NavBar';
+import { getAPIData } from '@/utils/fetchData';
+import { api_endpoints } from '@/lib/data';
 
-const Homepage = () => {
+
+const Homepage = async () => {
+  const data = await getAPIData(api_endpoints.homepage, 'no-store');
   return (
     <div>
       <NavBar homepage={true} />
@@ -17,7 +21,7 @@ const Homepage = () => {
             {/* <Categories /> */}
           </Grid>
           <Grid item xs={12} md={9}>
-            <Carousel />
+            <Carousel carousel_data={data.carousels} />
           </Grid>
         </Grid>
         <ProductSection title="Trending Products" icon={<TrendingUpIcon color='secondary' fontSize='medium' />} />

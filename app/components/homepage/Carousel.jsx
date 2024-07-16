@@ -1,10 +1,12 @@
 "use client";
+
 import { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
 import Image from 'next/image';
 import Spinner from '../utils/Spinner';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules';
+import Link from 'next/link';
 
 
 const contentStyle = {
@@ -21,7 +23,7 @@ import "swiper/css/pagination";
 
 
 
-const HomepageCarousel = () => {
+const HomepageCarousel = ({ carousel_data }) => {
     return (
         <Swiper
             modules={[Autoplay, Pagination]}
@@ -35,15 +37,20 @@ const HomepageCarousel = () => {
             className='myswiper'
 
         >
-            <SwiperSlide>
-                <img width="100%" src="https://i.ibb.co/RPXn3zm/cover-web.webp" alt="Asus ROG" />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
-            </SwiperSlide>
-            <SwiperSlide>
-                <img width="100%" src="https://i.ibb.co/0FrdQyQ/slider-2.webp" alt="Asus ROG" />
-            </SwiperSlide>
+            {
+                carousel_data.map((car, idx) => (
+                    <SwiperSlide key={idx} >
+                        {
+                            car?.site_link ?
+                                <Link href={car.site_link}>
+                                    <img width="100%" src={car.banner} alt={`Carousel ${idx + 1}`} />
+                                </Link> :
+                                <img width="100%" src={car.banner} alt={`Carousel ${idx + 1}`} />
+                        }
+                    </SwiperSlide>
+                ))
+            }
+
             <div className="pagination"></div>
         </Swiper>
     )
