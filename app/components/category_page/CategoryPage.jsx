@@ -44,7 +44,7 @@ const CategoryPage = ({ params, cat_data }) => {
 
 
     return (
-        <>
+        <div>
             <Paper
                 sx={{ py: 2, px: 2 }}
                 elevation={0}
@@ -72,7 +72,7 @@ const CategoryPage = ({ params, cat_data }) => {
                     </Breadcrumbs>
                     {
                         cat_data?.logo ?
-                            <img style={{ maxWidth: '120px', maxHeight: '60px' }} src={cat_data.logo} />
+                            <img alt={cat_data.title} style={{ maxWidth: '120px', maxHeight: '60px' }} src={cat_data.logo} />
                             : null
                     }
                 </Stack>
@@ -131,7 +131,7 @@ const CategoryPage = ({ params, cat_data }) => {
                     </Grid>
                 </Grid>
             </Container>
-        </>
+        </div>
     )
 }
 

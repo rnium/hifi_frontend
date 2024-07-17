@@ -21,7 +21,7 @@ export default function Error({ error, reset }) {
                     sx={{my: 10}}
                     alignItems='center'
                 >
-                    <Image src={error_logo} width={400} />
+                    <Image alt='Banner' src={error_logo} width={400} />
                     <Typography
                         variant='h4'
                         textAlign='center'

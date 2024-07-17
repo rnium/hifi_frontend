@@ -15,7 +15,7 @@ const Product = ({ product }) => {
             <Stack direction="row">
                 <Stack justifyContent="center">
                     <Link href={product_link}>
-                        <img src={product.banner} alt="" width="200px" />
+                        <img src={product.banner} alt="Product Photo" width="200px" />
                     </Link>
                 </Stack>
                 <Stack alignItems="center" sx={{ minHeight: '120px' }} spacing={1}>

@@ -39,7 +39,7 @@ const Product = ({ product }) => {
                     </Tooltip>
                 </Stack>
             </div>
-            <Link href="#" className='product-link'>
+            <Link href={`/product/${product.slug}`} className='product-link'>
                 <CardContent sx={{minHeight: '140px', display: 'flex', flexDirection: 'column'}}>
                     <Typography
                         sx={{ textAlign: "center", fontSize: '0.8rem', flexGrow: 1 }}

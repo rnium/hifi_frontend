@@ -20,7 +20,7 @@ const DisplayImage = ({ images }) => {
         return (
             <Fragment>
                 <Box>
-                    <img src={images[0]?.url || '/images/no_data.webp'} width="100%" />
+                    <img alt='cover' src={images[0]?.url || '/images/no_data.webp'} width="100%" />
                 </Box>
                 <Stack sx={{ mt: 1 }} direction="row" spacing={2}>
                     {
@@ -55,7 +55,7 @@ const DisplayImage = ({ images }) => {
                         images.map((img, idx) => (
                             <SwiperSlide className='mySwiperSlide' key={idx}>
                                 <Box onClick={() => setSelectedImage(img.id)} className={selectedImage === img.id ? "slide-img-container active" : "slide-img-container"}>
-                                    <img src={img.url} width={100} height={100} />
+                                    <img alt={`photo-${idx}`} src={img.url} width={100} height={100} />
                                 </Box>
                             </SwiperSlide>
                         ))

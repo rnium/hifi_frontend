@@ -10,9 +10,7 @@ const CategoryLayout = ({ children }) => {
   return (
     <>
     <NavBar />
-      <section>
-        {children}
-      </section>
+    {children}
     </>
   )
 }

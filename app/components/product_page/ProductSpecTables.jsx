@@ -36,7 +36,7 @@ const ProductSpecTables = ({ tables }) => {
                                 </StyledTableRow>
                                 {
                                     table.specs.map((spec, i) => (
-                                        <TableRow >
+                                        <TableRow key={i} >
                                             <DataCell>{spec.title}</DataCell>
                                             <DataCell>{spec.value}</DataCell>
                                         </TableRow>
