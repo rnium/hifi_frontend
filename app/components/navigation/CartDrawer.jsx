@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Empty } from 'antd';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import ProductC from './micro/ProductC';
@@ -11,7 +12,7 @@ import Link from 'next/link';
 
 const all_products = [products[0], products[2], products[1]];
 
-const cartTotal = 252003
+const cartTotal = 0
 
 export default function CartDrawer({ open, setOpen }) {
   const toggleDrawer = (newOpen) => () => {
@@ -35,7 +36,7 @@ export default function CartDrawer({ open, setOpen }) {
               component="div"
               color="text.secondary"
             >
-              3 Items
+              0 Items
             </Typography>
           </Stack>
           <Stack
@@ -48,7 +49,7 @@ export default function CartDrawer({ open, setOpen }) {
               <Chip
                 label="Checkout"
                 size='small'
-                
+                disabled
                 color='secondary'
                 icon={<ShoppingCartCheckoutIcon />}
                 sx={{ px: 1 }}
@@ -56,13 +57,23 @@ export default function CartDrawer({ open, setOpen }) {
             </Link>
           </Stack>
         </Box>
-        <Stack sx={{mt: 1}} spacing={1} >
+        <Stack
+          sx={{py: 10}}
+        >
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description={
+              <Typography>Empty Cart</Typography>
+            }
+          />
+        </Stack>
+        {/* <Stack sx={{mt: 1}} spacing={1} >
           {
             all_products.map((p, idx) => (
               <ProductC key={idx} product={p} />
             ))
           }
-        </Stack>
+        </Stack> */}
       </Box>
     </Drawer>
   );

@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { products } from '@/lib/data';
 import ProductW from './micro/ProductW';
+import { Empty } from 'antd';
 import CartDrawer from './CartDrawer';
 
 const cursorTypography = {
@@ -66,16 +67,26 @@ const Shoppingbtn = () => {
                         component="div"
                         color="text.secondary"
                     >
-                        3 Items
+                        0 Items
                     </Typography>
-                    <Stack spacing={1} >
+                    <Stack
+                        sx={{ py: 5 }}
+                    >
+                        <Empty
+                            image={Empty.PRESENTED_IMAGE_SIMPLE}
+                            description={
+                                <Typography>Empty Wishlist</Typography>
+                            }
+                        />
+                    </Stack>
+                    {/* <Stack spacing={1} >
 
                         {
                             all_products.map((p, idx) => (
                                 <ProductW key={idx} product={p} />
                             ))
                         }
-                    </Stack>
+                    </Stack> */}
                 </Box>
             </Menu>
             <Stack sx={{ flexGrow: 0, ml: 3 }} onClick={handleCartClick} alignItems="center" direction="row">
