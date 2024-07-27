@@ -15,13 +15,12 @@ const Homepage = async () => {
       <NavBar homepage={true} />
       <Container 
         sx={{
-          mt: 4,
+          mt: {xs: 1, md: 4},
           px: {xs: 2, md: 0}
         }}
       >
         <Grid container spacing={3}>
           <Grid item xs={0} md={3}>
-            {/* <Categories /> */}
           </Grid>
           <Grid item xs={12} md={9}>
             <Carousel carousel_data={data.carousels} />

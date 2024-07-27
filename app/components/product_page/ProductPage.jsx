@@ -24,7 +24,9 @@ import ProductX from '../utils/ProductX';
 
 const Product = ({ product }) => {
     return (
-        <Container sx={{ mb: 10 }} >
+        <Container
+            sx={{ mb: 10, px: { xs: 2, md: 0 } }}
+        >
             <Stack
                 sx={{ my: 2 }}
                 alignItems='center'
@@ -33,13 +35,14 @@ const Product = ({ product }) => {
                     separator={<NavigateNextIcon fontSize='small' />}
                 >
                     <Link href='/'>
-                        <HomeIcon className='hover:text-red-600' />
+                        <HomeIcon size="small" className='hover:text-red-600' />
                     </Link>
                     {
                         product.category_tree.map(cat => (
                             <Link key={cat.id} href={`/category/${cat.slug}`}>
                                 <Typography
                                     variant='body2'
+                                    fontSize={{ xs: '0.7rem', md: '1rem' }}
                                     className='hover:text-red-600'
                                 >
                                     {cat.title}
@@ -56,7 +59,10 @@ const Product = ({ product }) => {
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <Stack spacing={1}>
-                            <Typography variant='h5'>
+                            <Typography
+                                variant='h5'
+                                fontSize={{ xs: '1.2rem', md: '1.5rem' }}
+                            >
                                 {product.title}
                             </Typography>
                             <Stack direction="row" spacing={1}>
@@ -96,11 +102,21 @@ const Product = ({ product }) => {
                             <Stack direction="row" spacing={3} alignItems="center">
                                 <Stack direction="row" spacing={1} alignItems="flex-start">
                                     <Typography variant='h6' color="text.secondary">৳</Typography>
-                                    <Typography variant='h4' color="">{product?.priceSale ? product.priceSale.toLocaleString("en-IN") : product.price.toLocaleString("en-IN")}</Typography>
+                                    <Typography
+                                        variant='h4'
+                                        fontSize={{ xs: '1.5rem', md: '2rem' }}
+                                    >
+                                        {product?.priceSale ? product.priceSale.toLocaleString("en-IN") : product.price.toLocaleString("en-IN")}
+                                    </Typography>
                                 </Stack>
                                 {
                                     product?.priceSale ?
-                                        <Typography variant='h6' className='line-through decoration-gray-400' color="text.secondary">
+                                        <Typography
+                                            variant='h6'
+                                            className='line-through decoration-gray-400'
+                                            color="text.secondary"
+                                            fontSize={{ xs: '1.2rem', md: '1.4rem' }}
+                                        >
                                             {product.price.toLocaleString("en-IN")}
                                         </Typography> : null
                                 }

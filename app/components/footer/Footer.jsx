@@ -61,7 +61,7 @@ const Footer = async () => {
     const topCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
     return (
         <Box sx={{ backgroundColor: '#ffffff' }}>
-            <Container sx={{ py: 5 }}>
+            <Container sx={{ py: 5 }} disableGutters={false}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4}>
                         <Stack spacing={4} sx={{ maxWidth: '300px', height: '100%' }} alignItems="center" justifyContent="center">

@@ -66,12 +66,12 @@ const NavBar = async ({ homepage = false }) => {
           </Stack>
           <Stack direction="row" spacing={2}>
             <div className="t-item">
-              <a href="mailto:sirony@gmail.com">
+              <a href="mailto:hificomputerbd@gmail.com">
                 <RiMailOpenFill
                   size={20}
                   className='icon'
                 />
-                <div className="text">contact@hificomputerbd.com</div>
+                <div className="text">hificomputerbd@gmail.com</div>
               </a>
             </div>
             <div className="t-item">
@@ -97,7 +97,9 @@ const NavBar = async ({ homepage = false }) => {
         >
           <MobileMenu cat_data={mainCategories} />
           <Box>
-            <Image src={hifilogo} width={50} />
+            <Link href="/">
+              <Image src={hifilogo} alt="HiFi Logo" width={50} />
+            </Link>
           </Box>
           <Box
           >
