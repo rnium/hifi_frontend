@@ -13,7 +13,12 @@ const Homepage = async () => {
   return (
     <div>
       <NavBar homepage={true} />
-      <Container sx={{ mt: 4 }}>
+      <Container 
+        sx={{
+          mt: 4,
+          px: {xs: 2, md: 0}
+        }}
+      >
         <Grid container spacing={3}>
           <Grid item xs={0} md={3}>
             {/* <Categories /> */}

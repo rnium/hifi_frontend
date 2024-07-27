@@ -11,13 +11,15 @@ const minPrice = 25000
 const maxPrice = 352000
 
 
-const CategoryChoices = ({ groups, slug, addId }) => {
+const CategoryChoices = ({ groups, slug, addId, sx }) => {
     const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
     function pricetext(value) {
         return new Number(value).toLocaleString('en-IN');
     }
     return (
-        <>
+        <Box 
+            sx={{...sx}}
+        >
             <Accordion
                 defaultExpanded={true}
             >
@@ -81,7 +83,7 @@ const CategoryChoices = ({ groups, slug, addId }) => {
                     />
                 ))
             }
-        </>
+        </Box>
     )
 }
 
