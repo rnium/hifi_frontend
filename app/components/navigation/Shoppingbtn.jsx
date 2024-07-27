@@ -34,13 +34,61 @@ const Shoppingbtn = () => {
 
     return (
         <>
-            <Stack sx={{ flexGrow: 0 }} onClick={handleWishlistClick} alignItems="center" direction="row">
+            <Stack
+                direction='row'
+                spacing={1}
+                sx={{ display: { xs: 'flex', md: 'none' } }}
+            >
+                <IconButton
+                    onClick={handleWishlistClick}
+                >
+                    <Badge badgeContent={0} color="primary" variant='dot'>
+                        <FavoriteBorderIcon />
+                    </Badge>
+                </IconButton>
+                <IconButton
+                    onClick={handleCartClick}
+                >
+                    <Badge badgeContent={0} color="primary" variant='dot'>
+                        <ShoppingCartOutlinedIcon />
+                    </Badge>
+                </IconButton>
+            </Stack>
+            <Stack
+                sx={{
+                    flexGrow: 0,
+                    display: { xs: 'none', md: 'flex' }
+                }}
+                onClick={handleWishlistClick}
+                alignItems="center"
+                direction="row"
+            >
                 <IconButton>
                     <Badge badgeContent={0} color="primary" variant='dot'>
                         <FavoriteBorderIcon />
                     </Badge>
                 </IconButton>
                 <Typography style={cursorTypography} color="text.primary" variant='body2'>Wishlist</Typography>
+            </Stack>
+            <Stack
+                sx={{
+                    flexGrow: 0, 
+                    ml: 3,
+                    display: { xs: 'none', md: 'flex' }
+                }}
+                onClick={handleCartClick}
+                alignItems="center"
+                direction="row"
+            >
+                <IconButton>
+                    <Badge badgeContent={0} color="primary" variant='dot'>
+                        <ShoppingCartOutlinedIcon />
+                    </Badge>
+                </IconButton>
+                <Stack style={cursorTypography}>
+                    <Typography variant='body2' color="text.primary">My Cart</Typography>
+                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 0</Typography>
+                </Stack>
             </Stack>
             <Menu
                 id="basic-menu"
@@ -89,17 +137,6 @@ const Shoppingbtn = () => {
                     </Stack> */}
                 </Box>
             </Menu>
-            <Stack sx={{ flexGrow: 0, ml: 3 }} onClick={handleCartClick} alignItems="center" direction="row">
-                <IconButton>
-                    <Badge badgeContent={0} color="primary" variant='dot'>
-                        <ShoppingCartOutlinedIcon />
-                    </Badge>
-                </IconButton>
-                <Stack style={cursorTypography}>
-                    <Typography variant='body2' color="text.primary">My Cart</Typography>
-                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 0</Typography>
-                </Stack>
-            </Stack>
             <CartDrawer open={drawerOpen} setOpen={setDrawerOpen} />
         </>
     )

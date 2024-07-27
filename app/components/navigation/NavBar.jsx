@@ -3,10 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
 import hifilogo from '@/public/f5s2df.svg';
+import hifilogomain from '@/public/hifi_logo.png';
 import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import UserChip from './micro/UserChip';
+import MobileMenu from './MobileMenu';
 import './styles/style.css';
 import { ReduxProvider } from '@/redux/store';
 import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
@@ -18,11 +20,14 @@ import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 
 
-const NavBar = async ({homepage = false}) => {
+const NavBar = async ({ homepage = false }) => {
   const mainCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
   return (
-    <AppBar className='mainappbar border-b' position="static" style={{backgroundColor: 'white'}} elevation={0}>
-      <Box className="topstrip">
+    <AppBar className='mainappbar border-b' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
+      <Box
+        className="topstrip"
+        sx={{ display: { xs: 'none', md: 'block' } }}
+      >
         <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Stack direction="row" spacing={2} alignItems="center">
             <div className="t-item ">
@@ -81,38 +86,63 @@ const NavBar = async ({homepage = false}) => {
       </Box>
       <Toolbar sx={{ py: 2 }} >
 
-        <Stack alignItems="center" direction="row" spacing={2}>
-          <Link href="/">
-            <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
-          </Link>
-          <Link href="/">
-            <Typography className='brand' color="primary" variant='h3'>Hi-Fi Computer</Typography>
-          </Link>
-        </Stack>
+        <Box
+          sx={{
+            width: '100%',
+            display: { xs: 'flex', md: 'none' },
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <MobileMenu cat_data={mainCategories} />
+          <Box>
+            <Image src={hifilogo} width={50} />
+          </Box>
+          <Box
+          >
+            <Shoppingbtn />
+          </Box>
 
-        <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
-          <div className='searchbox'>
-            <input
-              type="text"
-              placeholder='Search Product'
-            // value={registration}
-            // onKeyDown={handleKeyDown}
-            // onChange={event => setRegistration(event.target.value)}
-            />
-            <IconButton size='small'>
-              <SearchIcon />
-            </IconButton>
-          </div>
-        </Stack>
-        <Shoppingbtn />
-        
-        <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
-        <ReduxProvider>
-          <UserChip />
-        </ReduxProvider>
+        </Box>
+
+        <Box
+          sx={{ display: { xs: 'none', md: 'flex' }, width: '100%' }}
+        >
+          <Stack alignItems="center" direction="row" spacing={2}>
+            <Link href="/">
+              <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
+            </Link>
+            <Link href="/">
+              <Typography className='brand' color="primary" variant='h3'>Hi-Fi Computer</Typography>
+            </Link>
+          </Stack>
+
+          <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
+            <div className='searchbox'>
+              <input
+                type="text"
+                placeholder='Search Product'
+              // value={registration}
+              // onKeyDown={handleKeyDown}
+              // onChange={event => setRegistration(event.target.value)}
+              />
+              <IconButton size='small'>
+                <SearchIcon />
+              </IconButton>
+            </div>
+          </Stack>
+          <Shoppingbtn />
+
+          <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
+          <ReduxProvider>
+            <UserChip />
+          </ReduxProvider>
+        </Box>
+
       </Toolbar>
       <Divider />
-      <Container sx={{ display: 'flex', flexDirection: "row", alignItems: 'center' }}>
+      <Container sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: "row", alignItems: 'center' }}>
         <div className={homepage ? 'category-container homepage' : 'category-container'} >
           <div className="btn">
             <RiMenuLine
