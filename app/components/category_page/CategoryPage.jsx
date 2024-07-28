@@ -18,15 +18,11 @@ import { useGet } from '@/hooks/useApi';
 import { api_endpoints, api_suffixes } from '@/lib/data';
 
 
-const minPrice = 25000
-const maxPrice = 352000
-
-
 const CategoryPage = ({ params, cat_data }) => {
     // const [page, setPage] = useState(1);
     // const [count, setCount] = useState(0);
     // const [rowsPerPage, setRowsPerPage] = useState(0);
-    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
+    const [priceRange, setPriceRange] = useState([cat_data.minprice, cat_data.maxprice]);
     const [availibility, setAvailibility] = useState([]);
 
     const {
@@ -142,8 +138,8 @@ const CategoryPage = ({ params, cat_data }) => {
                     <Grid item xs={0} md={3} >
                         <CategoryChoices
                             groups={cat_data?.groups || []}
-                            minPrice={minPrice}
-                            maxPrice={maxPrice}
+                            minPrice={cat_data.minprice}
+                            maxPrice={cat_data.maxprice}
                             priceRange={priceRange}
                             toggleAvalibility={toggleAvalibility}
                             setPriceRange={setPriceRange}
