@@ -60,7 +60,8 @@ const CategoryPage = ({ params, cat_data }) => {
 
     useEffect(() => {
         const params = {
-            price: priceRange.join()
+            pricefrom: priceRange[0],
+            priceto: priceRange[1],
         }
         if (selectedTags.length) {
             params.tags = selectedTags.join();
@@ -165,7 +166,7 @@ const CategoryPage = ({ params, cat_data }) => {
                                         />
                                     </Box>
                                 </> :
-                                <ProductsSkeleton num={8} />
+                                <ProductsSkeleton num={9} />
                         }
                     </Grid>
                 </Grid>
