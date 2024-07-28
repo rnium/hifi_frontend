@@ -8,6 +8,7 @@ import {
 import Link from 'next/link';
 import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useRouter } from 'next/navigation';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProductGrid from './ProductGrid';
 import ProductsSkeleton from './ProductsSkeleton';
@@ -17,30 +18,59 @@ import { useGet } from '@/hooks/useApi';
 import { api_endpoints, api_suffixes } from '@/lib/data';
 
 
+const minPrice = 25000
+const maxPrice = 352000
+
 
 const CategoryPage = ({ params, cat_data }) => {
     // const [page, setPage] = useState(1);
     // const [count, setCount] = useState(0);
     // const [rowsPerPage, setRowsPerPage] = useState(0);
+    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
+    const [availibility, setAvailibility] = useState([]);
 
     const {
         data: paginated_data, perform_get, loaded, loading, error
     } = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_category}${params?.slug}${api_suffixes.all_products}`);
 
-    useEffect(() => {
-        if (!loaded) {
-            perform_get();
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!loaded) {
+    //         perform_get();
+    //     }
+    // }, [])
 
     const [selectedTags, setSelectedTags] = useState([]);
 
-    const addId = (id) => {
-        setSelectedTags([...selectedTags, id]);
+    const toggleAvalibility = (status) => {
+        if (availibility.includes(status)) {
+            setAvailibility(prevState => prevState.filter(a_status => a_status !== status));
+        } else {
+            setAvailibility(prevState => [...prevState, status])
+        }
     }
+
+    const ToggleTags = (id) => {
+        if (selectedTags.includes(id)) {
+            setSelectedTags(prevTags => prevTags.filter(tag_id => tag_id !== id));
+        } else {
+            setSelectedTags(prevState => [...prevState, id])
+        }
+    }
+
+
     useEffect(() => {
-        console.log(selectedTags);
-    }, [selectedTags])
+        const params = {
+            price: priceRange.join()
+        }
+        if (selectedTags.length) {
+            params.tags = selectedTags.join();
+        }
+        if (availibility.length) {
+            params.availibility = availibility.join();
+        }
+
+        perform_get(params);
+    }, [selectedTags, availibility, priceRange])
 
 
     return (
@@ -111,8 +141,12 @@ const CategoryPage = ({ params, cat_data }) => {
                     <Grid item xs={0} md={3} >
                         <CategoryChoices
                             groups={cat_data?.groups || []}
-                            slug={cat_data.slug}
-                            addId={addId}
+                            minPrice={minPrice}
+                            maxPrice={maxPrice}
+                            priceRange={priceRange}
+                            toggleAvalibility={toggleAvalibility}
+                            setPriceRange={setPriceRange}
+                            ToggleTags={ToggleTags}
                             sx={{
                                 display: {xs: 'none', md: 'block'}
                             }}

@@ -7,18 +7,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/navigation';
 import TagGroup from './TagGroup';
 
-const minPrice = 25000
-const maxPrice = 352000
 
+const CategoryChoices = ({ groups, priceRange, setPriceRange, toggleAvalibility, minPrice, maxPrice, ToggleTags, sx }) => {
+    const [priceRangeLocal, setPriceRangeLocal] = useState([...priceRange]);
 
-const CategoryChoices = ({ groups, slug, addId, sx }) => {
-    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
     function pricetext(value) {
         return new Number(value).toLocaleString('en-IN');
     }
+
     return (
-        <Box 
-            sx={{...sx}}
+        <Box
+            sx={{ ...sx }}
         >
             <Accordion
                 defaultExpanded={true}
@@ -38,8 +37,9 @@ const CategoryChoices = ({ groups, slug, addId, sx }) => {
                     <Box sx={{ px: 2 }}>
                         <Slider
                             getAriaLabel={() => 'Price range'}
-                            value={priceRange}
-                            onChange={e => setPriceRange(e.target.value)}
+                            value={priceRangeLocal}
+                            onChange={e => setPriceRangeLocal(e.target.value)}
+                            onChangeCommitted={() => setPriceRange([...priceRangeLocal])}
                             valueLabelDisplay="auto"
                             getAriaValueText={pricetext}
                             min={minPrice}
@@ -47,8 +47,8 @@ const CategoryChoices = ({ groups, slug, addId, sx }) => {
                         />
                     </Box>
                     <Stack sx={{ mt: 2 }} direction="row" justifyContent="space-between">
-                        <Chip sx={{ px: 0.5 }} variant='outlined' size='small' label={priceRange[0].toLocaleString('en-IN') + "৳"} />
-                        <Chip sx={{ px: 0.5 }} size='small' label={priceRange[1].toLocaleString('en-IN') + "৳"} />
+                        <Chip sx={{ px: 0.5 }} variant='outlined' size='small' label={`${priceRangeLocal[0].toLocaleString('en-IN')}৳`} />
+                        <Chip sx={{ px: 0.5 }} size='small' label={`${priceRangeLocal[1].toLocaleString('en-IN')}৳`} />
                     </Stack>
                 </AccordionDetails>
             </Accordion>
@@ -68,8 +68,24 @@ const CategoryChoices = ({ groups, slug, addId, sx }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <FormGroup sx={{ px: 1 }}>
-                        <FormControlLabel name='availibility' control={<Checkbox defaultChecked />} label="In Stock" />
-                        <FormControlLabel name='availibility' control={<Checkbox />} label="Out of Stock" />
+                        <FormControlLabel
+                            name='availibility'
+                            control={
+                                <Checkbox
+                                    onClick={() => toggleAvalibility(1)}
+                                />
+                            }
+                            label="In Stock"
+                        />
+                        <FormControlLabel
+                            name='availibility'
+                            control={
+                                <Checkbox
+                                    onClick={() => toggleAvalibility(0)}
+                                />
+                            }
+                            label="Out of Stock"
+                        />
                     </FormGroup>
                 </AccordionDetails>
             </Accordion>
@@ -79,7 +95,7 @@ const CategoryChoices = ({ groups, slug, addId, sx }) => {
                         key={idx}
                         title={group.title}
                         tags={group.categories}
-                        addId={addId}
+                        ToggleTags={ToggleTags}
                     />
                 ))
             }

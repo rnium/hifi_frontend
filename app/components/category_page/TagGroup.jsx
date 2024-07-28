@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const TagGroup = ({ title, tags, addId }) => {
+const TagGroup = ({ title, tags, ToggleTags }) => {
     return (
         <Accordion
             defaultExpanded={false}
@@ -24,7 +24,11 @@ const TagGroup = ({ title, tags, addId }) => {
                 <FormGroup >
                     {
                         tags.map(tag => (
-                            <FormControlLabel key={tag.id} name='availibility' control={<Checkbox onClick={() => addId(tag.id)} />} label={tag.short_title || tag.title} />
+                            <FormControlLabel
+                                key={tag.id}
+                                name='availibility'
+                                control={<Checkbox onClick={() => setTimeout(() => ToggleTags(tag.id), 1)} />} label={tag.short_title || tag.title}
+                            />
                         ))
                     }
                 </FormGroup>
