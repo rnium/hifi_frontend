@@ -1,9 +1,11 @@
 import React from 'react';
+import { ReduxProvider } from "@/redux/store";
 import { Grid, Container } from '@mui/material';
 import Carousel from './Carousel';
 import ProductSection from './ProductSection';
 import './styles/style.css';
 import NavBar from '../navigation/NavBar';
+import ProductGlimpse from './ProductGlimpse';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 
@@ -13,12 +15,15 @@ const Homepage = async () => {
   return (
     <div>
       <NavBar homepage={true} />
-      <Container 
+      <Container
         sx={{
-          mt: {xs: 1, md: 4},
-          px: {xs: 2, md: 0}
+          mt: { xs: 1, md: 4 },
+          px: { xs: 2, md: 0 }
         }}
       >
+        <ReduxProvider>
+          <ProductGlimpse />
+        </ReduxProvider>
         <Grid container spacing={3}>
           <Grid item xs={0} md={3}>
           </Grid>

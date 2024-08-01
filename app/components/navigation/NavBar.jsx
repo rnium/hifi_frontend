@@ -116,7 +116,7 @@ const NavBar = async ({ homepage = false }) => {
               <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
             </Link>
             <Link href="/">
-              <Typography className='brand' color="primary" variant='h3'>Hi-Fi Computer</Typography>
+              <Typography className='brand' color="primary" variant='h4'>Hi-Fi Computer</Typography>
             </Link>
           </Stack>
 

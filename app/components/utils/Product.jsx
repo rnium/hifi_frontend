@@ -1,10 +1,9 @@
+import { ReduxProvider } from '@/redux/store';
 import React from 'react';
 import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import ShareIcon from '@mui/icons-material/Share';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ProductHoverActions from './ProductHoverActions';
 
 const Product = ({ product }) => {
     return (
@@ -21,26 +20,12 @@ const Product = ({ product }) => {
                     </div> : null
             }
             <div className="actions">
-                <Stack spacing={2}>
-                    <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <AddShoppingCartIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                    <Tooltip arrow title="Get A Glimpse" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <VisibilityIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                    <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <ShareIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                </Stack>
+                <ReduxProvider>
+                    <ProductHoverActions product={product} />
+                </ReduxProvider>
             </div>
             <Link href={`/product/${product.slug}`} className='product-link'>
-                <CardContent sx={{minHeight: '140px', display: 'flex', flexDirection: 'column'}}>
+                <CardContent sx={{ minHeight: '140px', display: 'flex', flexDirection: 'column' }}>
                     <Typography
                         sx={{ textAlign: "center", fontSize: '0.8rem', flexGrow: 1 }}
                         className='product-title'

@@ -23,7 +23,8 @@
   border-left: 1px solid gray;
 }
 .mainappbar .brand {
-  font-family: "Bebas Neue";
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 
 .category-container {
