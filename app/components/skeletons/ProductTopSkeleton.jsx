@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Box, Skeleton, Stack } from '@mui/material';
 
 
-const ProductDetailTop = () => {
+const ProductTopSkeleton = () => {
     return (
         <Grid container
             spacing={2}
@@ -110,4 +110,4 @@ const ProductDetailTop = () => {
     )
 }
 
-export default ProductDetailTop;
+export default ProductTopSkeleton;

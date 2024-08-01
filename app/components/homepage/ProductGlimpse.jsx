@@ -1,11 +1,15 @@
 'use client'
 
+import { useEffect } from 'react';
 import {
   Modal, Card, Box, Typography
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { setQuickviewProduct } from '@/redux/homepageReducer';
-import ProductDetailTop from '../skeletons/ProductDetailTop'; 
+import ProductTopSkeleton from '../skeletons/ProductTopSkeleton'; 
+import ProductTop from '../product_page/ProductTop';
+import { useGet } from '@/hooks/useApi';
+import { api_endpoints } from '@/lib/data';
 
 const style = {
   position: 'absolute',
@@ -21,13 +25,20 @@ const style = {
 
 const ProductGlimpse = () => {
   const dispatch = useDispatch();
-  const product = useSelector(state => state.homepage.quickviewProduct);
+  const product_slug = useSelector(state => state.homepage.quickviewProduct);
+  const {data: product, perform_get, loaded, reset} = useGet(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_product}${product_slug}`);
   const handleClose = () => {
+    reset()
     dispatch(setQuickviewProduct(null))
   }
+  useEffect(() => {
+    if (!loaded) {
+      perform_get();
+    }
+  }, [loaded])
   return (
     <Modal
-      open={Boolean(product)}
+      open={Boolean(product_slug)}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -35,7 +46,9 @@ const ProductGlimpse = () => {
       <Card
         sx={style}
       >
-        <ProductDetailTop />
+        {
+          loaded ? <ProductTop product={product} /> : <ProductTopSkeleton />
+        }
       </Card>
     </Modal>
   )
