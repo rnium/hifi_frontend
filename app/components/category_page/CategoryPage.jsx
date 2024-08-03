@@ -14,6 +14,7 @@ import ProductGrid from './ProductGrid';
 import ProductsSkeleton from './ProductsSkeleton';
 import CategoryPagination from './CategoryPagination';
 import CategoryChoices from './CategoryChoices';
+import ProductGlimpse from '../homepage/ProductGlimpse';
 import { useGet } from '@/hooks/useApi';
 import { api_endpoints, api_suffixes } from '@/lib/data';
 
@@ -72,6 +73,7 @@ const CategoryPage = ({ params, cat_data }) => {
 
     return (
         <div>
+            <ProductGlimpse />
             <Paper
                 sx={{ py: 2, px: 2 }}
                 elevation={0}

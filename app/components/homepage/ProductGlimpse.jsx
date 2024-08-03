@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import {
-  Modal, Card, Stack, Box, Typography, Button, IconButton
+  Modal, Card, Stack, Button, IconButton
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { setQuickviewProduct } from '@/redux/homepageReducer';
@@ -63,6 +63,7 @@ const ProductGlimpse = () => {
           >
             <Button
               disabled={!loaded}
+              onClick={handleClose}
               endIcon={
                 <RiArrowRightWideLine />
               }

@@ -1,15 +1,11 @@
 import React from 'react';
 import {
-    Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom,
+    Stack, Card, CardContent, CardMedia, Typography,
     Chip, Divider, Box
 } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import ShareIcon from '@mui/icons-material/Share';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
-import { product1 } from '@/lib/dev_data';
+import ProductHoverActions from './ProductHoverActions';
 
 
 const ProductY = ({ product }) => {
@@ -21,23 +17,10 @@ const ProductY = ({ product }) => {
                 image={product.cover}
             />
             <div className="actions">
-                <Stack spacing={2}>
-                    <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <FavoriteBorderIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                    <Tooltip arrow title="Get A Glimpse" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <VisibilityIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                    <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
-                            <ShareIcon fontSize='small' />
-                        </div>
-                    </Tooltip>
-                </Stack>
+                <ProductHoverActions  
+                    product={product}
+                    showWishlist
+                />
             </div>
             <CardContent sx={{ minHeight: '340px', display: 'flex', flexDirection: 'column' }}>
                 <Link href={`/product/${product.slug}`} className='product-link'>
