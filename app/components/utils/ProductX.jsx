@@ -8,14 +8,14 @@ import ShareIcon from '@mui/icons-material/Share';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Link from 'next/link';
 
-const Product = ({ product }) => {
+const ProductX = ({ product }) => {
     const product_link = "/product/" + product.slug;
     return (
         <Paper sx={{ mb: 1, px: 2, py: 2 }} elevation={0} className='border'>
             <Stack direction="row">
                 <Stack justifyContent="center">
                     <Link href={product_link}>
-                        <img src={product.banner} alt="Product Photo" width="200px" />
+                        <img src={product.cover} alt="Product Photo" width="200px" />
                     </Link>
                 </Stack>
                 <Stack alignItems="center" sx={{ minHeight: '120px' }} spacing={1}>
@@ -73,4 +73,4 @@ const Product = ({ product }) => {
     )
 }
 
-export default Product
+export default ProductX

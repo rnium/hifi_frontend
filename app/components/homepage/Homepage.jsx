@@ -19,7 +19,6 @@ const Homepage = async () => {
       <Container
         sx={{
           mt: { xs: 1, md: 4 },
-          px: { xs: 2, md: 0 }
         }}
       >
         <ProductGlimpse />
@@ -33,7 +32,7 @@ const Homepage = async () => {
         <FeaturedCategories sx={{mt: 3, mb: 6}} />
         {
           data.collections.map((collection, idx) => (
-            <ProductSection key={idx} section_data={collection} />
+            <ProductSection key={idx} section_data={collection} show_x={collection.slug === 'featured'} />
           ))
         }
       </Container>
