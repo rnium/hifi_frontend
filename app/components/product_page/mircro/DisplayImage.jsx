@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { FreeMode, Thumbs } from 'swiper/modules';
 
-const DisplayImage = ({ images }) => {
+const DisplayImage = ({ images, inModal }) => {
     const [isMounted, setIsMounted] = useState(false);
     const [selectedImage, setSelectedImage] = useState(images[0]?.id);
 
@@ -35,9 +35,11 @@ const DisplayImage = ({ images }) => {
     return (
         <Fragment>
             <Box>
-                <AntdImage
-                    src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'}
-                />
+                {
+                    inModal ?
+                    <img alt='cover' src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} width="100%" />
+                    : <AntdImage src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} />
+                }
             </Box>
             <Stack sx={{ mt: 1 }} direction="row" spacing={1} alignItems="center" justifyContent="center" className='image-slider'>
                 <Swiper

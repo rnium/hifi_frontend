@@ -41,6 +41,7 @@ export const usePost = (url, auth_required = false, config = postDefaultConfig) 
 }
 
 export const useGet = (url, auth_required = false, initialData = null) => {
+    const [apiUrl, setApiUrl] = useState(url);
     const [data, setData] = useState(initialData);
     const [loaded, setLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -53,17 +54,16 @@ export const useGet = (url, auth_required = false, initialData = null) => {
         setSuccess(false);
         setLoaded(false);
         setError(null)
-    }, [url, initialData])
+    }, [apiUrl, initialData])
 
     const perform_get = useCallback(async (params = {}) => {
-        console.log('performing get', url);
         let headers = {}
         if (auth_required) {
             headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
         }
         setLoading(true);
         try {
-            let res = await axios.get(url, {
+            let res = await axios.get(apiUrl, {
                 params, headers
             });
             setData(res.data);
@@ -76,7 +76,7 @@ export const useGet = (url, auth_required = false, initialData = null) => {
         } finally {
             setLoading(false);
         }
-    }, [url])
+    }, [apiUrl])
     
-    return { data, loading, loaded, success, error, perform_get, reset };
+    return { data, loading, loaded, success, error, perform_get, reset, apiUrl, setApiUrl };
 }

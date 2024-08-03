@@ -67,11 +67,6 @@ const ProductTopSkeleton = () => {
                             height={65}
                             width={150}
                         />
-                        <Skeleton
-                            variant='text'
-                            height={50}
-                            width={150}
-                        />
                     </Stack>
                     <Stack
                         sx={{ mt: 2 }}

@@ -11,11 +11,11 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DisplayImage from './mircro/DisplayImage';
 
 
-const ProductTop = ({ product }) => {
+const ProductTop = ({ product, inModal }) => {
     return (
         <Grid container spacing={4} >
             <Grid item xs={12} md={5}>
-                <DisplayImage images={product.images} />
+                <DisplayImage images={product.images} inModal={inModal} />
             </Grid>
             <Grid item xs={12} md={7}>
                 <Stack spacing={1}>
