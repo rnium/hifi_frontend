@@ -21,7 +21,7 @@ const ProductTopSkeleton = () => {
                     >
                         {
                             Array.from({ length: 4 }, (n, k) => k).map(idx => (
-                                <Grid item xs={3}>
+                                <Grid item xs={3} key={idx}>
                                     <Skeleton
                                         width='96%'
                                         height={80}
@@ -74,6 +74,7 @@ const ProductTopSkeleton = () => {
                         {
                             Array.from({ length: 6 }, (v, i) => i).map(idx => (
                                 <Skeleton
+                                    key={idx}
                                     variant='text'
                                     height={30}
                                     width='50%'
