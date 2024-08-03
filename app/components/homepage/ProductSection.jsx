@@ -1,10 +1,6 @@
 import React from 'react';
 import { Typography, Grid, Stack, Divider } from '@mui/material';
 import Product from '../utils/Product';
-
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { products } from '@/lib/data';
-import Link from 'next/link';
 import { product_section_icon_mapping } from '@/lib/data';
 
 const ProductSection = ({section_data}) => {
@@ -14,7 +10,7 @@ const ProductSection = ({section_data}) => {
                 <Divider textAlign='left' variant='middle' sx={{flexGrow: 1}}>
                     <Stack direction="row" alignItems="center" spacing={1}>
                         {product_section_icon_mapping[section_data.slug]}
-                        <Typography variant='h5' component='h5' color="secondary">{section_data.title}</Typography>
+                        <Typography variant='h5' component='h5' color="primary">{section_data.title}</Typography>
                     </Stack>
                 </Divider>
             </Stack>

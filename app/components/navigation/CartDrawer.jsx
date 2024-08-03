@@ -4,13 +4,12 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import ProductC from './micro/ProductC';
 import ProductW from './micro/ProductW';
-import { products } from '@/lib/data';
 import { Typography, Stack, Chip, Divider } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Link from 'next/link';
 
 
-const all_products = [products[0], products[2], products[1]];
+const all_products = [];
 
 const cartTotal = 0
 

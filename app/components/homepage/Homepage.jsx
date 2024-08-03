@@ -6,6 +6,7 @@ import ProductSection from './ProductSection';
 import './styles/style.css';
 import NavBar from '../navigation/NavBar';
 import ProductGlimpse from './ProductGlimpse';
+import FeaturedCategories from './FeaturedCategories';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 
@@ -29,6 +30,7 @@ const Homepage = async () => {
             <Carousel carousel_data={data.carousels} />
           </Grid>
         </Grid>
+        <FeaturedCategories sx={{mt: 3, mb: 6}} />
         {
           data.collections.map((collection, idx) => (
             <ProductSection key={idx} section_data={collection} />

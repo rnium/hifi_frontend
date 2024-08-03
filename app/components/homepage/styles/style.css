@@ -30,4 +30,22 @@
 .product-section .section-view-link:hover h5 {
   padding-right: 5px;
   color: #d32f2f;
+}
+
+.featured-cat {
+  box-shadow: 3px 5px 10px rgb(218, 218, 218);
+  transition: all 200ms;
+}
+.featured-cat .icon {
+  color: rgb(100, 100, 100);
+  transition: all 200ms;
+}
+.featured-cat .title {
+  transition: all 200ms;
+}
+.featured-cat:hover {
+  box-shadow: 3px 5px 10px rgb(185, 185, 185);
+}
+.featured-cat:hover .icon, .featured-cat:hover .title {
+  color: #d32f2f;
 }/*# sourceMappingURL=style.css.map */

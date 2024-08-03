@@ -40,3 +40,21 @@ $active-color: #d32f2f;
         }
     }
 }
+
+.featured-cat {
+    box-shadow: 3px 5px 10px rgb(218, 218, 218);
+    transition: all 200ms;
+    .icon {
+        color: rgb(100, 100, 100);
+        transition: all 200ms;
+    }
+    .title {
+        transition: all 200ms;
+    }
+    &:hover {
+        box-shadow: 3px 5px 10px rgb(185, 185, 185);
+        .icon, .title {
+            color: #d32f2f;
+        }
+    }
+}
