@@ -21,9 +21,7 @@ const Homepage = async () => {
           px: { xs: 2, md: 0 }
         }}
       >
-        <ReduxProvider>
-          <ProductGlimpse />
-        </ReduxProvider>
+        <ProductGlimpse />
         <Grid container spacing={3}>
           <Grid item xs={0} md={3}>
           </Grid>

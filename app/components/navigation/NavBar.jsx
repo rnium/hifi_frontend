@@ -10,7 +10,6 @@ import Link from 'next/link';
 import UserChip from './micro/UserChip';
 import MobileMenu from './MobileMenu';
 import './styles/style.css';
-import { ReduxProvider } from '@/redux/store';
 import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
 import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from './Categories';
@@ -137,9 +136,7 @@ const NavBar = async ({ homepage = false }) => {
           <Shoppingbtn />
 
           <Divider orientation="vertical" sx={{ mx: 4 }} flexItem variant='middle' />
-          <ReduxProvider>
-            <UserChip />
-          </ReduxProvider>
+          <UserChip />
         </Box>
 
       </Toolbar>

@@ -8,6 +8,7 @@ import 'typeface-roboto';
 import Footer from "./components/footer/Footer";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material";
+import { ReduxProvider } from "@/redux/store";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
@@ -26,10 +27,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider theme={theme}>
-        <body style={{ fontFamily: 'Poppins' }}>
-          {children}
-          <Footer />
-        </body>
+        <ReduxProvider>
+          <body style={{ fontFamily: 'Poppins' }}>
+            {children}
+            <Footer />
+          </body>
+        </ReduxProvider>
       </ThemeProvider>
     </html>
   );

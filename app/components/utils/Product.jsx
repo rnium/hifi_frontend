@@ -1,4 +1,3 @@
-import { ReduxProvider } from '@/redux/store';
 import React from 'react';
 import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
@@ -20,9 +19,7 @@ const Product = ({ product }) => {
                     </div> : null
             }
             <div className="actions">
-                <ReduxProvider>
-                    <ProductHoverActions product={product} />
-                </ReduxProvider>
+                <ProductHoverActions product={product} />
             </div>
             <Link href={`/product/${product.slug}`} className='product-link'>
                 <CardContent sx={{ minHeight: '140px', display: 'flex', flexDirection: 'column' }}>
