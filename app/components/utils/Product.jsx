@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Tooltip, Card, CardContent, CardMedia, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProductHoverActions from './ProductHoverActions';
 
 const Product = ({ product }) => {

@@ -43,9 +43,21 @@ const HomepageCarousel = ({ carousel_data }) => {
                         {
                             car?.site_link ?
                                 <Link href={car.site_link}>
-                                    <img width="100%" src={car.banner} alt={`Carousel ${idx + 1}`} />
+                                    <Image
+                                        src={car.banner}
+                                        alt={`Carousel ${idx + 1}`}
+                                        width={1920}
+                                        height={1080}
+                                        quality={100}
+                                    />
                                 </Link> :
-                                <img width="100%" src={car.banner} alt={`Carousel ${idx + 1}`} />
+                                <Image
+                                    src={car.banner}
+                                    alt={`Carousel ${idx + 1}`}
+                                    width={1920}
+                                    height={1080}
+                                    quality={100}
+                                />
                         }
                     </SwiperSlide>
                 ))
