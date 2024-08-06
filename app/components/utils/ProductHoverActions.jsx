@@ -8,11 +8,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useDispatch } from 'react-redux';
 import { setQuickviewProduct } from '@/redux/homepageReducer';
-import useCart from '@/hooks/useCart';
+import { useAddToCart } from '@/hooks/useCart';
 
 
 const ProductHoverActions = ({ product, showWishlist }) => {
-    const { addProduct } = useCart();
+    const addToCart = useAddToCart();
     const dispatch = useDispatch();
     const handleGlimpseClick = (e) => {
         dispatch(setQuickviewProduct(product.slug));
@@ -27,7 +27,7 @@ const ProductHoverActions = ({ product, showWishlist }) => {
                         </div>
                     </Tooltip> :
                     <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn' onClick={() => addProduct(product.id)}>
+                        <div className='action-btn' onClick={() => addToCart(product.id)}>
                             <AddShoppingCartIcon fontSize='small' />
                         </div>
                     </Tooltip>

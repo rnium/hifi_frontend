@@ -7,7 +7,7 @@ import { products } from '@/lib/data';
 import ProductW from './micro/ProductW';
 import { Empty } from 'antd';
 import CartDrawer from './CartDrawer';
-import useCart from '@/hooks/useCart';
+import { useCart } from '@/hooks/useCart';
 
 const cursorTypography = {
     cursor: 'pointer'
@@ -20,7 +20,7 @@ const Shoppingbtn = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const open = Boolean(anchorEl);
 
-    const { cartInfo, prodData, addProduct, removeProduct } = useCart()
+    const { cartInfo, prodData } = useCart()
 
     const handleWishlistClick = event => {
         setAnchorEl(event.currentTarget);
@@ -145,8 +145,6 @@ const Shoppingbtn = () => {
                 setOpen={setDrawerOpen}
                 cartInfo={cartInfo}
                 prodData={prodData}
-                addProduct={addProduct}
-                removeProduct={removeProduct}
             />
         </>
     )

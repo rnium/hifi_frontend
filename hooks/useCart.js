@@ -13,7 +13,7 @@ const postConfig = {
     }
 }
 
-const useCart = () => {
+export const useCart = () => {
     const cartInfo = useSelector(state => state.cart.cartInfo);
     const prodData = useSelector(state => state.cart.cartProductData);
     const serverSynced = useSelector(state => state.cart.serverSynced);
@@ -41,25 +41,35 @@ const useCart = () => {
         dispatch(setCartProductData(data));
     }, [data])
 
+    return { prodData, cartInfo };
+}
+
+
+export const useAddToCart = () => {
+    const dispatch = useDispatch();
+    const cartInfo = useSelector(state => state.cart.cartInfo);
     const addProduct = useCallback((id) => {
         let id_str = id.toString();
         dispatch(setCartInfo(
             {
                 ...cartInfo,
-                [id_str]: 1 + cartInfo[id_str] ? cartInfo[id_str] : 0
+                [id_str]: 1 + (cartInfo[id_str] ? cartInfo[id_str] : 0)
             }
         ))
         dispatch(setServerSynced(false));
-    }, [])
+    }, [cartInfo])
+    return addProduct;
+}
 
+export const useRemoveCart = () => {
+    const dispatch = useDispatch();
+    const cartInfo = useSelector(state => state.cart.cartInfo);
     const removeProduct = useCallback((id) => {
         const id_str = id.toString();
-        const cartInfoCopy = {...cartInfo};
+        const cartInfoCopy = { ...cartInfo };
         delete cartInfoCopy[id_str];
         dispatch(setCartInfo(cartInfoCopy));
     }, [])
-
-    return { prodData, cartInfo, addProduct, removeProduct };
+    return removeProduct;
 }
 
-export default useCart;
