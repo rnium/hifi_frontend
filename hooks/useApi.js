@@ -7,21 +7,21 @@ const postDefaultConfig = {
     }
 }
 
-export const usePost = (url, auth_required = false, config = postDefaultConfig) => {
-    const [data, setData] = useState(null);
+export const usePost = (url, auth_required = false, config = postDefaultConfig, initialData=null) => {
+    const [data, setData] = useState(initialData);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
     const reset = useCallback(() => {
-        setData(null);
+        setData(initialData);
         setLoading(false);
         setSuccess(false);
-        setError(null)
+        setError(null);
     }, [url])
 
     const perform_post = useCallback(async payload => {
-        if (auth_required && config?.headers) {
+        if ( localStorage.getItem('hifi_user_t') && auth_required && config?.headers) {
             config.headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
         }
         setLoading(true);

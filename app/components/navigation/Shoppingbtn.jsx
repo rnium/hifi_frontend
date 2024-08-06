@@ -7,6 +7,7 @@ import { products } from '@/lib/data';
 import ProductW from './micro/ProductW';
 import { Empty } from 'antd';
 import CartDrawer from './CartDrawer';
+import useCart from '@/hooks/useCart';
 
 const cursorTypography = {
     cursor: 'pointer'
@@ -18,6 +19,8 @@ const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const open = Boolean(anchorEl);
+
+    const { cartInfo, prodData, addProduct, removeProduct } = useCart()
 
     const handleWishlistClick = event => {
         setAnchorEl(event.currentTarget);
@@ -72,7 +75,7 @@ const Shoppingbtn = () => {
             </Stack>
             <Stack
                 sx={{
-                    flexGrow: 0, 
+                    flexGrow: 0,
                     ml: 3,
                     display: { xs: 'none', md: 'flex' }
                 }}
@@ -137,7 +140,14 @@ const Shoppingbtn = () => {
                     </Stack> */}
                 </Box>
             </Menu>
-            <CartDrawer open={drawerOpen} setOpen={setDrawerOpen} />
+            <CartDrawer
+                open={drawerOpen}
+                setOpen={setDrawerOpen}
+                cartInfo={cartInfo}
+                prodData={prodData}
+                addProduct={addProduct}
+                removeProduct={removeProduct}
+            />
         </>
     )
 }

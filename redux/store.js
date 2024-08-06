@@ -2,6 +2,7 @@
 
 import accountReducer from "./accountReducer";
 import homepageReducer from "./homepageReducer";
+import cartReducer from "./cartReducer";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
@@ -9,7 +10,8 @@ import { Provider } from "react-redux";
 const store = configureStore({
     reducer: {
         account: accountReducer,
-        homepage: homepageReducer
+        homepage: homepageReducer,
+        cart: cartReducer,
     }
 })
 
