@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Stack, Badge, IconButton, Typography, Menu, Box } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { products } from '@/lib/data';
 import ProductW from './micro/ProductW';
 import { Empty } from 'antd';
 import CartDrawer from './CartDrawer';
@@ -13,14 +12,13 @@ const cursorTypography = {
     cursor: 'pointer'
 };
 
-const all_products = [products[0], products[2], products[1]]
 
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const open = Boolean(anchorEl);
 
-    const { cartInfo, prodData } = useCart()
+    const { cartInfo, prodData, totalAmount, totalItems } = useCart()
 
     const handleWishlistClick = event => {
         setAnchorEl(event.currentTarget);
@@ -90,7 +88,7 @@ const Shoppingbtn = () => {
                 </IconButton>
                 <Stack style={cursorTypography}>
                     <Typography variant='body2' color="text.primary">My Cart</Typography>
-                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ 0</Typography>
+                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ {totalAmount.toLocaleString('en-in')}</Typography>
                 </Stack>
             </Stack>
             <Menu
@@ -145,6 +143,8 @@ const Shoppingbtn = () => {
                 setOpen={setDrawerOpen}
                 cartInfo={cartInfo}
                 prodData={prodData}
+                totalAmount={totalAmount}
+                totalItems={totalItems}
             />
         </>
     )

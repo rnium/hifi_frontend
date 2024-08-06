@@ -11,6 +11,8 @@ const cartSlice = createSlice({
         localStorageLoaded: false,
         serverSynced: false,
         cartProductData: [],
+        cartTotalItems: 0,
+        cartTotalAmount: 0,
     },
     reducers: {
         setCartInfo: (state, action) => {
@@ -25,6 +27,12 @@ const cartSlice = createSlice({
         setLocalStorageLoaded: (state, action) => {
             state.localStorageLoaded = action.payload;
         },
+        setCartTotalItems: (state, action) => {
+            state.cartTotalItems = action.payload;
+        },
+        setCartTotalAmount: (state, action) => {
+            state.cartTotalAmount = action.payload;
+        },
     }
 })
 
@@ -33,6 +41,8 @@ export const {
     setCartProductData, 
     setServerSynced, 
     cart_localstorage_key: cart_storage_key,
-    setLocalStorageLoaded
+    setLocalStorageLoaded,
+    setCartTotalAmount,
+    setCartTotalItems
 } = cartSlice.actions;
 export default cartSlice.reducer;

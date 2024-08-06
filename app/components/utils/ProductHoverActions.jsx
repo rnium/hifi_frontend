@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import { message } from 'antd';
 import { Stack, Tooltip, Zoom } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShareIcon from '@mui/icons-material/Share';
@@ -17,6 +18,10 @@ const ProductHoverActions = ({ product, showWishlist }) => {
     const handleGlimpseClick = (e) => {
         dispatch(setQuickviewProduct(product.slug));
     }
+    const handleAddClick = (id) => {
+        addToCart(id);
+        message.success('Product Added to Cart')
+    }
     return (
         <Stack spacing={2}>
             {
@@ -27,7 +32,7 @@ const ProductHoverActions = ({ product, showWishlist }) => {
                         </div>
                     </Tooltip> :
                     <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn' onClick={() => addToCart(product.id)}>
+                        <div className='action-btn' onClick={() => handleAddClick(product.id)}>
                             <AddShoppingCartIcon fontSize='small' />
                         </div>
                     </Tooltip>

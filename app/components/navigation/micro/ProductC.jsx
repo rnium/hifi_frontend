@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
 
 
-function ProductC({ product }) {
+function ProductC({ product, cartInfo, addToCart, removeProduct, decrementFromCart }) {
     const product_link = "/product/" + product.slug;
     return (
         <Card
@@ -21,7 +21,7 @@ function ProductC({ product }) {
             <CardMedia
                 component="img"
                 sx={{ width: 80, height: 80 }}
-                image={product.banner}
+                image={product.cover}
                 alt={product.title}
             />
 
@@ -33,16 +33,19 @@ function ProductC({ product }) {
                 </Typography>
                 <Stack direction="row" alignItems="center" gap={1}>
                     <Typography variant='caption' color="secondary">Unit Price: </Typography>
-                    <Typography variant='caption'>{product.price.toLocaleString('en-in') + "৳"}</Typography>
+                    <Typography variant='caption'>{(product.priceSale || product.price).toLocaleString('en-in') + "৳"}</Typography>
                 </Stack>
                 <Stack sx={{ mt: 1 }} direction="row" alignItems="center" gap={2} justifyContent="space-between">
                     <div className="p-count-inp">
-                        <button>+</button>
-                        <div className="count">1</div>
-                        <button>-</button>
+                        <button onClick={() => addToCart(product.id)}>+</button>
+                        <div className="count">{cartInfo[product.id]}</div>
+                        <button onClick={() => decrementFromCart(product.id)}>-</button>
                     </div>
-                    <button className='shoppinglist-btn danger'>
-                        <RiCloseLine 
+                    <button
+                        className='shoppinglist-btn danger'
+                        onClick={() => removeProduct(product.id)}
+                    >
+                        <RiCloseLine
                             size={15}
                             className='icon'
                         />

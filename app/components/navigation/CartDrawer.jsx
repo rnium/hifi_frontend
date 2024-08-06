@@ -7,16 +7,17 @@ import ProductW from './micro/ProductW';
 import { Typography, Stack, Chip, Divider } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Link from 'next/link';
+import { useAddToCart } from '@/hooks/useCart';
+import { useRemoveFromCart } from '@/hooks/useCart';
 
 
-const all_products = [];
 
-const cartTotal = 0
-
-export default function CartDrawer({ open, setOpen }) {
+export default function CartDrawer({ open, setOpen, cartInfo, prodData, totalAmount, totalItems }) {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  const addToCart = useAddToCart();
+  const { removeProduct, decrementFromCart } = useRemoveFromCart()
   return (
     <Drawer open={open} onClose={toggleDrawer(false)} anchor='right'>
       <Box sx={{ width: { xs: '250px', md: '350px' }, mt: 1.5 }} role="presentation" className='p-3'>
@@ -35,20 +36,20 @@ export default function CartDrawer({ open, setOpen }) {
               component="div"
               color="text.secondary"
             >
-              0 Items
+              {totalItems} Item{totalItems === 1 ? '' : 's'}
             </Typography>
           </Stack>
           <Stack
             alignItems="center"
           >
-            <Typography variant="body1" color="text.secondary">Total: {cartTotal.toLocaleString('en-in') + "৳"}</Typography>
+            <Typography variant="body1" color="text.secondary">Total: {totalAmount.toLocaleString('en-in') + "৳"}</Typography>
             <Link
               href="#"
             >
               <Chip
                 label="Checkout"
                 size='small'
-                disabled
+                disabled={totalItems === 0}
                 color='secondary'
                 icon={<ShoppingCartCheckoutIcon />}
                 sx={{ px: 1 }}
@@ -56,23 +57,34 @@ export default function CartDrawer({ open, setOpen }) {
             </Link>
           </Stack>
         </Box>
-        <Stack
-          sx={{py: 10}}
-        >
-          <Empty
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description={
-              <Typography>Empty Cart</Typography>
-            }
-          />
-        </Stack>
-        {/* <Stack sx={{mt: 1}} spacing={1} >
-          {
-            all_products.map((p, idx) => (
-              <ProductC key={idx} product={p} />
-            ))
-          }
-        </Stack> */}
+        {
+          prodData.length == 0 ?
+            <Stack
+              sx={{ py: 10 }}
+            >
+              <Empty
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                description={
+                  <Typography>Empty Cart</Typography>
+                }
+              />
+            </Stack> :
+            <Stack sx={{ mt: 1 }} spacing={1} >
+              {
+                prodData.map((p, idx) => (
+                  <ProductC
+                    key={idx}
+                    product={p}
+                    cartInfo={cartInfo}
+                    addToCart={addToCart}
+                    removeProduct={removeProduct}
+                    decrementFromCart={decrementFromCart}
+                  />
+                ))
+              }
+            </Stack>
+        }
+
       </Box>
     </Drawer>
   );

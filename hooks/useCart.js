@@ -4,7 +4,15 @@ import { useState, useEffect, useCallback } from "react";
 import { usePost } from "./useApi";
 import { api_endpoints } from "@/lib/data";
 import { useSelector, useDispatch } from "react-redux";
-import { setCartInfo, setCartProductData, setServerSynced, setLocalStorageLoaded, cart_storage_key } from "@/redux/cartReducer";
+import { 
+    setCartInfo,
+    setCartProductData,
+    setServerSynced,
+    setLocalStorageLoaded,
+    setCartTotalItems,
+    setCartTotalAmount,
+    cart_storage_key 
+} from "@/redux/cartReducer";
 
 
 const postConfig = {
@@ -18,6 +26,8 @@ export const useCart = () => {
     const prodData = useSelector(state => state.cart.cartProductData);
     const serverSynced = useSelector(state => state.cart.serverSynced);
     const localStorageLoaded = useSelector(state => state.cart.localStorageLoaded);
+    const totalAmount = useSelector(state => state.cart.cartTotalAmount);
+    const totalItems = useSelector(state => state.cart.cartTotalItems);
     const { data, perform_post, success } = usePost(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.cartproducts}`, true, postConfig, []);
 
     const dispatch = useDispatch();
@@ -38,10 +48,18 @@ export const useCart = () => {
     }, [localStorageLoaded])
 
     useEffect(() => {
-        dispatch(setCartProductData(data));
-    }, [data])
+        if (success) {
+            dispatch(setCartProductData(data));
+            const totalAmount = data.reduce((acc, curr) => {
+                return acc + ((curr.priceSale || curr.price) * cartInfo[curr.id.toString()]);
+            }, 0)
+            const totalItems = Object.keys(cartInfo).reduce((acc, curr) => (acc + cartInfo[curr]), 0);
+            dispatch(setCartTotalItems(totalItems));
+            dispatch(setCartTotalAmount(totalAmount));
+        }
+    }, [data, success])
 
-    return { prodData, cartInfo };
+    return { prodData, cartInfo, totalAmount, totalItems };
 }
 
 
@@ -61,15 +79,32 @@ export const useAddToCart = () => {
     return addProduct;
 }
 
-export const useRemoveCart = () => {
+export const useRemoveFromCart = () => {
     const dispatch = useDispatch();
     const cartInfo = useSelector(state => state.cart.cartInfo);
+    
     const removeProduct = useCallback((id) => {
         const id_str = id.toString();
         const cartInfoCopy = { ...cartInfo };
         delete cartInfoCopy[id_str];
         dispatch(setCartInfo(cartInfoCopy));
-    }, [])
-    return removeProduct;
+        dispatch(setServerSynced(false));
+    }, [cartInfo])
+
+    const decrementFromCart = useCallback((id) => {
+        const id_str = id.toString();
+        if (cartInfo[id_str] > 1) {
+            dispatch(setCartInfo(
+                {
+                    ...cartInfo,
+                    [id_str]: cartInfo[id_str] - 1
+                }
+            ))
+            dispatch(setServerSynced(false));
+        }
+        
+    }, [cartInfo])
+
+    return {removeProduct, decrementFromCart};
 }
 
