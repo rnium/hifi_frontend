@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const cart_localstorage_key = 'cart';
+export const cart_storage_key = 'cart';
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -40,7 +40,6 @@ export const {
     setCartInfo, 
     setCartProductData, 
     setServerSynced, 
-    cart_localstorage_key: cart_storage_key,
     setLocalStorageLoaded,
     setCartTotalAmount,
     setCartTotalItems

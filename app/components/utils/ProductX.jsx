@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
+import { message } from 'antd';
 import { Stack, Box, Paper, Chip, Typography, Zoom } from '@mui/material';
 import './styles/style.css';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import ShareIcon from '@mui/icons-material/Share';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useAddToCartWithMessage } from '@/hooks/useCart';
 import Link from 'next/link';
 
 const ProductX = ({ product }) => {
     const product_link = "/product/" + product.slug;
+    const addToCart = useAddToCartWithMessage()
     return (
         <Paper sx={{ mb: 1, px: 2, py: 2 }} elevation={0} className='border'>
             <Stack direction="row">
@@ -65,7 +66,15 @@ const ProductX = ({ product }) => {
                         }
                     </Stack>
                     <Stack direction="row" spacing={1}>
-                        <Chip sx={{ px: 1 }} icon={<AddShoppingCartIcon />} label="Add to cart" size='small' variant='outlined' color='primary' />
+                        <Chip
+                            sx={{ px: 1 }}
+                            onClick={() => addToCart(product.id)}
+                            icon={<AddShoppingCartIcon />}
+                            label="Add to cart"
+                            size='small'
+                            variant='outlined'
+                            color='primary'
+                        />
                     </Stack>
                 </Stack>
             </Stack>

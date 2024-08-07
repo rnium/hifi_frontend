@@ -6,8 +6,6 @@ import ProductX from '../utils/ProductX';
 import { product_section_icon_mapping } from '@/lib/data';
 
 const ProductSection = ({ section_data, show_x }) => {
-    console.log(show_x);
-
     return (
         <section style={{ margin: '2rem 0' }} className='product-section'>
             <Divider textAlign='left' variant='middle'>

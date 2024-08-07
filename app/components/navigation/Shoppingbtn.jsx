@@ -82,7 +82,7 @@ const Shoppingbtn = () => {
                 direction="row"
             >
                 <IconButton>
-                    <Badge badgeContent={0} color="primary" variant='dot'>
+                    <Badge badgeContent={totalItems} color="primary" variant='dot'>
                         <ShoppingCartOutlinedIcon />
                     </Badge>
                 </IconButton>

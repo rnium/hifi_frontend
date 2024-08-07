@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
+import { message } from "antd";
 import { usePost } from "./useApi";
 import { api_endpoints } from "@/lib/data";
 import { useSelector, useDispatch } from "react-redux";
@@ -108,3 +109,11 @@ export const useRemoveFromCart = () => {
     return {removeProduct, decrementFromCart};
 }
 
+
+export const useAddToCartWithMessage = () => {
+    const addToCart = useAddToCart();
+    return (id) => {
+        addToCart(id);
+        message.success('Product Added to Cart')
+    }
+}
