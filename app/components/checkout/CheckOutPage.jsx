@@ -23,6 +23,11 @@ const CheckOutPage = () => {
                 my: 5
             }}
         >
+            <Typography
+                variant='h4'
+            >
+                Checkout Cart
+            </Typography>
             <Grid
                 container
                 spacing={3}
@@ -33,12 +38,13 @@ const CheckOutPage = () => {
                     md={7}
                 >
                     <Typography
-                        variant='h5'
-                        sx={{ mb: 2 }}
+                        variant='h6'
+                        color='text.secondary'
+                        sx={{ my: 1 }}
                     >
-                        Checkout Cart
+                        Billing Info
                     </Typography>
-                    <Stack
+                    {/* <Stack
                         spacing={2}
                     >
                         {
@@ -53,7 +59,46 @@ const CheckOutPage = () => {
                                 />
                             ))
                         }
-                    </Stack>
+                    </Stack> */}
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                label="First Name"
+                                variant='filled'
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                label="Last Name"
+                                variant='filled'
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Phone"
+                                variant='filled'
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Email"
+                                variant='filled'
+                                fullWidth
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Billing Address"
+                                variant='filled'
+                                fullWidth
+                            />
+                        </Grid>
+
+                    </Grid>
                 </Grid>
                 <Grid
                     item
@@ -61,65 +106,35 @@ const CheckOutPage = () => {
                     md={5}
                 >
                     <Paper
-                        sx={{ p: 5, borderRadius: 5 }}
+                        sx={{ p: 3, borderRadius: 5 }}
                         elevation={0}
                     >
                         <Typography
                             variant='h6'
-                            sx={{ mb: 1 }}
-                        >
-                            Billing Info
-                        </Typography>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    label="First Name"
-                                    variant='filled'
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    label="Last Name"
-                                    variant='filled'
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    label="Phone"
-                                    variant='filled'
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    label="Email"
-                                    variant='filled'
-                                    fullWidth
-                                />
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <TextField
-                                    label="Billing Address"
-                                    variant='filled'
-                                    fullWidth
-                                />
-                            </Grid>
-
-                        </Grid>
-                        <Typography
-                            variant='h6'
-                            sx={{ mt: 3, mb: 1 }}
+                            sx={{ my: 1 }}
                         >
                             Order Summary
                         </Typography>
+                        <Stack sx={{ my: 1 }} spacing={1} >
+                            {
+                                prodData.map((p, idx) => (
+                                    <ProductCheckout
+                                        key={idx}
+                                        product={p}
+                                        cartInfo={cartInfo}
+                                        addToCart={addToCart}
+                                        removeProduct={removeProduct}
+                                        decrementFromCart={decrementFromCart}
+                                    />
+                                ))
+                            }
+                        </Stack>
                         <Stack
                             sx={{
                                 backgroundColor: '#f2e9e4',
                                 borderRadius: '5px',
-                                p: 2
+                                p: 2,
+                                mt: 2
                             }}
                         >
                             <Stack
@@ -146,7 +161,7 @@ const CheckOutPage = () => {
                             <Stack
                                 direction='row'
                                 justifyContent='space-between'
-                                sx={{borderTop: '1px dashed gray', pt: 1, mt: 2}}
+                                sx={{ borderTop: '1px dashed gray', pt: 1, mt: 2 }}
                             >
                                 <Typography >Total</Typography>
                                 <Typography>৳ {(totalAmount + shipping_cost).toLocaleString('en-in')}</Typography>
@@ -155,7 +170,7 @@ const CheckOutPage = () => {
                         <Button
                             variant='contained'
                             fullWidth
-                            sx={{mt: 2}}
+                            sx={{ mt: 2 }}
                         >
                             Confirm Order
                         </Button>

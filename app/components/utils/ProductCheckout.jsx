@@ -9,7 +9,7 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
     const product_link = "/product/" + product.slug;
     return (
         <Card
-            className='rounded shadow-md  transition-all hover:shadow-xl'
+            className='rounded border shadow-sm'
             sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -19,13 +19,13 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
         >
             <CardMedia
                 component="img"
-                sx={{ width: 200, height: 200 }}
+                sx={{ width: 120, height: 120 }}
                 image={product.cover}
                 alt={product.title}
             />
 
             <Stack sx={{ px: 1, py: 3 }}>
-                <Typography variant="body1" >
+                <Typography variant="body2" >
                     <Link href={product_link} className='hover:text-sky-800'>
                         {product.title}
                     </Link>
