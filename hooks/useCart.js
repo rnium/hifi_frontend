@@ -60,7 +60,7 @@ export const useCart = () => {
         }
     }, [data, success])
 
-    return { prodData, cartInfo, totalAmount, totalItems };
+    return { prodData, cartInfo, totalAmount, totalItems, success };
 }
 
 
