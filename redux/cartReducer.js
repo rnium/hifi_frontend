@@ -3,6 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cart_storage_key = 'cart';
+export const cart_id_storage_key = 'cart_id';
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -37,7 +38,7 @@ const cartSlice = createSlice({
 })
 
 export const { 
-    setCartInfo, 
+    setCartInfo,
     setCartProductData, 
     setServerSynced, 
     setLocalStorageLoaded,

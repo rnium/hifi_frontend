@@ -5,14 +5,15 @@ import { message } from "antd";
 import { usePost } from "./useApi";
 import { api_endpoints } from "@/lib/data";
 import { useSelector, useDispatch } from "react-redux";
-import { 
+import {
     setCartInfo,
     setCartProductData,
     setServerSynced,
     setLocalStorageLoaded,
     setCartTotalItems,
     setCartTotalAmount,
-    cart_storage_key 
+    cart_storage_key,
+    cart_id_storage_key
 } from "@/redux/cartReducer";
 
 
@@ -35,7 +36,10 @@ export const useCart = () => {
 
     useEffect(() => {
         if (localStorageLoaded && !serverSynced) {
-            perform_post(cartInfo);
+            perform_post({
+                cartid: localStorage.getItem(cart_id_storage_key),
+                cartinfo: cartInfo
+            });
             localStorage.setItem(cart_storage_key, JSON.stringify(cartInfo));
             dispatch(setServerSynced(true));
         }
@@ -50,8 +54,11 @@ export const useCart = () => {
 
     useEffect(() => {
         if (success) {
-            dispatch(setCartProductData(data));
-            const totalAmount = data.reduce((acc, curr) => {
+            if (localStorage.getItem(cart_id_storage_key) !== data.cartid) {
+                localStorage.setItem(cart_id_storage_key, data.cartid)
+            }
+            dispatch(setCartProductData(data.prod_data));
+            const totalAmount = data.prod_data.reduce((acc, curr) => {
                 return acc + ((curr.priceSale || curr.price) * cartInfo[curr.id.toString()]);
             }, 0)
             const totalItems = Object.keys(cartInfo).reduce((acc, curr) => (acc + cartInfo[curr]), 0);
