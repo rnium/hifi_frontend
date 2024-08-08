@@ -1,0 +1,28 @@
+@mixin flexer($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.checkout-btn {
+    background-color: wheat;
+    font-size: 0.6rem;
+    padding: 3px 10px;
+    // box-shadow: inset 2px 2px 4px 0 rgb(0 0 0 / 0.1), inset -2px -1px 0 0 rgba(56, 56, 56, 0.1);
+    border-radius: 180px;
+    transition: all 150ms;
+    @include flexer(row);
+    .icon {
+        margin-right: 5px;
+    }
+    .icon, .text {
+        transition: all 150ms;
+    }
+    &:hover {
+        .icon, .text {
+            color: red;
+        }
+    }
+}

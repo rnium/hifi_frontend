@@ -7,6 +7,7 @@ import ProductW from './micro/ProductW';
 import { Typography, Stack, Chip, Divider } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAddToCart } from '@/hooks/useCart';
 import { useRemoveFromCart } from '@/hooks/useCart';
 
@@ -17,7 +18,9 @@ export default function CartDrawer({ open, setOpen, cartInfo, prodData, totalAmo
     setOpen(newOpen);
   };
   const addToCart = useAddToCart();
-  const { removeProduct, decrementFromCart } = useRemoveFromCart()
+  const { removeProduct, decrementFromCart } = useRemoveFromCart();
+  const router = useRouter();
+
   return (
     <Drawer open={open} onClose={toggleDrawer(false)} anchor='right'>
       <Box sx={{ width: { xs: '250px', md: '350px' }, mt: 1.5 }} role="presentation" className='p-3'>
@@ -43,18 +46,15 @@ export default function CartDrawer({ open, setOpen, cartInfo, prodData, totalAmo
             alignItems="center"
           >
             <Typography variant="body1" color="text.secondary">Total: {totalAmount.toLocaleString('en-in') + "৳"}</Typography>
-            <Link
-              href="#"
-            >
-              <Chip
-                label="Checkout"
-                size='small'
-                disabled={totalItems === 0}
-                color='secondary'
-                icon={<ShoppingCartCheckoutIcon />}
-                sx={{ px: 1 }}
-              />
-            </Link>
+            <Chip
+              label="Checkout"
+              size='small'
+              disabled={totalItems === 0}
+              color='secondary'
+              icon={<ShoppingCartCheckoutIcon />}
+              onClick={() => router.push('/checkout')}
+              sx={{ px: 1 }}
+            />
           </Stack>
         </Box>
         {

@@ -1,22 +1,28 @@
 'use client'
 
-import React from 'react';
+import { useState } from 'react';
 import CheckoutPageSkeleton from '../skeletons/CheckoutPageSkeleton';
 import {
-    Stack, Box, Paper, Button, Typography, TextField, Zoom, Grid, Container
+    Stack, Box, Paper, Button, Typography, TextField, Switch, Grid, Container,
+    FormControl, FormControlLabel, InputLabel, Select, MenuItem
 } from '@mui/material';
 import ProductCheckout from '../utils/ProductCheckout';
 import { useCart, useAddToCart, useRemoveFromCart } from '@/hooks/useCart';
+import { checkout_informations } from '@/lib/data';
+import './styles/style.css'
 
 const shipping_cost = 120;
 
 const CheckOutPage = () => {
-    const { cartInfo, prodData, totalAmount, totalItems, success } = useCart();
+    const { cartInfo, prodData, totalAmount, totalItems, serverSynced } = useCart();
     const addToCart = useAddToCart();
-    const { removeProduct, decrementFromCart } = useRemoveFromCart()
-    if (!success) {
+    const { removeProduct, decrementFromCart } = useRemoveFromCart();
+    const [createAccount, setCreateAccount] = useState(true);
+
+    if (!serverSynced) {
         return <CheckoutPageSkeleton />
     }
+    
     return (
         <Container
             sx={{
@@ -44,22 +50,6 @@ const CheckOutPage = () => {
                     >
                         Billing Info
                     </Typography>
-                    {/* <Stack
-                        spacing={2}
-                    >
-                        {
-                            prodData.map((p, idx) => (
-                                <ProductCheckout
-                                    key={idx}
-                                    product={p}
-                                    cartInfo={cartInfo}
-                                    addToCart={addToCart}
-                                    removeProduct={removeProduct}
-                                    decrementFromCart={decrementFromCart}
-                                />
-                            ))
-                        }
-                    </Stack> */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <TextField
@@ -90,15 +80,83 @@ const CheckOutPage = () => {
                             />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={12} md={4}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Location</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={10}
+                                    label="Location"
+                                    onChange={() => { console.log("hola") }}
+                                    variant='filled'
+                                >
+                                    <MenuItem value={10}>Sylhet City</MenuItem>
+                                    <MenuItem value={20}>Outside Sylhet City</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={8}>
                             <TextField
                                 label="Billing Address"
                                 variant='filled'
                                 fullWidth
                             />
                         </Grid>
-
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                control={<Switch
+                                    checked={createAccount}
+                                    onClick={() => setCreateAccount(prevState => !prevState)}
+                                />}
+                                label="Create Account (Optional)"
+                            />
+                        </Grid>
+                        {
+                            createAccount ?
+                                <>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            label="Password"
+                                            variant='filled'
+                                            type='password'
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            label="Retype Password"
+                                            variant='filled'
+                                            type='password'
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Button variant='outlined'>Signup and Continue Checkout</Button>
+                                    </Grid>
+                                </> : null
+                        }
+                        <Grid
+                            item
+                            xs={12}
+                            mx={1.5}
+                            mt={2}
+                        >
+                            <ul
+                                style={{
+                                    listStyleType: 'circle'
+                                }}
+                            >
+                                {
+                                    checkout_informations.map((info, idx) => (
+                                        <li key={idx}>{info}</li>
+                                    ))
+                                }
+                            </ul>
+                        </Grid>
                     </Grid>
+
                 </Grid>
                 <Grid
                     item

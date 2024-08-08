@@ -41,7 +41,7 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
                         <button onClick={() => decrementFromCart(product.id)}>-</button>
                     </div>
                     <button
-                        className='shoppinglist-btn danger'
+                        className='checkout-btn'
                         onClick={() => removeProduct(product.id)}
                     >
                         <RiCloseLine
