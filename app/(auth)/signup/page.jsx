@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button } from '@mui/material'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useUser } from '@/hooks/useUser';
 import hifilogo from '@/public/f5s2df.svg';
 import { useFormik } from 'formik';
 import { useSignup } from '@/hooks/useAuth';
@@ -14,6 +15,7 @@ import * as yup from 'yup';
 
 const SignupPage = ({ searchParams }) => {
     const { signup_success, login_success, loading, error, perform_signup } = useSignup();
+    const { userIsAuthenticated } = useUser();
     const formik = useFormik({
         initialValues: {
             first_name: '',
@@ -30,13 +32,16 @@ const SignupPage = ({ searchParams }) => {
         }
     })
     const router = useRouter();
-    
+
     useEffect(() => {
+        if (userIsAuthenticated) {
+            router.push(searchParams?.next || '/');
+        }
         if (signup_success && login_success) {
             message.success("Welcome To Hi-Fi Computer")
-            router.push(searchParams?.next ? searchParams.next : '/');
+            router.push(searchParams?.next || '/');
         }
-    }, [login_success])
+    }, [login_success, userIsAuthenticated])
 
     useEffect(() => {
         if (error?.non_field_errors) {
@@ -57,7 +62,7 @@ const SignupPage = ({ searchParams }) => {
                     value={formik.values.first_name}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    error={ formik.touched.first_name && formik.errors?.first_name}
+                    error={formik.touched.first_name && formik.errors?.first_name}
                     helperText={formik.errors?.first_name}
                     fullWidth
                     required
