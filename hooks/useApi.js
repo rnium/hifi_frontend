@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
+import { localstorage_keys } from "@/lib/data";
 
 const postDefaultConfig = {
     headers: {
         'Content-Type': 'application/json'
     }
 }
+
+export const api_host = process.env.NEXT_PUBLIC_API_HOST;
 
 export const usePost = (url, auth_required = false, config = postDefaultConfig, initialData=null) => {
     const [data, setData] = useState(initialData);
@@ -21,8 +24,10 @@ export const usePost = (url, auth_required = false, config = postDefaultConfig, 
     }, [url])
 
     const perform_post = useCallback(async payload => {
-        if ( localStorage.getItem('hifi_user_t') && auth_required && config?.headers) {
-            config.headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
+        if ( localStorage.getItem(localstorage_keys.auth_token) && auth_required && config?.headers) {
+            config.headers.Authorization = `Token ${localStorage.getItem(localstorage_keys.auth_token)}`
+        } else if (config?.headers?.Authorization) {
+            delete config.headers.Authorization;
         }
         setLoading(true);
         try {
@@ -59,7 +64,9 @@ export const useGet = (url, auth_required = false, initialData = null) => {
     const perform_get = useCallback(async (params = {}) => {
         let headers = {}
         if (auth_required) {
-            headers.Authorization = `Token ${localStorage.getItem('hifi_user_t')}`
+            headers.Authorization = `Token ${localStorage.getItem(localstorage_keys.auth_token)}`
+        } else if (headers?.Authorization) {
+            delete headers.Authorization;
         }
         setLoading(true);
         try {

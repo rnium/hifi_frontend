@@ -1,16 +1,21 @@
 'use client';
 
-import React from 'react';
+import { useEffect } from 'react';
+import { message } from 'antd';
 import { Container, Grid, Paper, Stack, Typography, TextField, Box, Button, Divider } from '@mui/material'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import hifilogo from '@/public/f5s2df.svg';
 import { useLogin } from '@/hooks/useAuth';
+import { useUser } from '@/hooks/useUser';
 import { useFormik } from 'formik';
 
 
 const LoginPage = ({ searchParams }) => {
-  const {success, loading, login, error} = useLogin();
+  const { success, loading, login, error } = useLogin();
+  const { userIsAuthenticated, userIsLoaded, reset } = useUser()
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: null,
@@ -20,9 +25,22 @@ const LoginPage = ({ searchParams }) => {
       login(values);
     }
   })
-  if (error) {
-    console.log(error);
-  }
+
+  useEffect(() => {
+    if (userIsAuthenticated) {
+      router.push('/');
+      return;
+    }
+    if (success) {
+      message.success("Login Successful");
+      reset();
+      router.push('/');
+    }
+    if (error) {
+      message.error(error?.detail || error?.non_field_errors || 'Login Failed');
+    }
+  }, [success, error, userIsAuthenticated])
+
   return (
     <>
       <Paper sx={{ py: 5, px: 3 }} elevation={0} className='rounded-xl border'>
@@ -53,7 +71,7 @@ const LoginPage = ({ searchParams }) => {
             <Typography variant='body1'>
               Need an account? <Link className='text-blue-600 transition-all hover:underline' href="/signup">Signup Here</Link>
             </Typography>
-            <Button disabled={loading} onClick={formik.handleSubmit} variant='contained'>Login</Button>
+            <Button disabled={loading || userIsAuthenticated} onClick={formik.handleSubmit} variant='contained'>Login</Button>
           </Stack>
         </Stack>
       </Paper>

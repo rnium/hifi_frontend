@@ -8,16 +8,15 @@ export const useUser = () => {
     const userIsAuthenticated = useSelector(state => state.account.isAuthenticated);
     const userIsLoaded = useSelector(state => state.account.isLoaded);
     const dispatch = useDispatch();
-    const { data, loading, success, error, perform_get } = useGet(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/me/')
-
+    const { data, loading, success, error, perform_get } = useGet(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/me/', true);
 
     useEffect(() => {
         if (!userIsLoaded) {
             perform_get();
         }
-    }, [])
+    }, [userIsLoaded])
 
-    useEffect(() => {
+    useEffect(() => {        
         if ( !userIsLoaded && !loading && success && data) {
             dispatch(setData(data));
             dispatch(setLoaded(true));
@@ -26,7 +25,12 @@ export const useUser = () => {
             dispatch(setLoaded(true));
             dispatch(setAuthenticated(false));
         }
-    }, [data, success, error])
+    }, [data, success, error, userIsLoaded, loading])
+
+    const reset = useCallback(() => {
+        dispatch(setLoaded(false));
+        dispatch(setAuthenticated(false));
+    }, [dispatch, setData, setLoaded, setAuthenticated])
     
-    return {userInfo, userIsAuthenticated, userIsLoaded, loadingUser: loading};
+    return {userInfo, userIsAuthenticated, userIsLoaded, loadingUser: loading, reset};
 }

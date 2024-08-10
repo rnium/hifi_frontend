@@ -1,14 +1,36 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { Avatar, Typography, Stack, Skeleton } from '@mui/material';
+import { Avatar, Typography, Stack, Skeleton, Popover, MenuItem, IconButton } from '@mui/material';
 import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
 import { useUser } from '@/hooks/useUser';
+import { useLogout } from '@/hooks/useAuth';
+import { message } from 'antd';
 
 
 const UserChip = () => {
-    const { userInfo, userIsAuthenticated, userIsLoaded, loadingUser } = useUser();
+    const { userInfo, userIsAuthenticated, userIsLoaded, loadingUser, reset } = useUser();
+    const [open, setOpen] = useState(null);
+    const { logout, success } = useLogout();
+
+    const handleOpen = (event) => {
+        setOpen(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setOpen(null);
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleClose();
+    }
+
+    useEffect(() => {
+        if (success) {
+            message.info('Logged Out Successfully');
+        }
+    }, [success])
 
     if (!userIsLoaded) {
         return (
@@ -26,19 +48,23 @@ const UserChip = () => {
             {
                 userIsAuthenticated ?
                     <>
-                        <Avatar
-                            sx={{ width: 40, height: 40 }}
-                            alt='Avatar'
-                        />
+                        <IconButton
+                            onClick={handleOpen}
+                        >
+                            <Avatar
+                                sx={{ width: 40, height: 40 }}
+                                alt='Avatar'
+                            />
+                        </IconButton>
                         <Stack justifyItems="center">
-                        <Typography variant='caption' color="text.secondary" sx={{ "&:hover": { color: 'primary' }, fontSize: '0.7rem' }} >Welcome</Typography>
+                            <Typography variant='caption' color="text.secondary" sx={{ "&:hover": { color: 'primary' }, fontSize: '0.7rem' }} >Welcome</Typography>
                             <Typography variant='body1' color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >{userInfo.first_name}</Typography>
-                            
+
                         </Stack>
                     </> :
                     <>
                         <Avatar
-                            sx={{ width: 36, height: 36 }}
+                            sx={{ width: 40, height: 40 }}
                             alt='Avatar'
                         />
                         <Link href="/login">
@@ -46,6 +72,22 @@ const UserChip = () => {
                         </Link>
                     </>
             }
+            <Popover
+                open={!!open}
+                anchorEl={open}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+                <MenuItem
+                    disableRipple
+                    disableTouchRipple
+                    onClick={handleLogout}
+                    sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
+                >
+                    Logout
+                </MenuItem>
+            </Popover>
         </Stack>
     )
 }

@@ -37,7 +37,7 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
                 <Stack sx={{ mt: 1 }} direction="row" alignItems="center" gap={2} justifyContent="space-between">
                     <div className="p-count-inp">
                         <button onClick={() => addToCart(product.id)}>+</button>
-                        <div className="count">{cartInfo[product.id]}</div>
+                        <div className="count">{cartInfo[product.id] || '0'}</div>
                         <button onClick={() => decrementFromCart(product.id)}>-</button>
                     </div>
                     <button

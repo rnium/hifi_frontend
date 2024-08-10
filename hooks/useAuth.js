@@ -1,22 +1,35 @@
-import { usePost } from "./useApi";
+import { usePost, api_host } from "./useApi";
 import { useEffect, useState } from "react";
+import { auth_endpoints, localstorage_keys } from "@/lib/data";
+import { useUser } from "./useUser";
 
 export const useLogin = () => {
-    const {data, loading, success, error, perform_post} = usePost(process.env.NEXT_PUBLIC_API_HOST + 'auth/token/login', false)
+    const { data, loading, success, error, perform_post } = usePost(`${api_host}${auth_endpoints.login}`, false)
     useEffect(() => {
-        if (data?.auth_token) {
-            localStorage.setItem("hifi_user_t", data.auth_token);
+        if (success && data?.auth_token) {
+            localStorage.setItem(localstorage_keys.auth_token, data.auth_token);
         }
-    }, [data])
-    return {success, loading, error, login: perform_post};
+    }, [data, success])
+    return { success, loading, error, login: perform_post };
+}
 
+export const useLogout = () => {
+    const { success, error, perform_post } = usePost(`${api_host}${auth_endpoints.logout}`, true);
+    const { reset } = useUser()
+    useEffect(() => {
+        if (success) {
+            localStorage.removeItem(localstorage_keys.auth_token);
+            reset();
+        }
+    }, [success])
+    return { logout: perform_post, success, error }
 }
 
 export const useSignup = () => {
-    const {data, loading, success, error, perform_post} = usePost(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/', false)
-    const {success:login_success, login_loading, login_error, login} = useLogin();
+    const { data, loading, success, error, perform_post } = usePost(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/', false)
+    const { success: login_success, login_loading, login_error, login } = useLogin();
     const [userData, setUserData] = useState(null);
-    
+
     const perform_signup = payload => {
         setUserData(payload);
         perform_post(payload);
@@ -28,5 +41,5 @@ export const useSignup = () => {
         }
     }, [success])
 
-    return {signup_success:success, login_success, loading, error, perform_signup};
+    return { signup_success: success, login_success, loading, error, perform_signup };
 }
