@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { message } from "antd";
 import { usePost } from "./useApi";
 import { api_endpoints } from "@/lib/data";
@@ -35,22 +35,20 @@ export const useCart = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (!localStorageLoaded) {
+            dispatch(setCartInfo(JSON.parse(localStorage.getItem(cart_storage_key) || '{}')));
+            dispatch(setLocalStorageLoaded(true));
+            return;
+        }
         if (localStorageLoaded && !serverSynced) {
             perform_post({
                 cartid: localStorage.getItem(cart_id_storage_key),
                 cartinfo: cartInfo
             });
-            localStorage.setItem(cart_storage_key, JSON.stringify(cartInfo));
             dispatch(setServerSynced(true));
+            localStorage.setItem(cart_storage_key, JSON.stringify(cartInfo));
         }
     }, [serverSynced, localStorageLoaded])
-
-    useEffect(() => {
-        if (!localStorageLoaded) {
-            dispatch(setCartInfo(JSON.parse(localStorage.getItem(cart_storage_key) || '{}')));
-            dispatch(setLocalStorageLoaded(true));
-        }
-    }, [localStorageLoaded])
 
     useEffect(() => {
         if (success) {

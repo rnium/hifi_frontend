@@ -23,7 +23,9 @@ const cartSlice = createSlice({
             state.cartProductData = action.payload;
         },
         setServerSynced: (state, action) => {
-            state.serverSynced = action.payload;
+            if (state !== action.payload) {
+                state.serverSynced = action.payload;
+            }
         },
         setLocalStorageLoaded: (state, action) => {
             state.localStorageLoaded = action.payload;
