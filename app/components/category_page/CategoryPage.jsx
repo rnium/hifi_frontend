@@ -134,7 +134,7 @@ const CategoryPage = ({ params, cat_data }) => {
                 </Box>
             </Paper>
             <Container 
-                sx={{ my: 2, px: {xs: 2, md: 0} }}
+                sx={{ my: 2 }}
             >
                 <Grid container sx={{ mt: 1 }} spacing={2}>
                     <Grid item xs={0} md={3} >

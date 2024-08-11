@@ -20,7 +20,7 @@ import ProductTop from './ProductTop';
 const Product = ({ product }) => {
     return (
         <Container
-            sx={{ mb: 10, px: { xs: 2, md: 0 } }}
+            sx={{ mb: 10 }}
         >
             <Stack
                 sx={{ my: 2 }}

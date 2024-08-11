@@ -78,7 +78,7 @@ const NavBar = async ({ homepage = false }) => {
                 size={20}
                 className='icon'
               />
-              <div className="text">+8801973809453</div>
+              <div className="text phone-no">+8801973809453</div>
             </div>
           </Stack>
         </Container>

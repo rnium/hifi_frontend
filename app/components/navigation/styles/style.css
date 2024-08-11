@@ -6,6 +6,17 @@
   background-color: #3d4953;
   padding: 5px 0;
 }
+@keyframes blinktext {
+  0% {
+    color: #e1e7ec;
+  }
+  50% {
+    color: #757575;
+  }
+  100% {
+    color: #e1e7ec;
+  }
+}
 .mainappbar .topstrip .t-item .icon, .mainappbar .topstrip .t-item .text {
   display: inline;
   color: #e1e7ec;
@@ -14,6 +25,15 @@
 .mainappbar .topstrip .t-item .text {
   margin-left: 5px;
   font-size: 0.9rem;
+}
+.mainappbar .topstrip .t-item .text.phone-no {
+  animation-name: blinktext;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.mainappbar .topstrip .t-item .text.phone-no:hover {
+  animation: none;
 }
 .mainappbar .topstrip .t-item:hover .icon, .mainappbar .topstrip .t-item:hover .text {
   color: #9daebd;

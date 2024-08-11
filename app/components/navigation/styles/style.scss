@@ -9,6 +9,7 @@ $active-color: #ffbcbc;
 $active-color-dark: #d32f2f;
 $menu-bg: #d32f2f;
 $shadow: rgba(126, 125, 125, 0.2);
+$topstrip-text: #e1e7ec;
 
 .mainappbar {
     background-color: #ffffff;
@@ -16,6 +17,11 @@ $shadow: rgba(126, 125, 125, 0.2);
     .topstrip {
         background-color: #3d4953;
         padding: 5px 0;
+        @keyframes blinktext {
+            0% {color: $topstrip-text;}
+            50% {color: #757575;}
+            100% {color: $topstrip-text;}
+        }
         .t-item {
             .icon, .text {
                 display: inline;
@@ -25,6 +31,15 @@ $shadow: rgba(126, 125, 125, 0.2);
             .text {
                 margin-left: 5px;
                 font-size: 0.9rem;
+            }
+            .text.phone-no {
+                animation-name: blinktext;
+                animation-duration: 1.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                &:hover {
+                    animation: none;
+                }
             }
             &:hover .icon, &:hover .text {
                 color: #9daebd;

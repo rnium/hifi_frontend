@@ -8,10 +8,10 @@ import {
 } from '@mui/material';
 import ProductCheckout from '../utils/ProductCheckout';
 import { useCart, useAddToCart, useRemoveFromCart } from '@/hooks/useCart';
-import { checkout_informations } from '@/lib/data';
+import { checkout_informations, shipping_charges } from '@/lib/data';
+import { Input, Button as AntdButton } from 'antd';
 import './styles/style.css'
 
-const shipping_cost = 120;
 
 const CheckOutPage = () => {
     const { cartInfo, prodData, totalAmount, totalItems, serverSynced } = useCart();
@@ -19,10 +19,24 @@ const CheckOutPage = () => {
     const { removeProduct, decrementFromCart } = useRemoveFromCart();
     const [createAccount, setCreateAccount] = useState(true);
 
+    const [states, setStates] = useState({
+        location: 'inside',
+        couponCode: ''
+    })
+
+    const handleChange = (e) => {
+        setStates(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
+
     if (!serverSynced) {
         return <CheckoutPageSkeleton />
     }
-    
+
+    const shipping_cost = shipping_charges[states.location] * totalItems;
+
     return (
         <Container
             sx={{
@@ -86,13 +100,14 @@ const CheckOutPage = () => {
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={10}
+                                    value={states.location}
                                     label="Location"
-                                    onChange={() => { console.log("hola") }}
+                                    name="location"
+                                    onChange={handleChange}
                                     variant='filled'
                                 >
-                                    <MenuItem value={10}>Sylhet City</MenuItem>
-                                    <MenuItem value={20}>Outside Sylhet City</MenuItem>
+                                    <MenuItem value={'inside'}>Sylhet City</MenuItem>
+                                    <MenuItem value={'outside'}>Outside Sylhet City</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -173,65 +188,77 @@ const CheckOutPage = () => {
                         >
                             Order Summary
                         </Typography>
-                        <Stack sx={{ my: 1 }} spacing={1} >
-                            {
-                                prodData.map((p, idx) => (
-                                    <ProductCheckout
-                                        key={idx}
-                                        product={p}
-                                        cartInfo={cartInfo}
-                                        addToCart={addToCart}
-                                        removeProduct={removeProduct}
-                                        decrementFromCart={decrementFromCart}
-                                    />
-                                ))
-                            }
-                        </Stack>
                         <Stack
-                            sx={{
-                                backgroundColor: '#f2e9e4',
-                                borderRadius: '5px',
-                                p: 2,
-                                mt: 2
-                            }}
+                            spacing={2}
                         >
-                            <Stack
-                                direction='row'
-                                justifyContent='space-between'
-                            >
-                                <Typography>Total Items</Typography>
-                                <Typography>{totalItems}</Typography>
+                            <Stack spacing={1} >
+                                {
+                                    prodData.map((p, idx) => (
+                                        <ProductCheckout
+                                            key={idx}
+                                            product={p}
+                                            cartInfo={cartInfo}
+                                            addToCart={addToCart}
+                                            removeProduct={removeProduct}
+                                            decrementFromCart={decrementFromCart}
+                                        />
+                                    ))
+                                }
+                            </Stack>
+                            <Stack direction="row" spacing={1} >
+                                <Input
+                                    placeholder='Coupon Code'
+                                    name='couponCode'
+                                    value={states.couponCode}
+                                    onChange={handleChange}
+                                    className='focus:border-red-500 hover:border-red-500'
+                                />
+                                <AntdButton type='primary' danger disabled={states.couponCode.length === 0}>Apply</AntdButton>
                             </Stack>
                             <Stack
-                                direction='row'
-                                justifyContent='space-between'
+                                sx={{
+                                    backgroundColor: '#f2e9e4',
+                                    borderRadius: '5px',
+                                    p: 2,
+                                }}
                             >
-                                <Typography color='text.secondary'>Sub Total</Typography>
-                                <Typography>৳ {totalAmount.toLocaleString('en-in')}</Typography>
+                                <Stack
+                                    direction='row'
+                                    justifyContent='space-between'
+                                >
+                                    <Typography>Total Items</Typography>
+                                    <Typography>{totalItems}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction='row'
+                                    justifyContent='space-between'
+                                >
+                                    <Typography color='text.secondary'>Sub Total</Typography>
+                                    <Typography>৳ {totalAmount.toLocaleString('en-in')}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction='row'
+                                    justifyContent='space-between'
+                                >
+                                    <Typography color='text.secondary'>Shipping Fee</Typography>
+                                    <Typography>৳ {shipping_cost.toLocaleString('en-in')}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction='row'
+                                    justifyContent='space-between'
+                                    sx={{ borderTop: '1px dashed gray', pt: 1, mt: 2 }}
+                                >
+                                    <Typography >Total</Typography>
+                                    <Typography>৳ {(totalAmount + shipping_cost).toLocaleString('en-in')}</Typography>
+                                </Stack>
                             </Stack>
-                            <Stack
-                                direction='row'
-                                justifyContent='space-between'
+                            <Button
+                                variant='contained'
+                                fullWidth
                             >
-                                <Typography color='text.secondary'>Shipping Fee</Typography>
-                                <Typography>৳ {shipping_cost.toLocaleString('en-in')}</Typography>
-                            </Stack>
-                            <Stack
-                                direction='row'
-                                justifyContent='space-between'
-                                sx={{ borderTop: '1px dashed gray', pt: 1, mt: 2 }}
-                            >
-                                <Typography >Total</Typography>
-                                <Typography>৳ {(totalAmount + shipping_cost).toLocaleString('en-in')}</Typography>
-                            </Stack>
+                                Confirm Order
+                            </Button>
                         </Stack>
-                        <Button
-                            variant='contained'
-                            fullWidth
-                            sx={{ mt: 2 }}
-                        >
-                            Confirm Order
-                        </Button>
                     </Paper>
                 </Grid>
             </Grid>
