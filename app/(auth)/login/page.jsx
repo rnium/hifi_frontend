@@ -18,23 +18,25 @@ const LoginPage = ({ searchParams }) => {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: null,
-      password: null,
+      email: '',
+      password: '',
     },
     onSubmit: values => {
       login(values);
     }
   })
+  
+  const nextUrl = searchParams?.next || '/';
 
   useEffect(() => {
     if (userIsAuthenticated) {
-      router.push('/');
+      router.push(nextUrl);
       return;
     }
     if (success) {
       message.success("Login Successful");
       reset();
-      router.push('/');
+      router.push(nextUrl);
     }
     if (error) {
       message.error(error?.detail || error?.non_field_errors || 'Login Failed');
@@ -69,7 +71,7 @@ const LoginPage = ({ searchParams }) => {
           />
           <Stack className='w-full pt-5' direction="row" alignItems="center" justifyContent="space-between">
             <Typography variant='body1'>
-              Need an account? <Link className='text-blue-600 transition-all hover:underline' href="/signup">Signup Here</Link>
+              Need an account? <Link className='text-blue-600 transition-all hover:underline' href={`/signup?next=${nextUrl}`}>Signup Here</Link>
             </Typography>
             <Button disabled={loading || userIsAuthenticated} onClick={formik.handleSubmit} variant='contained'>Login</Button>
           </Stack>

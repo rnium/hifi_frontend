@@ -32,14 +32,14 @@ const SignupPage = ({ searchParams }) => {
         }
     })
     const router = useRouter();
-
+    const nextUrl = searchParams?.next || '/';
     useEffect(() => {
         if (userIsAuthenticated) {
-            router.push(searchParams?.next || '/');
+            router.push(nextUrl);
         }
         if (signup_success && login_success) {
             message.success("Welcome To Hi-Fi Computer")
-            router.push(searchParams?.next || '/');
+            router.push(nextUrl);
         }
     }, [login_success, userIsAuthenticated])
 

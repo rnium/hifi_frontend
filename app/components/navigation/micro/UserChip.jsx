@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Avatar, Typography, Stack, Skeleton, Popover, MenuItem, IconButton } from '@mui/material';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useUser } from '@/hooks/useUser';
 import { useLogout } from '@/hooks/useAuth';
 import { message } from 'antd';
@@ -12,7 +13,9 @@ const UserChip = () => {
     const { userInfo, userIsAuthenticated, userIsLoaded, loadingUser, reset } = useUser();
     const [open, setOpen] = useState(null);
     const { logout, success } = useLogout();
-
+    const pathname = usePathname();
+    
+    
     const handleOpen = (event) => {
         setOpen(event.currentTarget);
     };
@@ -67,7 +70,7 @@ const UserChip = () => {
                             sx={{ width: 40, height: 40 }}
                             alt='Avatar'
                         />
-                        <Link href="/login">
+                        <Link href={pathname !== '/login' ? `/login?next=${pathname}` : `/login`}>
                             <Typography color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >User Login</Typography>
                         </Link>
                     </>

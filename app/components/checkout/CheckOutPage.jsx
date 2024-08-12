@@ -4,38 +4,46 @@ import { useState } from 'react';
 import CheckoutPageSkeleton from '../skeletons/CheckoutPageSkeleton';
 import {
     Stack, Box, Paper, Button, Typography, TextField, Switch, Grid, Container,
-    FormControl, FormControlLabel, InputLabel, Select, MenuItem
+    FormControl, Alert, AlertTitle, InputLabel, Select, MenuItem, Link as MuiLink
 } from '@mui/material';
 import ProductCheckout from '../utils/ProductCheckout';
 import { useCart, useAddToCart, useRemoveFromCart } from '@/hooks/useCart';
 import { checkout_informations, shipping_charges } from '@/lib/data';
 import { Input, Button as AntdButton } from 'antd';
 import './styles/style.css'
+import { useUser } from '@/hooks/useUser';
+import Link from 'next/link';
 
 
 const CheckOutPage = () => {
     const { cartInfo, prodData, totalAmount, totalItems, serverSynced } = useCart();
+    const { userIsAuthenticated, userIsLoaded, userInfo } = useUser();
     const addToCart = useAddToCart();
     const { removeProduct, decrementFromCart } = useRemoveFromCart();
     const [createAccount, setCreateAccount] = useState(true);
 
-    const [states, setStates] = useState({
+    const [formData, setFormData] = useState({
+        first_name: null,
+        last_name: null,
+        phone: null,
+        email: null,
         location: 'inside',
+        address: null,
         couponCode: ''
     })
 
     const handleChange = (e) => {
-        setStates(prevState => ({
+        setFormData(prevState => ({
             ...prevState,
             [e.target.name]: e.target.value
         }))
     }
 
-    if (!serverSynced) {
+    if (!serverSynced || !userIsLoaded) {
         return <CheckoutPageSkeleton />
     }
 
-    const shipping_cost = shipping_charges[states.location] * totalItems;
+    const shipping_cost = shipping_charges[formData.location] * totalItems;
 
     return (
         <Container
@@ -100,7 +108,7 @@ const CheckOutPage = () => {
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={states.location}
+                                    value={formData.location}
                                     label="Location"
                                     name="location"
                                     onChange={handleChange}
@@ -119,39 +127,15 @@ const CheckOutPage = () => {
                                 fullWidth
                             />
                         </Grid>
+
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Switch
-                                    checked={createAccount}
-                                    onClick={() => setCreateAccount(prevState => !prevState)}
-                                />}
-                                label="Create Account (Optional)"
-                            />
+                            <Alert severity="warning">
+                                <AlertTitle>Please Note</AlertTitle>
+                                You're not currently logged in. Although you can complete your order without being logged in, we recommend <Link href='/login?next=/checkout'><MuiLink>Login</MuiLink></Link> or <Link href='/signup?next=/checkout'><MuiLink>Signup</MuiLink></Link>  before confirming your order.
+                            </Alert>
                         </Grid>
-                        {
-                            createAccount ?
-                                <>
-                                    <Grid item xs={12} md={6}>
-                                        <TextField
-                                            label="Password"
-                                            variant='filled'
-                                            type='password'
-                                            fullWidth
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} md={6}>
-                                        <TextField
-                                            label="Retype Password"
-                                            variant='filled'
-                                            type='password'
-                                            fullWidth
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Button variant='outlined'>Signup and Continue Checkout</Button>
-                                    </Grid>
-                                </> : null
-                        }
+
+
                         <Grid
                             item
                             xs={12}
@@ -209,11 +193,11 @@ const CheckOutPage = () => {
                                 <Input
                                     placeholder='Coupon Code'
                                     name='couponCode'
-                                    value={states.couponCode}
+                                    value={formData.couponCode}
                                     onChange={handleChange}
                                     className='focus:border-red-500 hover:border-red-500'
                                 />
-                                <AntdButton type='primary' danger disabled={states.couponCode.length === 0}>Apply</AntdButton>
+                                <AntdButton type='primary' danger disabled={formData.couponCode.length === 0}>Apply</AntdButton>
                             </Stack>
                             <Stack
                                 sx={{
