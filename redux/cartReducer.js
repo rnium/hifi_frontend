@@ -1,9 +1,10 @@
 'use client'
 
 import { createSlice } from "@reduxjs/toolkit";
+import { localstorage_keys } from "@/lib/data";
 
-export const cart_storage_key = 'cart';
-export const cart_id_storage_key = 'cart_id';
+export const cart_storage_key = localstorage_keys.cart;
+export const cart_id_storage_key = localstorage_keys.cartid;
 
 const cartSlice = createSlice({
     name: 'cart',

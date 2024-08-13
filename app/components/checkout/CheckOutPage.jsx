@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import CheckoutPageSkeleton from '../skeletons/CheckoutPageSkeleton';
 import {
     Stack, Box, Paper, Button, Typography, TextField, Switch, Grid, Container,
@@ -10,12 +10,15 @@ import ProductCheckout from '../utils/ProductCheckout';
 import { useCart, useAddToCart, useRemoveFromCart } from '@/hooks/useCart';
 import { checkout_informations, shipping_charges } from '@/lib/data';
 import { RiCoupon3Line } from '@remixicon/react'
-import { Input, Button as AntdButton } from 'antd';
+import { Input, Button as AntdButton, message } from 'antd';
 import './styles/style.css'
 import { useUser } from '@/hooks/useUser';
 import Link from 'next/link';
-import { Formik, Form, getIn } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { usePost } from '@/hooks/useApi';
+import { api_host, api_endpoints, localstorage_keys } from '@/lib/data';
+
 
 const required_message = 'This field is required'
 
@@ -24,8 +27,6 @@ const CheckOutPage = () => {
     const { userIsAuthenticated, userIsLoaded, userInfo } = useUser();
     const addToCart = useAddToCart();
     const { removeProduct, decrementFromCart } = useRemoveFromCart();
-    const [shippingCost, setShippingCost] = useState(true);
-
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -35,6 +36,15 @@ const CheckOutPage = () => {
         address: '',
         couponCode: ''
     })
+    const [couponDiscount, setCouponDiscount] = useState(0);
+    const {
+        data: coupon_data,
+        perform_post: apply_coupon,
+        loading: applying_coupon,
+        success: apply_coupon_success,
+        error: apply_coupon_error,
+        reset: reset_coupon_api
+    } = usePost(`${api_host}${api_endpoints.apply_coupon}`)
 
     const validationSchema = Yup.object({
         first_name: Yup.string().required(required_message).min(4, 'Should be atleast 4 characters'),
@@ -44,6 +54,13 @@ const CheckOutPage = () => {
         address: Yup.string().required(required_message),
         couponCode: Yup.string()
     })
+
+    const handleApplyCoupon = useCallback(couponCode => {
+        apply_coupon({
+            couponCode,
+            cartid: localStorage.getItem(localstorage_keys.cartid),
+        })
+    }, [])
 
     useEffect(() => {
         if (userIsAuthenticated) {
@@ -61,6 +78,21 @@ const CheckOutPage = () => {
     useEffect(() => {
         setShippingCost(shipping_charges[formData.location] * totalItems);
     }, [totalItems])
+
+    useEffect(() => {
+        if (apply_coupon_error) {
+            message.error(apply_coupon_error?.detail || 'Cannot apply coupon')
+        }
+        if (apply_coupon_success && coupon_data) {
+            setCouponDiscount(coupon_data?.discount)
+            message.success('Coupon Applied');
+        }
+        reset_coupon_api();
+    }, [apply_coupon_success, apply_coupon_error, coupon_data])
+
+    useEffect(() => {
+        setCouponDiscount(0)
+    }, [cartInfo])
 
     if (!serverSynced) {
         return <CheckoutPageSkeleton />
@@ -81,7 +113,11 @@ const CheckOutPage = () => {
                 enableReinitialize
                 initialValues={formData}
                 validationSchema={validationSchema}
-                onSubmit={values => console.log(values)}
+                onSubmit={values => {
+                    values.cartid = localStorage.getItem(localstorage_keys.cartid)
+                    console.log(values);
+
+                }}
             >
                 {
                     ({ values, touched, errors, handleChange, handleSubmit, handleBlur, isSubmitting }) => {
@@ -254,11 +290,11 @@ const CheckOutPage = () => {
                                                         ))
                                                     }
                                                 </Stack>
-                                                <Stack 
-                                                    direction="row" 
+                                                <Stack
+                                                    direction="row"
                                                     alignItems='center'
                                                     spacing={1}>
-                                                    <RiCoupon3Line 
+                                                    <RiCoupon3Line
                                                         size={45}
                                                         style={{
                                                             color: 'gray'
@@ -271,7 +307,14 @@ const CheckOutPage = () => {
                                                         onChange={handleChange}
                                                         className='focus:border-red-500 hover:border-red-500'
                                                     />
-                                                    <AntdButton type='primary' danger disabled={values.couponCode.length === 0}>Apply</AntdButton>
+                                                    <AntdButton
+                                                        type='primary'
+                                                        danger
+                                                        disabled={values.couponCode.length === 0 || applying_coupon}
+                                                        onClick={() => handleApplyCoupon(values.couponCode)}
+                                                    >
+                                                        Apply
+                                                    </AntdButton>
                                                 </Stack>
                                                 <Stack
                                                     sx={{
@@ -301,13 +344,24 @@ const CheckOutPage = () => {
                                                         <Typography color='text.secondary'>Shipping Fee</Typography>
                                                         <Typography>৳ {shippingCost.toLocaleString('en-in')}</Typography>
                                                     </Stack>
+                                                    {
+                                                        couponDiscount > 0 && (
+                                                            <Stack
+                                                                direction='row'
+                                                                justifyContent='space-between'
+                                                            >
+                                                                <Typography color='text.secondary'>Discount</Typography>
+                                                                <Typography>- ৳ {couponDiscount.toLocaleString('en-in')}</Typography>
+                                                            </Stack>
+                                                        )
+                                                    }
                                                     <Stack
                                                         direction='row'
                                                         justifyContent='space-between'
                                                         sx={{ borderTop: '1px dashed gray', pt: 1, mt: 2 }}
                                                     >
                                                         <Typography >Total</Typography>
-                                                        <Typography>৳ {(totalAmount + shippingCost).toLocaleString('en-in')}</Typography>
+                                                        <Typography>৳ {(totalAmount + shippingCost - couponDiscount).toLocaleString('en-in')}</Typography>
                                                     </Stack>
                                                 </Stack>
                                                 <Button
