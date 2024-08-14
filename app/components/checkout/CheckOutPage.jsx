@@ -46,6 +46,14 @@ const CheckOutPage = () => {
         reset: reset_coupon_api
     } = usePost(`${api_host}${api_endpoints.apply_coupon}`)
 
+    const {
+        perform_post: place_order,
+        loading,
+        success,
+        error,
+        reset
+    } = usePost(`${api_host}${api_endpoints.confirm_order}`, true);
+
     const validationSchema = Yup.object({
         first_name: Yup.string().required(required_message).min(4, 'Should be atleast 4 characters'),
         last_name: Yup.string(),
@@ -75,9 +83,6 @@ const CheckOutPage = () => {
         }
     }, [userIsAuthenticated])
 
-    useEffect(() => {
-        setShippingCost(shipping_charges[formData.location] * totalItems);
-    }, [totalItems])
 
     useEffect(() => {
         if (apply_coupon_error) {
@@ -115,8 +120,7 @@ const CheckOutPage = () => {
                 validationSchema={validationSchema}
                 onSubmit={values => {
                     values.cartid = localStorage.getItem(localstorage_keys.cartid)
-                    console.log(values);
-
+                    place_order(values);
                 }}
             >
                 {
@@ -342,7 +346,7 @@ const CheckOutPage = () => {
                                                         justifyContent='space-between'
                                                     >
                                                         <Typography color='text.secondary'>Shipping Fee</Typography>
-                                                        <Typography>৳ {shippingCost.toLocaleString('en-in')}</Typography>
+                                                        <Typography>৳ {(shipping_charges[values.location] * totalItems).toLocaleString('en-in')}</Typography>
                                                     </Stack>
                                                     {
                                                         couponDiscount > 0 && (
@@ -361,7 +365,7 @@ const CheckOutPage = () => {
                                                         sx={{ borderTop: '1px dashed gray', pt: 1, mt: 2 }}
                                                     >
                                                         <Typography >Total</Typography>
-                                                        <Typography>৳ {(totalAmount + shippingCost - couponDiscount).toLocaleString('en-in')}</Typography>
+                                                        <Typography>৳ {(totalAmount + (shipping_charges[values.location] * totalItems) - couponDiscount).toLocaleString('en-in')}</Typography>
                                                     </Stack>
                                                 </Stack>
                                                 <Button
