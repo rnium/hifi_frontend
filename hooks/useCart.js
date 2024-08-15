@@ -56,12 +56,8 @@ export const useCart = () => {
                 localStorage.setItem(cart_id_storage_key, data.cartid)
             }
             dispatch(setCartProductData(data.prod_data));
-            const totalAmount = data.prod_data.reduce((acc, curr) => {
-                return acc + ((curr.priceSale || curr.price) * cartInfo[curr.id.toString()]);
-            }, 0)
-            const totalItems = Object.keys(cartInfo).reduce((acc, curr) => (acc + cartInfo[curr]), 0);
-            dispatch(setCartTotalItems(totalItems));
-            dispatch(setCartTotalAmount(totalAmount));
+            dispatch(setCartTotalItems(data.total_items));
+            dispatch(setCartTotalAmount(data.total_amount));
         }
     }, [data, success])
 

@@ -34,9 +34,11 @@ const CheckOutPage = () => {
         email: '',
         location: 'inside',
         address: '',
-        couponCode: ''
     })
+
+    const [couponCode, setCouponCode] = useState('');
     const [couponDiscount, setCouponDiscount] = useState(0);
+
     const {
         data: coupon_data,
         perform_post: apply_coupon,
@@ -44,7 +46,7 @@ const CheckOutPage = () => {
         success: apply_coupon_success,
         error: apply_coupon_error,
         reset: reset_coupon_api
-    } = usePost(`${api_host}${api_endpoints.apply_coupon}`)
+    } = usePost(`${api_host}${api_endpoints.apply_coupon}`);
 
     const {
         perform_post: place_order,
@@ -60,15 +62,14 @@ const CheckOutPage = () => {
         phone: Yup.string().required(required_message).min(11),
         email: Yup.string().email('Enter a valid email'),
         address: Yup.string().required(required_message),
-        couponCode: Yup.string()
     })
 
-    const handleApplyCoupon = useCallback(couponCode => {
+    const handleApplyCoupon = useCallback(() => {
         apply_coupon({
-            couponCode,
+            coupon: couponCode,
             cartid: localStorage.getItem(localstorage_keys.cartid),
         })
-    }, [])
+    }, [couponCode])
 
     useEffect(() => {
         if (userIsAuthenticated) {
@@ -83,20 +84,30 @@ const CheckOutPage = () => {
         }
     }, [userIsAuthenticated])
 
+    useEffect(() => {
+        if (success) {
+            message.success('Success');
+        }
+        if (error) {
+            message.error(JSON.stringify(error));
+        }
+    }, [success, error])
+
 
     useEffect(() => {
         if (apply_coupon_error) {
             message.error(apply_coupon_error?.detail || 'Cannot apply coupon')
         }
         if (apply_coupon_success && coupon_data) {
-            setCouponDiscount(coupon_data?.discount)
+            setCouponDiscount(coupon_data?.discount);
             message.success('Coupon Applied');
         }
         reset_coupon_api();
     }, [apply_coupon_success, apply_coupon_error, coupon_data])
 
     useEffect(() => {
-        setCouponDiscount(0)
+        setCouponCode('');
+        setCouponDiscount(0);
     }, [cartInfo])
 
     if (!serverSynced) {
@@ -119,7 +130,10 @@ const CheckOutPage = () => {
                 initialValues={formData}
                 validationSchema={validationSchema}
                 onSubmit={values => {
-                    values.cartid = localStorage.getItem(localstorage_keys.cartid)
+                    values.cartid = localStorage.getItem(localstorage_keys.cartid);
+                    if (couponCode && couponDiscount > 0) {
+                        values.coupon = couponCode;
+                    }
                     place_order(values);
                 }}
             >
@@ -306,16 +320,16 @@ const CheckOutPage = () => {
                                                     />
                                                     <Input
                                                         placeholder='Coupon Code'
-                                                        name='couponCode'
-                                                        value={values.couponCode}
-                                                        onChange={handleChange}
+                                                        name='coupon'
+                                                        value={couponCode}
+                                                        onChange={e => setCouponCode(e.target.value)}
                                                         className='focus:border-red-500 hover:border-red-500'
                                                     />
                                                     <AntdButton
                                                         type='primary'
                                                         danger
-                                                        disabled={values.couponCode.length === 0 || applying_coupon}
-                                                        onClick={() => handleApplyCoupon(values.couponCode)}
+                                                        disabled={couponCode.length === 0 || applying_coupon}
+                                                        onClick={handleApplyCoupon}
                                                     >
                                                         Apply
                                                     </AntdButton>
