@@ -7,10 +7,10 @@ import { getAPIData } from '@/utils/fetchData';
 export const generateMetadata = async ({ params }) => {
   const data = await getAPIData(`${api_endpoints.view_category}${params.slug}/`, 'no-store');
   return {
-    title: data?.title,
+    title: `${data.title} | Hi-Fi Computer`,
     description: data.description || `Buy ${data?.title} at the best price from HiFi Computer`,
     openGraph: {
-      title: data?.seo_title || data?.title,
+      title: `${ data.seo_title || data.title} | Hi-Fi Computer`,
       siteName: 'HiFi Computer',
       type: 'website',
     }

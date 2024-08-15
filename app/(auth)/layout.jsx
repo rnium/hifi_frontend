@@ -9,7 +9,7 @@ export default function AuthLayout({ children }) {
       <Container sx={{ py: 10 }} >
         <Grid container justifyContent="center" alignItems="center" spacing={5}>
           <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
-            <Image src={banner} />
+            <Image alt='Artwork' src={banner} />
           </Grid>
           <Grid item xs={12} md={6}>
             {children}
