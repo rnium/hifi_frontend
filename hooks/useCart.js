@@ -61,7 +61,16 @@ export const useCart = () => {
         }
     }, [data, success])
 
-    return { prodData, cartInfo, totalAmount, totalItems, success, serverSynced };
+    const afterOrderCleanUp = useCallback(() => {
+        localStorage.removeItem(cart_id_storage_key);
+        localStorage.removeItem(cart_storage_key);
+        dispatch(setCartInfo({}));
+        dispatch(setCartProductData([]));
+        dispatch(setCartTotalItems(0));
+        dispatch(setCartTotalAmount(0));
+    }, [])
+
+    return { prodData, cartInfo, totalAmount, totalItems, success, serverSynced, afterOrderCleanUp };
 }
 
 

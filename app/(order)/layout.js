@@ -1,7 +1,7 @@
 import NavBar from '@/app/components/navigation/NavBar'
+
 export const metadata = {
-  title: "Checkout",
-  description: "Checkout your cart"
+  title: "Order",
 }
 
 

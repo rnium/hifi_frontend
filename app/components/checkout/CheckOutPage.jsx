@@ -14,6 +14,7 @@ import { Input, Button as AntdButton, message } from 'antd';
 import './styles/style.css'
 import { useUser } from '@/hooks/useUser';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { usePost } from '@/hooks/useApi';
@@ -23,6 +24,7 @@ import { api_host, api_endpoints, localstorage_keys } from '@/lib/data';
 const required_message = 'This field is required'
 
 const CheckOutPage = () => {
+    const router = useRouter();
     const { cartInfo, prodData, totalAmount, totalItems, serverSynced } = useCart();
     const { userIsAuthenticated, userIsLoaded, userInfo } = useUser();
     const addToCart = useAddToCart();
@@ -50,6 +52,7 @@ const CheckOutPage = () => {
 
     const {
         perform_post: place_order,
+        data: orderData,
         loading,
         success,
         error,
@@ -85,13 +88,14 @@ const CheckOutPage = () => {
     }, [userIsAuthenticated])
 
     useEffect(() => {
-        if (success) {
-            message.success('Success');
+        if (success && orderData) {
+            message.success("Order Placed Successfully");
+            router.push(`/order/${orderData.oid}/success`);
         }
         if (error) {
             message.error(JSON.stringify(error));
         }
-    }, [success, error])
+    }, [orderData, success, error])
 
 
     useEffect(() => {
