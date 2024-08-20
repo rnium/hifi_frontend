@@ -72,10 +72,10 @@ const CheckOutPage = () => {
             coupon: couponCode,
             cartid: localStorage.getItem(localstorage_keys.cartid),
         })
-    }, [couponCode])
+    }, [couponCode, apply_coupon])
 
     useEffect(() => {
-        if (userIsAuthenticated) {
+        if (userIsAuthenticated && userInfo) {
             setFormData(prevState => ({
                 ...prevState,
                 first_name: userInfo?.first_name || '',
@@ -85,7 +85,7 @@ const CheckOutPage = () => {
                 address: userInfo?.address || '',
             }))
         }
-    }, [userIsAuthenticated])
+    }, [userIsAuthenticated, userInfo])
 
     useEffect(() => {
         if (success && orderData) {
@@ -95,7 +95,7 @@ const CheckOutPage = () => {
         if (error) {
             message.error(JSON.stringify(error));
         }
-    }, [orderData, success, error])
+    }, [orderData, success, error, router])
 
 
     useEffect(() => {
@@ -107,7 +107,7 @@ const CheckOutPage = () => {
             message.success('Coupon Applied');
         }
         reset_coupon_api();
-    }, [apply_coupon_success, apply_coupon_error, coupon_data])
+    }, [apply_coupon_success, apply_coupon_error, coupon_data, reset_coupon_api])
 
     useEffect(() => {
         setCouponCode('');
@@ -252,7 +252,7 @@ const CheckOutPage = () => {
                                                     <Grid item xs={12}>
                                                         <Alert severity="warning">
                                                             <AlertTitle>Please Note</AlertTitle>
-                                                            You're not currently logged in. Although you can complete your order without being logged in, we recommend <Link href='/login?next=/checkout'><MuiLink>Login</MuiLink></Link> or <Link href='/signup?next=/checkout'><MuiLink>Signup</MuiLink></Link>  before placing your order.
+                                                            You&apos;re not currently logged in. Although you can complete your order without being logged in, we recommend <Link href='/login?next=/checkout'><MuiLink>Login</MuiLink></Link> or <Link href='/signup?next=/checkout'><MuiLink>Signup</MuiLink></Link>  before placing your order.
                                                         </Alert>
                                                     </Grid>
                                                 )

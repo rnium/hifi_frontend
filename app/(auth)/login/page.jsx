@@ -47,7 +47,7 @@ const LoginPage = ({ searchParams }) => {
     <>
       <Paper sx={{ py: 5, px: 3 }} elevation={0} className='rounded-xl border'>
         <Stack spacing={1} alignItems="center">
-          <Image src={hifilogo} width={80} />
+          <Image src={hifilogo} width={80} alt='Hifi Logo' />
           <Stack textAlign="center" sx={{ pb: 2 }}>
             <Typography variant='h5'>User Login</Typography>
             <Typography variant='body2'>Welcome back</Typography>

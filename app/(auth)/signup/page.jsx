@@ -41,7 +41,7 @@ const SignupPage = ({ searchParams }) => {
             message.success("Welcome To Hi-Fi Computer")
             router.push(nextUrl);
         }
-    }, [login_success, userIsAuthenticated])
+    }, [login_success, userIsAuthenticated, nextUrl])
 
     useEffect(() => {
         if (error?.non_field_errors) {
@@ -53,7 +53,7 @@ const SignupPage = ({ searchParams }) => {
     return (
         <Paper sx={{ py: 4, px: 3 }} elevation={0} className='rounded-xl border'>
             <Stack spacing={1} alignItems="center">
-                <Image src={hifilogo} width={80} />
+                <Image src={hifilogo} width={80} alt='HiFi Logo' />
                 <Typography variant='h6'>User Signup</Typography>
                 <TextField
                     label="Name"

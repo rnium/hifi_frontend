@@ -9,7 +9,7 @@ const Page = ({ params }) => {
     const { afterOrderCleanUp } = useCart();
     useEffect(() => {
         afterOrderCleanUp();
-    }, [])
+    })
     return (
         <Container
             sx={{ py: 15 }}
@@ -43,7 +43,7 @@ const Page = ({ params }) => {
                 <Typography
                     variant='h5'
                 >
-                    Thank you for your order! We're processing it now and will update you shortly!
+                    Thank you for your order! We&apos;re processing it now and will update you shortly!
                 </Typography>
 
             </Stack>

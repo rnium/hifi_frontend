@@ -12,12 +12,12 @@ const ProductGrid = ({products}) => {
                 sx={{py: 5}}
                 spacing={2}
             >
-                <Image src={no_data} width={500} />
+                <Image src={no_data} width={500} alt='No Products' />
                 <Typography
                     variant='h5'
                     color='primary'
                 >
-                No Products
+                    No Products
                 </Typography>
             </Stack>
         )

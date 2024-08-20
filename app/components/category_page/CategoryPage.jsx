@@ -68,7 +68,7 @@ const CategoryPage = ({ params, cat_data }) => {
         }
 
         perform_get(params);
-    }, [selectedTags, availibility, priceRange])
+    }, [selectedTags, availibility, priceRange, perform_get])
 
 
     return (
