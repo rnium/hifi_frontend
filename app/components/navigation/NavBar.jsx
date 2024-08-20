@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
 import hifilogo from '@/public/f5s2df.svg';
-import hifilogomain from '@/public/hifi_logo.png';
+import hifilogostripped from '@/public/hifi_logo_stripped.png';
 import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
@@ -97,7 +97,7 @@ const NavBar = async ({ homepage = false }) => {
           <MobileMenu cat_data={mainCategories} />
           <Box>
             <Link href="/">
-              <Image src={hifilogo} alt="HiFi Logo" width={50} />
+              <Image src={hifilogostripped} alt="HiFi Logo" width={130} />
             </Link>
           </Box>
           <Box
