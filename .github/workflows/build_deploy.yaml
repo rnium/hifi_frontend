@@ -16,10 +16,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Create .env.local
-        run: echo "NEXT_PUBLIC_API_HOST=${{secrets.api_host}}
-            NEXT_PUBLIC_API_PROTOCOL=${{secrets.api_protocol}}
-            NEXT_PUBLIC_API_HOSTNAME=${{secrets.api_hostname}}
-            NEXT_PUBLIC_API_PORT=${{secrets.api_port}}
-            NEXT_PUBLIC_API_MEDIA_PATHNAME=${{secrets.media_path}}" > .env.local
+        run: echo "NEXT_PUBLIC_API_HOST=${{secrets.API_HOST}}
+            NEXT_PUBLIC_API_PROTOCOL=${{secrets.API_PROTOCOL}}
+            NEXT_PUBLIC_API_HOSTNAME=${{secrets.API_HOSTNAME}}
+            NEXT_PUBLIC_API_PORT=${{secrets.API_PORT}}
+            NEXT_PUBLIC_API_MEDIA_PATHNAME=${{secrets.MEDIA_PATH}}" > .env.local
       - name: Build App
         run: npm run build
