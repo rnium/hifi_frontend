@@ -7,6 +7,7 @@ import './styles/style.css';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useAddToCartWithMessage } from '@/hooks/useCart';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ProductX = ({ product }) => {
     const product_link = "/product/" + product.slug;
@@ -16,7 +17,15 @@ const ProductX = ({ product }) => {
             <Stack direction="row">
                 <Stack justifyContent="center">
                     <Link href={product_link}>
-                        <img src={product.cover} alt="Product Photo" width="200px" />
+                        <div style={{width: '80px'}}>
+                            <Image
+                                src={product.cover}
+                                width={500}
+                                height={500}
+                                layout='responsive'
+                                alt={product.title}
+                            />
+                        </div>
                     </Link>
                 </Stack>
                 <Stack alignItems="center" sx={{ minHeight: '120px' }} spacing={1}>

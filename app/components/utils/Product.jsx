@@ -8,10 +8,12 @@ import ProductHoverActions from './ProductHoverActions';
 const Product = ({ product }) => {
     return (
         <Card className='product'>
-            <CardMedia
-                component="img"
+            <Image
                 alt={product.title}
-                image={product.cover}
+                src={product.cover}
+                width={500}
+                height={500}
+                layout='responsive'
             />
             {
                 product.discount > 0 ?

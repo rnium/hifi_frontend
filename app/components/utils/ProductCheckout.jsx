@@ -2,6 +2,7 @@
 import React from 'react';
 import { Stack, Box, Paper, Chip, Typography, Zoom, Card, CardMedia, CardContent } from '@mui/material';
 import Link from 'next/link';
+import Image from 'next/image';
 import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
 
 
@@ -17,11 +18,12 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
             }}
             elevation={0}
         >
-            <CardMedia
-                component="img"
-                sx={{ width: 120, height: 120 }}
-                image={product.cover}
+            <Image 
+                src={product.cover}
+                width={120}
+                height={120}
                 alt={product.title}
+                quality={100}
             />
 
             <Stack sx={{ px: 1, py: 3 }}>

@@ -5,16 +5,19 @@ import {
 } from '@mui/material';
 import './styles/style.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProductHoverActions from './ProductHoverActions';
 
 
 const ProductY = ({ product }) => {
     return (
         <Card className='product-y rounded-md' >
-            <CardMedia
-                component="img"
+            <Image
                 alt={product.title}
-                image={product.cover}
+                src={product.cover}
+                width={500}
+                height={500}
+                layout='responsive'
             />
             <div className="actions">
                 <ProductHoverActions  

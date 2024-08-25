@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { FreeMode, Thumbs } from 'swiper/modules';
+import Image from 'next/image';
+import { blurdata_base64 } from '@/lib/data';
 
 const DisplayImage = ({ images, inModal }) => {
     const [isMounted, setIsMounted] = useState(false);
@@ -37,8 +39,15 @@ const DisplayImage = ({ images, inModal }) => {
             <Box>
                 {
                     inModal ?
-                    <img alt='cover' src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} width="100%" />
-                    : <AntdImage src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} />
+                        // <img alt='cover' src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} width="100%" />
+                        <Image
+                            src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'}
+                            width={500}
+                            height={500}
+                            layout='responsive'
+                        />
+                        :
+                        <AntdImage src={images.filter(io => io.id === selectedImage)[0]?.url || '/images/no_data.webp'} />
                 }
             </Box>
             <Stack sx={{ mt: 1 }} direction="row" spacing={1} alignItems="center" justifyContent="center" className='image-slider'>
@@ -57,7 +66,15 @@ const DisplayImage = ({ images, inModal }) => {
                         images.map((img, idx) => (
                             <SwiperSlide className='mySwiperSlide' key={idx}>
                                 <Box onClick={() => setSelectedImage(img.id)} className={selectedImage === img.id ? "slide-img-container active" : "slide-img-container"}>
-                                    <img alt={`photo-${idx}`} src={img.url} width={100} height={100} />
+                                    {/* <img alt={`photo-${idx}`} src={img.url} width={100} height={100} /> */}
+                                    <Image
+                                        placeholder='blur'
+                                        alt={`photo-${idx}`}
+                                        src={img.url}
+                                        width={100}
+                                        height={100}
+                                        blurDataURL={blurdata_base64}
+                                    />
                                 </Box>
                             </SwiperSlide>
                         ))
