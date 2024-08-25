@@ -1,0 +1,25 @@
+name: "Build and Deploy"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  builddeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.13.1'
+      - name: Install Dependencies
+        run: npm install
+      - name: Create .env.local
+        run: echo "NEXT_PUBLIC_API_HOST=${{secrets.api_host}}
+            NEXT_PUBLIC_API_PROTOCOL=${{secrets.api_protocol}}
+            NEXT_PUBLIC_API_HOSTNAME=${{secrets.api_hostname}}
+            NEXT_PUBLIC_API_PORT=${{secrets.api_port}}
+            NEXT_PUBLIC_API_MEDIA_PATHNAME=${{secrets.media_path}}" > .env.local
+      - name: Build App
+        run: npm run build

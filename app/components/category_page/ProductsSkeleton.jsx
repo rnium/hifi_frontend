@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Skeleton } from '@mui/material'
+import Product from '../skeletons/Product'
 
 const ProductsSkeleton = ({num}) => {
     const skel_arr = Array.from({length: num}, (v, i) => 0+i)
@@ -8,7 +9,7 @@ const ProductsSkeleton = ({num}) => {
             {
                 skel_arr.map(id => (
                     <Grid key={id} item xs={12} md={4}>
-                        <Skeleton variant='rounded' height={300} />
+                        <Product />
                     </Grid>
                 ))
             }
