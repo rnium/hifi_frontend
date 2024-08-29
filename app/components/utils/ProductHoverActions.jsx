@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react';
+import { message } from 'antd';
+import { useState, useEffect } from 'react';
 import { Stack, Tooltip, Zoom } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShareIcon from '@mui/icons-material/Share';
@@ -12,11 +13,30 @@ import { useAddToCartWithMessage } from '@/hooks/useCart';
 
 
 const ProductHoverActions = ({ product, showWishlist }) => {
+    const [hostname, setHostname] = useState(null);
+    const [protocol, setProtocol] = useState(null);
+    const [port, setPort] = useState(null);
     const addToCart = useAddToCartWithMessage();
     const dispatch = useDispatch();
+
     const handleGlimpseClick = (e) => {
         dispatch(setQuickviewProduct(product.slug));
     }
+
+    const handleShareClick = async () => {
+        const prodUrl = `${protocol}//${hostname}${port ? `:${port}` : ''}/product/${product.slug}`
+        await navigator.clipboard.writeText(prodUrl);
+        message.info("Product Link Copied to Clipboard", 5);
+    }
+
+    useEffect(() => {
+        if (window != undefined) {
+            setHostname(window.location.hostname);
+            setProtocol(window.location.protocol);
+            setPort(window.location.port);
+        }
+    }, [])
+    
     return (
         <Stack spacing={2}>
             {
@@ -38,7 +58,7 @@ const ProductHoverActions = ({ product, showWishlist }) => {
                 </div>
             </Tooltip>
             <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="left">
-                <div className='action-btn'>
+                <div className='action-btn' onClick={handleShareClick}>
                     <ShareIcon fontSize='small' />
                 </div>
             </Tooltip>

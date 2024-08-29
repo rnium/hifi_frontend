@@ -2,12 +2,13 @@
 
 import { useState, Fragment } from 'react';
 import { Stack, Button, Box, Tooltip, Typography } from '@mui/material';
-import { InputNumber } from 'antd';
+import { useAddToCartWithMessage } from '@/hooks/useCart';
 
 
 
 const ProductAction = ({ product }) => {
     // const [selectedColor, setSelectedColor] = useState(product?.product_colors[0].code)
+    const addtoCart = useAddToCartWithMessage();
     return (
         <Fragment>
             {/* <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>
@@ -20,9 +21,15 @@ const ProductAction = ({ product }) => {
                     ))
                 }
             </Stack> */}
-            <Stack direction="row" spacing={2} alignItems="center" sx={{pt: 3}}>
+            <Stack direction="row" spacing={2} alignItems="center" sx={{ pt: 3 }}>
                 <Button variant="contained" sx={{ px: 6 }}>Buy Now</Button>
-                <Button variant="outlined" sx={{ px: 5 }}>Add To Cart</Button>
+                <Button
+                    onClick={() => addtoCart(product.id)}
+                    variant="outlined"
+                    sx={{ px: 5 }}
+                >
+                    Add To Cart
+                </Button>
             </Stack >
         </Fragment>
     )
