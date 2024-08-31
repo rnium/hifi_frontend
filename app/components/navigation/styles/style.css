@@ -3,7 +3,7 @@
   z-index: 99999;
 }
 .mainappbar .topstrip {
-  background-color: #3d4953;
+  background-color: #533d40;
   padding: 5px 0;
 }
 @keyframes blinktext {
@@ -205,8 +205,7 @@ ul.navlinks li:hover {
 .searchbox {
   position: relative;
   border-radius: 10px;
-  background-color: white;
-  border: 2px solid rgb(255, 255, 255);
+  background-color: rgba(212, 212, 212, 0.6);
   outline: 1px solid rgb(228, 228, 228);
   display: flex;
   flex-direction: row;
@@ -214,11 +213,11 @@ ul.navlinks li:hover {
   align-items: center;
 }
 .searchbox input {
-  background-color: inherit;
+  background-color: transparent;
   width: 300px;
   text-align: left;
   border-radius: 180px;
-  padding-left: 20px;
+  padding: 7px 5px 7px 20px;
   border: 0;
   font-size: 1rem;
   color: #4c687f;
@@ -226,10 +225,10 @@ ul.navlinks li:hover {
 }
 .searchbox input:focus {
   outline: none !important;
+  width: 320px;
 }
 .searchbox button {
   transition: all 200ms;
-  background-color: rgba(212, 212, 212, 0.6);
 }
 .searchbox img.icon {
   width: 25px;
@@ -241,10 +240,7 @@ ul.navlinks li:hover {
   filter: grayscale(100%);
 }
 .searchbox:focus-within {
-  outline: 1px solid rgb(206, 183, 183);
-}
-.searchbox:focus-within button {
-  background-color: rgba(196, 149, 149, 0.6);
+  outline: 1px solid rgba(206, 206, 206, 0.7960784314);
 }
 
 .shoppinglist-btn {

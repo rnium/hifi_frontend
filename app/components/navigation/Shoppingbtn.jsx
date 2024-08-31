@@ -107,6 +107,7 @@ const Shoppingbtn = () => {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
+                disableAutoFocus
             >
                 <Box sx={{ width: { xs: '250px', md: '350px' } }} className='p-3'>
                     <Typography sx={{ textAlign: 'center' }}>My Wishlist</Typography>
@@ -145,6 +146,7 @@ const Shoppingbtn = () => {
                 prodData={prodData}
                 totalAmount={totalAmount}
                 totalItems={totalItems}
+                disableAutoFocus
             />
         </>
     )

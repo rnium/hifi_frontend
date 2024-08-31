@@ -5,10 +5,10 @@ import Image from 'next/image';
 import hifilogo from '@/public/f5s2df.svg';
 import hifilogostripped from '@/public/hifi_logo_stripped.png';
 import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import UserChip from './micro/UserChip';
 import MobileMenu from './MobileMenu';
+import SearchBox from './SearchBox';
 import './styles/style.css';
 import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
 import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
@@ -120,18 +120,7 @@ const NavBar = async ({ homepage = false }) => {
           </Stack>
 
           <Stack spacing={2} direction="row" alignItems="center" sx={{ flexGrow: 1, ml: 5, display: { xs: 'none', md: 'flex' } }}>
-            <div className='searchbox'>
-              <input
-                type="text"
-                placeholder='Search Product'
-              // value={registration}
-              // onKeyDown={handleKeyDown}
-              // onChange={event => setRegistration(event.target.value)}
-              />
-              <IconButton size='small'>
-                <SearchIcon />
-              </IconButton>
-            </div>
+            <SearchBox />
           </Stack>
           <Shoppingbtn />
 

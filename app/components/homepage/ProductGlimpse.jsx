@@ -37,7 +37,7 @@ const ProductGlimpse = () => {
     if (!loaded && product_slug && apiUrl) {
       perform_get();
     }
-  }, [loaded, apiUrl, perform_get])
+  }, [loaded, apiUrl, product_slug, perform_get])
 
   useEffect(() => {
     setApiUrl(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.view_product}${product_slug}`)
