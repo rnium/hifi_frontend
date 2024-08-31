@@ -47,12 +47,12 @@ const links = {
         {
             name: 'Facebook',
             icon: <FacebookIcon />,
-            url: 'https://www.facebook.com/hificomputersylhet'
+            url: 'https://www.facebook.com/hificomputerbd'
         },
         {
             name: 'Whatsapp',
             icon: <WhatsAppIcon />,
-            url: 'https://wa.me/'
+            url: 'https://api.whatsapp.com/send/?phone=%2B8801716530452&text&type=phone_number&app_absent=0'
         },
     ]
 }
