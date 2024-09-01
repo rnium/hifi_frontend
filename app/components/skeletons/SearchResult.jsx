@@ -1,13 +1,13 @@
 import { Stack, Skeleton, Typography } from '@mui/material'
 import React from 'react'
 
-const SearchResult = () => {
+const SearchResult = ({count = 4}) => {
     return (
         <Stack
             spacing={2}
         >
             {
-                Array.from({ length: 4 }, (_, i) => i).map(i => (
+                Array.from({ length: count }, (_, i) => i).map(i => (
                     <Stack
                         key={i}
                         direction='row'

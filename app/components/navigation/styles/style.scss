@@ -15,11 +15,11 @@ $topstrip-text: #e1e7ec;
     background-color: #ffffff;
     z-index: 99999;
     .topstrip {
-        background-color: #533d40;
-        padding: 5px 0;
+        background-color: #d32f2f;
+        padding: 3px 0;
         @keyframes blinktext {
             0% {color: $topstrip-text;}
-            50% {color: #757575;}
+            50% {color: #f8a3a3b7;}
             100% {color: $topstrip-text;}
         }
         .t-item {
@@ -42,7 +42,7 @@ $topstrip-text: #e1e7ec;
                 }
             }
             &:hover .icon, &:hover .text {
-                color: #9daebd;
+                color: #ffc0c0;
             }
         }
         .divider {

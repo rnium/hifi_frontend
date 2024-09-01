@@ -13,49 +13,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 import './style/style.css';
-
-
-const links = {
-    company: [
-        {
-            title: 'About Us',
-            uri: '#'
-        },
-        {
-            title: 'Our Services',
-            uri: '#'
-        },
-        {
-            title: 'Terms & Conditions',
-            uri: '#'
-        },
-        {
-            title: 'Privacy Policy',
-            uri: '#'
-        },
-        {
-            title: 'Google Map Location',
-            uri: 'https://maps.app.goo.gl/pXWBALuZfw3KV5D46',
-            outside: true,
-        },
-        {
-            title: 'Feedback',
-            uri: '#'
-        }
-    ],
-    socials: [
-        {
-            name: 'Facebook',
-            icon: <FacebookIcon />,
-            url: 'https://www.facebook.com/hificomputerbd'
-        },
-        {
-            name: 'Whatsapp',
-            icon: <WhatsAppIcon />,
-            url: 'https://api.whatsapp.com/send/?phone=%2B8801716530452&text&type=phone_number&app_absent=0'
-        },
-    ]
-}
+import { links } from '@/lib/site_data';
 
 const Footer = async () => {
     const topCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
@@ -76,13 +34,13 @@ const Footer = async () => {
                                 links.company.map((l, idx) => {
                                     if (l.outside) {
                                         return (
-                                            <a key={l.uri} href={l.uri} target='_blank'>
+                                            <a key={idx} href={l.uri} target='_blank'>
                                                 <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                             </a>
                                         )
                                     } else {
                                         return (
-                                            <Link  key={l.uri} href={l.uri}>
+                                            <Link  key={idx} href={l.uri}>
                                                 <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                             </Link>
                                         )

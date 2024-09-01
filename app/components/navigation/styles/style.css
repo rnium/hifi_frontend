@@ -3,15 +3,15 @@
   z-index: 99999;
 }
 .mainappbar .topstrip {
-  background-color: #533d40;
-  padding: 5px 0;
+  background-color: #d32f2f;
+  padding: 3px 0;
 }
 @keyframes blinktext {
   0% {
     color: #e1e7ec;
   }
   50% {
-    color: #757575;
+    color: rgba(248, 163, 163, 0.7176470588);
   }
   100% {
     color: #e1e7ec;
@@ -36,7 +36,7 @@
   animation: none;
 }
 .mainappbar .topstrip .t-item:hover .icon, .mainappbar .topstrip .t-item:hover .text {
-  color: #9daebd;
+  color: #ffc0c0;
 }
 .mainappbar .topstrip .divider {
   height: 20px;

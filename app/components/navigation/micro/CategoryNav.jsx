@@ -12,7 +12,7 @@ const CategoryNav = () => {
                         nav_categories.map((cat, idx) => (
                             <li key={idx}>
                                 <div className="cat-item">
-                                    <div className="title">{cat.title}</div>
+                                    <Link href={ cat?.slug ? `/category/${cat.slug}` : '#'}>{cat.title}</Link>
                                     <div className="sub-menu">
                                         <ul>
                                             {

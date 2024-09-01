@@ -17,10 +17,12 @@ import CategoryNav from './micro/CategoryNav';
 import Shoppingbtn from './Shoppingbtn';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
+import { links } from '@/lib/site_data';
 
 
 const NavBar = async ({ homepage = false }) => {
   const mainCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
+  const facebook = links?.socials.find(social => social.name === 'Facebook')
   return (
     <AppBar className='mainappbar border-b' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
       <Box
@@ -38,7 +40,7 @@ const NavBar = async ({ homepage = false }) => {
             </div>
             <div className="divider"></div>
             <div className="t-item social">
-              <a href="https://facebook.com/hificomputer">
+              <a href={facebook ? facebook.url : '#'} target='_blank'>
                 <RiFacebookCircleFill
                   size={20}
                   className='icon'
@@ -46,7 +48,7 @@ const NavBar = async ({ homepage = false }) => {
               </a>
             </div>
             <div className="t-item social">
-              <a href="https://instagram.com/hificomputer">
+              <a href="#">
                 <RiInstagramFill
                   size={20}
                   className='icon'
@@ -54,7 +56,7 @@ const NavBar = async ({ homepage = false }) => {
               </a>
             </div>
             <div className="t-item social">
-              <a href="https://instagram.com/hificomputer">
+              <a href="#">
                 <RiLinkedinFill
                   size={20}
                   className='icon'

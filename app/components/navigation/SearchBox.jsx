@@ -25,6 +25,7 @@ const SearchBox = () => {
                 handleClose={() => setOpen(false)}
                 searchTerm={searchTerm}
                 handleChange={handleChange}
+                setSearchTerm={setSearchTerm}
             />
             <input
                 type="text"
