@@ -1,7 +1,9 @@
 "use client"
+import { useCallback } from 'react';
 import ProductW from './micro/ProductW';
 import { Stack, Typography, Menu, Box } from '@mui/material';
 import { Empty } from 'antd';
+import { useAddToCartWithMessage } from '@/hooks/useCart';
 import { useRemoveFromWishlist } from '@/hooks/useWishList';
 
 
@@ -12,6 +14,12 @@ const WishListMenu = ({
 }) => {
     const open = Boolean(anchorEl);
     const remove = useRemoveFromWishlist();
+    const add2cart = useAddToCartWithMessage();
+    const addToCartThenRemove = useCallback(id => {
+        add2cart(id);
+        remove(id);
+        
+    }, [add2cart, remove])
     return (
         <>
             <Menu
@@ -61,6 +69,7 @@ const WishListMenu = ({
                                         <ProductW
                                             key={idx}
                                             product={p}
+                                            addtocart={addToCartThenRemove}
                                             handleRemove={() => remove(p.id)}
                                         />
                                     ))

@@ -8,24 +8,19 @@ import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
 import { api_host } from '@/lib/data';
 
 
-export function ProductW({ product, handleRemove }) {
+export function ProductW({ product, addtocart, handleRemove }) {
     const product_link = "/product/" + product.slug;
     return (
         <Card
             className='rounded shadow-lg border-t border-l transition-all hover:shadow-xl'
             sx={{
                 display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
                 alignItems: 'center',
                 justifyContent: 'center'
             }}
             elevation={0}
         >
-            {/* <Image 
-                src={`${api_host}${product.cover}`}
-                width={80}
-                height={80}
-            /> */}
-
             <CardMedia
                 component="img"
                 sx={{ width: 80, height: 80 }}
@@ -35,13 +30,25 @@ export function ProductW({ product, handleRemove }) {
 
 
             <Stack sx={{ px: 1, py: 3 }}>
-                <Typography variant="caption" >
+                <Typography variant="caption" 
+                    textAlign={{xs: 'center', md: 'left'}}
+                >
                     <Link href={product_link} className='hover:text-sky-800'>
                         {product.title}
                     </Link>
                 </Typography>
-                <Stack direction="row" sx={{ mt: 1 }} spacing={1}>
-                    <button className='shoppinglist-btn success'>
+                <Stack
+                    direction="row" sx={{ mt: 1 }}
+                    spacing={1}
+                    justifyContent={{
+                        xs: 'center',
+                        md: 'left'
+                    }}
+                >
+                    <button
+                        className='shoppinglist-btn success'
+                        onClick={() => addtocart(product.id)}
+                    >
                         <RiShoppingCartLine
                             size={15}
                             className='icon'
