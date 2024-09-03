@@ -10,6 +10,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useDispatch } from 'react-redux';
 import { setQuickviewProduct } from '@/redux/homepageReducer';
 import { useAddToCartWithMessage } from '@/hooks/useCart';
+import { useAddToWishlistWithMessage } from '@/hooks/useWishList';
 
 
 const ProductHoverActions = ({ product, showWishlist }) => {
@@ -17,6 +18,7 @@ const ProductHoverActions = ({ product, showWishlist }) => {
     const [protocol, setProtocol] = useState(null);
     const [port, setPort] = useState(null);
     const addToCart = useAddToCartWithMessage();
+    const addToWList = useAddToWishlistWithMessage();
     const dispatch = useDispatch();
 
     const handleGlimpseClick = (e) => {
@@ -36,13 +38,13 @@ const ProductHoverActions = ({ product, showWishlist }) => {
             setPort(window.location.port);
         }
     }, [])
-    
+
     return (
         <Stack spacing={2}>
             {
                 showWishlist ?
                     <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="left">
-                        <div className='action-btn'>
+                        <div className='action-btn' onClick={() => addToWList(product.id)}>
                             <FavoriteBorderIcon fontSize='small' />
                         </div>
                     </Tooltip> :

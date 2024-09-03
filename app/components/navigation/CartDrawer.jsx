@@ -3,7 +3,6 @@ import { Empty } from 'antd';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import ProductC from './micro/ProductC';
-import ProductW from './micro/ProductW';
 import { Typography, Stack, Chip, Divider } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Link from 'next/link';

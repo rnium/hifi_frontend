@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Stack, Badge, IconButton, Typography, Menu, Box } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import ProductW from './micro/ProductW';
-import { Empty } from 'antd';
 import CartDrawer from './CartDrawer';
 import { useCart } from '@/hooks/useCart';
+import { useWishList } from '@/hooks/useWishList';
+import WishListMenu from './WishlistMenu';
 
 const cursorTypography = {
     cursor: 'pointer'
@@ -16,9 +16,9 @@ const cursorTypography = {
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const open = Boolean(anchorEl);
 
-    const { cartInfo, prodData, totalAmount, totalItems } = useCart()
+    const { products } = useWishList();
+    const { cartInfo, prodData, totalAmount, totalItems } = useCart();
 
     const handleWishlistClick = event => {
         setAnchorEl(event.currentTarget);
@@ -43,14 +43,14 @@ const Shoppingbtn = () => {
                 <IconButton
                     onClick={handleWishlistClick}
                 >
-                    <Badge badgeContent={0} color="primary" variant='dot'>
+                    <Badge badgeContent={products.length} color="primary" variant='dot'>
                         <FavoriteBorderIcon />
                     </Badge>
                 </IconButton>
                 <IconButton
                     onClick={handleCartClick}
                 >
-                    <Badge badgeContent={0} color="primary" variant='dot'>
+                    <Badge badgeContent={totalItems} color="primary" variant='dot'>
                         <ShoppingCartOutlinedIcon />
                     </Badge>
                 </IconButton>
@@ -65,7 +65,7 @@ const Shoppingbtn = () => {
                 direction="row"
             >
                 <IconButton>
-                    <Badge badgeContent={0} color="primary" variant='dot'>
+                    <Badge badgeContent={products.length} color="primary" variant='dot'>
                         <FavoriteBorderIcon />
                     </Badge>
                 </IconButton>
@@ -91,54 +91,11 @@ const Shoppingbtn = () => {
                     <Typography color="primary" variant='body2' fontSize="0.7rem">৳ {totalAmount.toLocaleString('en-in')}</Typography>
                 </Stack>
             </Stack>
-            <Menu
-                id="basic-menu"
+            <WishListMenu
                 anchorEl={anchorEl}
-                open={open}
-                onClose={handleWishlistClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                }}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                disableAutoFocus
-            >
-                <Box sx={{ width: { xs: '250px', md: '350px' } }} className='p-3'>
-                    <Typography sx={{ textAlign: 'center' }}>My Wishlist</Typography>
-                    <Typography
-                        variant='caption'
-                        sx={{ textAlign: 'center', mb: 1 }}
-                        component="div"
-                        color="text.secondary"
-                    >
-                        0 Items
-                    </Typography>
-                    <Stack
-                        sx={{ py: 5 }}
-                    >
-                        <Empty
-                            image={Empty.PRESENTED_IMAGE_SIMPLE}
-                            description={
-                                <Typography>Empty Wishlist</Typography>
-                            }
-                        />
-                    </Stack>
-                    {/* <Stack spacing={1} >
-
-                        {
-                            all_products.map((p, idx) => (
-                                <ProductW key={idx} product={p} />
-                            ))
-                        }
-                    </Stack> */}
-                </Box>
-            </Menu>
+                products={products}
+                handleWishlistClose={handleWishlistClose}
+            />
             <CartDrawer
                 open={drawerOpen}
                 setOpen={setDrawerOpen}
