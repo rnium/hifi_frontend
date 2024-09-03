@@ -98,8 +98,8 @@ const Footer = async () => {
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <EmailIcon color='primary' fontSize='small' />
-                            <a href='mailto:hifi_computer@yahoo.com'>
-                            <Typography variant='body2' color="text.secondary">hifi_computer@yahoo.com</Typography>
+                            <a href='mailto:hificomputerbd@gmail.com'>
+                            <Typography variant='body2' color="text.secondary">hificomputerbd@gmail.com</Typography>
                             </a>
                         </Stack>
                     </Stack>

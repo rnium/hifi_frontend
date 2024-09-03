@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { Stack, Button, Box, Tooltip, Zoom, IconButton } from '@mui/material';
+import { Stack, Button, Tooltip, Zoom, IconButton } from '@mui/material';
 import { useAddToCartWithMessage } from '@/hooks/useCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useAddToWishlistWithMessage } from '@/hooks/useWishList';
