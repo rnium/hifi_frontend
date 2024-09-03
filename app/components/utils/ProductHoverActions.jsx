@@ -43,23 +43,23 @@ const ProductHoverActions = ({ product, showWishlist }) => {
         <Stack spacing={2}>
             {
                 showWishlist ?
-                    <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="left">
+                    <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="right">
                         <div className='action-btn' onClick={() => addToWList(product.id)}>
                             <FavoriteBorderIcon fontSize='small' />
                         </div>
                     </Tooltip> :
-                    <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="left">
+                    <Tooltip arrow title="Add To Cart" TransitionComponent={Zoom} placement="right">
                         <div className='action-btn' onClick={() => addToCart(product.id)}>
                             <AddShoppingCartIcon fontSize='small' />
                         </div>
                     </Tooltip>
             }
-            <Tooltip arrow title="Get A Glimpse" TransitionComponent={Zoom} placement="left">
+            <Tooltip arrow title="Get A Glimpse" TransitionComponent={Zoom} placement="right">
                 <div className='action-btn' onClick={handleGlimpseClick}>
                     <VisibilityIcon fontSize='small' />
                 </div>
             </Tooltip>
-            <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="left">
+            <Tooltip arrow title="Share This Item" TransitionComponent={Zoom} placement="right">
                 <div className='action-btn' onClick={handleShareClick}>
                     <ShareIcon fontSize='small' />
                 </div>

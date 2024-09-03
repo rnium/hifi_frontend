@@ -1,37 +1,32 @@
 'use client';
 
-import { useState, Fragment } from 'react';
-import { Stack, Button, Box, Tooltip, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Stack, Button, Box, Tooltip, Zoom, IconButton } from '@mui/material';
 import { useAddToCartWithMessage } from '@/hooks/useCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useAddToWishlistWithMessage } from '@/hooks/useWishList';
 
 
 
 const ProductAction = ({ product }) => {
-    // const [selectedColor, setSelectedColor] = useState(product?.product_colors[0].code)
     const addtoCart = useAddToCartWithMessage();
+    const add2wishlist = useAddToWishlistWithMessage();
     return (
-        <Fragment>
-            {/* <Stack direction="row" spacing={2} alignItems="center" sx={{pb: 1}}>
-                <Typography variant='body1' color="text.secondary">Product Colors</Typography>
-                {
-                    product.product_colors.map((c, idx) => (
-                        <Tooltip key={idx} title={c.color_name} placement='top' arrow>
-                            <div onClick={() => setSelectedColor(c.code)} className={selectedColor == c.code ? "color-box active" : "color-box"} style={{ backgroundColor: c.code }}></div>
-                        </Tooltip>
-                    ))
-                }
-            </Stack> */}
-            <Stack direction="row" spacing={2} alignItems="center" sx={{ pt: 3 }}>
-                <Button variant="contained" sx={{ px: 6 }}>Buy Now</Button>
-                <Button
-                    onClick={() => addtoCart(product.id)}
-                    variant="outlined"
-                    sx={{ px: 5 }}
-                >
-                    Add To Cart
-                </Button>
-            </Stack >
-        </Fragment>
+        <Stack direction="row" spacing={2} alignItems="center" sx={{ pt: 3 }}>
+            <Button variant="contained" sx={{ px: 6 }}>Buy Now</Button>
+            <Button
+                onClick={() => addtoCart(product.id)}
+                variant="outlined"
+                sx={{ px: 5 }}
+            >
+                Add To Cart
+            </Button>
+            <Tooltip arrow title="Add To Wishlist" TransitionComponent={Zoom} placement="right">
+                <IconButton onClick={() => add2wishlist(product.id)}>
+                    <FavoriteBorderIcon />
+                </IconButton>
+            </Tooltip>
+        </Stack >
     )
 }
 
