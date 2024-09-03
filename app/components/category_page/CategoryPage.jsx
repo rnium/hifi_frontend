@@ -152,7 +152,7 @@ const CategoryPage = ({ params, cat_data }) => {
                         />
 
                     </Grid>
-                    <Grid item xs={0} md={9} >
+                    <Grid item xs={12} md={9} >
                         {
                             loaded && !loading ?
                                 <>
