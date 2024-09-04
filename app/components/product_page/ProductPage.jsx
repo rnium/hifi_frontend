@@ -2,8 +2,7 @@
 
 import {
     Container, Stack, Chip, Box, Typography,
-    Grid, Rating, List, ListItem, ListItemText,
-    Breadcrumbs
+    Grid, Breadcrumbs
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -13,11 +12,10 @@ import './styles/style.css';
 import ProductSpecTables from './ProductSpecTables';
 import ProductReviews from './ProductReviews';
 import ProductQuestions from './ProductQuestions';
-import ProductX from '../utils/ProductX';
 import ProductTop from './ProductTop';
+import RelatedProducts from './relatedProducts';
 
-
-const Product = ({ product }) => {
+const Product = ({ product, related_products }) => {
     return (
         <Container
             sx={{ mb: 10 }}
@@ -70,20 +68,9 @@ const Product = ({ product }) => {
                         >
                             <ProductReviews reviews={[]} />
                             <ProductQuestions questions={[]} />
-                            {/* <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3, }}>
-                                <Typography
-                                    variant='h6'
-                                    color="primary"
-                                    sx={{ mb: 1 }}
-                                >
-                                    Similar Products
-                                </Typography>
-                                {
-                                    product_data.related_products.map(p => (
-                                        <ProductX key={`rp-${p.id}`} product={p} />
-                                    ))
-                                }
-                            </Box> */}
+                            <RelatedProducts
+                                related_products={related_products}
+                            />
                         </Stack>
                     </Grid>
                 </Grid>

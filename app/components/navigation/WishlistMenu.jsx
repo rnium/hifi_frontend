@@ -18,6 +18,7 @@ const WishListMenu = ({
     const addToCartThenRemove = useCallback(id => {
         add2cart(id);
         remove(id);
+        handleWishlistClose();
         
     }, [add2cart, remove])
     return (

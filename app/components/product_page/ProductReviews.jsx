@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Stack, Box, Typography, Divider
 } from '@mui/material';

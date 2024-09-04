@@ -20,9 +20,8 @@ const ProductX = ({ product }) => {
                         <div style={{width: '80px'}}>
                             <Image
                                 src={product.cover}
-                                width={500}
-                                height={500}
-                                layout='responsive'
+                                width={80}
+                                height={80}
                                 alt={product.title}
                             />
                         </div>

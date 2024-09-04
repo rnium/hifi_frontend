@@ -5,7 +5,7 @@ import { Stack, Box, Paper, Chip, Typography, Zoom, Card, CardMedia, CardContent
 import Link from 'next/link';
 import Image from 'next/image';
 import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
-import { api_host } from '@/lib/data';
+import { blurdata_base64 } from '@/lib/data';
 
 
 export function ProductW({ product, addtocart, handleRemove }) {
@@ -21,11 +21,13 @@ export function ProductW({ product, addtocart, handleRemove }) {
             }}
             elevation={0}
         >
-            <CardMedia
-                component="img"
-                sx={{ width: 80, height: 80 }}
-                image={`${api_host}${product.cover}`}
-                alt={product.title}
+            <Image
+                placeholder='blur'
+                src={product.cover}
+                alt="Product Cover"
+                width={80}
+                height={80}
+                blurDataURL={blurdata_base64}
             />
 
 

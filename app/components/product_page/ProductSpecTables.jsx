@@ -1,3 +1,5 @@
+'use client'
+
 import {
     TableContainer, Table, TableBody, TableRow, TableCell,
     Alert
