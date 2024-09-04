@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import TopSection from './TopSection';
+import TopSection from './micro/TopSection';
 import { Stack, Container } from '@mui/material';
 import Image from 'next/image';
 import banner from '@/public/images/main_banner.png'

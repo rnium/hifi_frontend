@@ -1,7 +1,6 @@
 import NavBar from '@/app/components/navigation/NavBar'
 export const metadata = {
-    title: "Category Title",
-    description: "Category description"
+    title: "HiFi Computer",
 }
 
 import React from 'react'

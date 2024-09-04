@@ -6,7 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 
-const TopSection = ({ title }) => {
+const TopSection = ({ title, title_large="", show_title=false }) => {
     return (
         <Paper
             sx={{ py: 2, px: 2 }}
@@ -30,6 +30,21 @@ const TopSection = ({ title }) => {
                         </Link>
                     </Breadcrumbs>
                 </Stack>
+                {
+                    Boolean(title_large) && (
+                        <Typography
+                            sx={{my: 4}}
+                            variant="h5"
+                            textAlign="center"
+                            fontSize={{
+                                xs: '1.2rem',
+                                md: '1.5rem'
+                              }}
+                        >
+                            {title_large}
+                        </Typography>
+                    )
+                }
             </Container>
         </Paper>
     )
