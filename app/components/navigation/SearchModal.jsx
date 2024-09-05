@@ -80,10 +80,10 @@ const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose, mobile }) =
                         <Empty
                             description={
                                 <Typography
-                                    variant="body1"
+                                    variant="body2"
                                     color="text.secondary"
                                 >
-                                    Start Typing to search
+                                    Start typing to search
                                 </Typography>
                             }
                         />

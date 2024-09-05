@@ -19,13 +19,28 @@ const Footer = async () => {
             <Container sx={{ py: 5 }} disableGutters={false}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4}>
-                        <Stack spacing={4} sx={{ maxWidth: '300px', height: '100%' }} alignItems="center" justifyContent="center">
+                        <Stack
+                            spacing={4}
+                            sx={{ height: '100%' }}
+                            alignItems="center"
+                            justifyContent="center"
+                        >
                             <Image src={hifilogo} alt='Hifi Computer Logo' width={170} />
-                            <Typography color="text.secondary" variant='body2' paragraph={true} component="body1">HIFI Computer is the most trusted and largest IT solution in Sylhet, Empowerong businesses and individuals by providing authorized products and reliable services</Typography>
+                            <Typography
+                                color="text.secondary"
+                                variant='body2'
+                                paragraph={true}
+                                component="body1"
+                                textAlign='justify'
+                            >
+                                HIFI Computer is the most trusted and largest IT solution in Sylhet, Empowerong businesses and individuals by providing authorized products and reliable services
+                            </Typography>
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Stack spacing={1}>
+                        <Stack
+                            spacing={1}
+                        >
                             <Typography variant='body1' color="primary" sx={{ pb: 1 }}>HIFI COMPUTER</Typography>
                             {
                                 links.company.map((l, idx) => {
@@ -37,7 +52,7 @@ const Footer = async () => {
                                         )
                                     } else {
                                         return (
-                                            <Link  key={idx} href={l.uri}>
+                                            <Link key={idx} href={l.uri}>
                                                 <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                             </Link>
                                         )
@@ -47,11 +62,13 @@ const Footer = async () => {
                         </Stack>
                     </Grid>
                     <Grid item xs={12} md={2}>
-                        <Stack spacing={1}>
+                        <Stack
+                            spacing={1}
+                        >
                             <Typography variant='body1' color="primary" sx={{ pb: 1 }}>TOP CATEGORIES</Typography>
                             {
                                 topCategories.map((l, idx) => (
-                                    <Link key={l.slug} href={'category/' + l.slug}>
+                                    <Link key={idx} href={`category/${l.slug}`}>
                                         <Typography className='footer-link-text' color="text.secondary" variant='body2'>{l.title}</Typography>
                                     </Link>
                                 ))
@@ -88,7 +105,7 @@ const Footer = async () => {
                         <CopyrightIcon fontSize='small' />
                         <Typography variant='body2' color="text.secondary">2024 HIFI Computer. All rights reserved</Typography>
                     </Stack>
-                    <Stack sx={{pt: {xs: 3, md: 0}}} direction={{ xs: "column", md: "row" }} alignItems="center" spacing={2}>
+                    <Stack sx={{ pt: { xs: 3, md: 0 } }} direction={{ xs: "column", md: "row" }} alignItems="center" spacing={2}>
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <LocationOnIcon color='primary' fontSize='small' />
                             <Typography variant='body2' color="text.secondary">Karim Ullah Market, Bandar Bazar, Sylhet</Typography>
@@ -96,7 +113,7 @@ const Footer = async () => {
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <EmailIcon color='primary' fontSize='small' />
                             <a href='mailto:hificomputerbd@gmail.com'>
-                            <Typography variant='body2' color="text.secondary">hificomputerbd@gmail.com</Typography>
+                                <Typography variant='body2' color="text.secondary">hificomputerbd@gmail.com</Typography>
                             </a>
                         </Stack>
                     </Stack>
