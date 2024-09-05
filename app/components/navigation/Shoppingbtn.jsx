@@ -7,6 +7,7 @@ import CartDrawer from './CartDrawer';
 import { useCart } from '@/hooks/useCart';
 import { useWishList } from '@/hooks/useWishList';
 import WishListMenu from './WishlistMenu';
+import SearchBox from './SearchBox';
 
 const cursorTypography = {
     cursor: 'pointer'
@@ -37,9 +38,10 @@ const Shoppingbtn = () => {
         <>
             <Stack
                 direction='row'
-                spacing={1}
+                spacing={0}
                 sx={{ display: { xs: 'flex', md: 'none' } }}
             >
+                <SearchBox mobile />
                 <IconButton
                     onClick={handleWishlistClick}
                 >

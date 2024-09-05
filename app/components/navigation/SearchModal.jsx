@@ -8,25 +8,28 @@ import { api_endpoints, api_host } from "@/lib/data";
 
 const style = {
     position: 'absolute',
-    top: '35%',
+    top: {xs: '40%', md: '35%'},
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 500,
+    width: '95%',
+    maxWidth: 500,
     bgcolor: 'background.paper',
     boxShadow: 24,
     borderRadius: 2,
-    p: 4,
+    p: {xs: 2, md: 4},
     outline: 'none'
 };
 
-const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose }) => {
+const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose, mobile }) => {
     const [localSerchTerm, setLocalSerchTerm] = useState('');
     const { data: products, perform_get, success, error, loaded, loading } = useGet(`${api_host}${api_endpoints.search_product}`, false, []);
 
     useEffect(() => {
         if (!open) return;
         const timeoutId = setTimeout(() => {
-            perform_get({ query: localSerchTerm });
+            if (localSerchTerm.length) {
+                perform_get({ query: localSerchTerm });
+            }
 
         }, 1000)
 
@@ -46,7 +49,7 @@ const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose }) => {
 
     const handleChange = e => {
         const val = e.target.value;
-        if (val.length === 0) handleClose();
+        if (val.length === 0 && !mobile) handleClose();
         setLocalSerchTerm(val);
     }
 
@@ -58,7 +61,7 @@ const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose }) => {
             aria-describedby="modal-modal-description"
             disableAutoFocus
         >
-            <Box sx={style}>
+            <Box sx={{...style, position: {xs: 'relative', md: 'absolute'}}}>
                 <TextField
                     inputRef={input => input && input.focus()}
                     label="Search Product"
@@ -73,9 +76,24 @@ const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose }) => {
                     }}
                 />
                 {
-                    (loading || !loaded) ?
-                        <SearchResult count={5} />
-                        :
+                    localSerchTerm.length === 0 && mobile && (
+                        <Empty
+                            description={
+                                <Typography
+                                    variant="body1"
+                                    color="text.secondary"
+                                >
+                                    Start Typing to search
+                                </Typography>
+                            }
+                        />
+                    )
+                }
+                {
+                    localSerchTerm.length > 0 && (loading || !loaded) && <SearchResult count={5} />
+                }
+                {
+                    localSerchTerm.length > 0 && !loading && loaded && (
                         <Stack
                             spacing={0.5}
                         >
@@ -93,26 +111,27 @@ const SearchModal = ({ searchTerm, open, setSearchTerm, handleClose }) => {
                                 ))
                             }
                         </Stack>
+                    )
                 }
                 {
-                    (loaded && products.length == 0 && !loading)
-                    &&
-                    <Stack
-                        sx={{
-                            py: 5
-                        }}
-                    >
-                        <Empty
-                            description={
-                                <Typography
-                                    variant="body1"
-                                    color="text.secondary"
-                                >
-                                    No Products Found
-                                </Typography>
-                            }
-                        />
-                    </Stack>
+                    (loaded && products.length == 0 && !loading) && (
+                        <Stack
+                            sx={{
+                                py: 5
+                            }}
+                        >
+                            <Empty
+                                description={
+                                    <Typography
+                                        variant="body1"
+                                        color="text.secondary"
+                                    >
+                                        No Products Found
+                                    </Typography>
+                                }
+                            />
+                        </Stack>
+                    )
                 }
             </Box>
         </Modal>

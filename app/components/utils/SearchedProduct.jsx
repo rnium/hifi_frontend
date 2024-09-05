@@ -22,6 +22,10 @@ const SearchedProduct = ({ product }) => {
                 >
                     <Typography
                         variant="body2"
+                        fontSize={{
+                            xs: '0.7rem',
+                            md: '1rem'
+                        }}
                         className="transition-all hover:text-red-600"
                     >
                         {product.title}

@@ -20,6 +20,11 @@ export default function CartDrawer({ open, setOpen, cartInfo, prodData, totalAmo
   const { removeProduct, decrementFromCart } = useRemoveFromCart();
   const router = useRouter();
 
+  const handleCheckoutClick = () => {
+    router.push('/checkout');
+    setOpen(false);
+  }
+
   return (
     <Drawer open={open} onClose={toggleDrawer(false)} anchor='right'>
       <Box sx={{ width: { xs: '250px', md: '350px' }, mt: 1.5 }} role="presentation" className='p-3'>
@@ -51,7 +56,7 @@ export default function CartDrawer({ open, setOpen, cartInfo, prodData, totalAmo
               disabled={totalItems === 0}
               color='secondary'
               icon={<ShoppingCartCheckoutIcon />}
-              onClick={() => router.push('/checkout')}
+              onClick={handleCheckoutClick}
               sx={{ px: 1 }}
             />
           </Stack>
