@@ -24,7 +24,7 @@ export const useGet = (url, auth_required = false, initialData = null) => {
         setLoading(false);
         setSuccess(false);
         setLoaded(false);
-        setError(null)
+        setError(null);
     }, [apiUrl, initialData])
 
     const perform_get = useCallback(async (params = {}) => {
@@ -41,7 +41,7 @@ export const useGet = (url, auth_required = false, initialData = null) => {
             });
             setData(res.data);
             setSuccess(true);
-            setLoaded(true)
+            setLoaded(true);
             setError(null);
         } catch (error) {
             setSuccess(false);

@@ -14,11 +14,12 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-    const { success, error, perform_post } = usePost(`${api_host}${auth_endpoints.logout}`, true);
+    const { success, error, perform_post, reset: requestReset } = usePost(`${api_host}${auth_endpoints.logout}`, true);
     const { reset } = useUser()
     useEffect(() => {
         if (success) {
             localStorage.removeItem(localstorage_keys.auth_token);
+            requestReset();
             reset();
         }
     }, [success])

@@ -29,7 +29,7 @@ const ProductSpecTables = ({ tables }) => {
                     {
                         tables.map((table, idx) => (
                             <>
-                                <StyledTableRow >
+                                <StyledTableRow key={idx}>
                                     <TableCell sx={{ px: 0, pb: 0 }} colSpan={2}>
                                         <Alert sx={{ mx: 0 }} icon={false} severity='error'>
                                             {table.title}

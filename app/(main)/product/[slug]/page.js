@@ -19,7 +19,7 @@ export const generateMetadata = async ({ params }) => {
 
 const ProductPageMain = async ({ params }) => {
   const product = await getAPIData(`${api_endpoints.view_product}${params.slug}/`, 'no-store');
-  const related_products = await getAPIData(`${api_endpoints.view_product}${params.slug}${api_suffixes.related_products}?limit=5`, 'no-store')
+  const related_products = await getAPIData(`${api_endpoints.view_product}${params.slug}${api_suffixes.related_products}`, 'no-store')
     
   return (
     <ProductPage

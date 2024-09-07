@@ -51,23 +51,32 @@ const Product = ({ product, related_products }) => {
             <Box sx={{ mt: 2 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
-                        <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
-                            <Typography
-                                variant='h6'
-                                color="primary"
-                                sx={{ mb: 1 }}
-                            >
-                                Specifications
-                            </Typography>
-                            <ProductSpecTables tables={product.spec_tables} />
-                        </Box>
+                        <Stack spacing={2}>
+                            <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
+                                <Typography
+                                    variant='h6'
+                                    color="primary"
+                                    sx={{ mb: 1 }}
+                                >
+                                    Specifications
+                                </Typography>
+                                <ProductSpecTables tables={product.spec_tables} />
+                            </Box>
+                            {/* <ProductReviews
+                                reviews={[]}
+                                product={product}
+                            /> */}
+                            <ProductQuestions
+                                product={product}
+                                sx={{ mt: 2 }}
+                            />
+                        </Stack>
+
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <Stack
                             spacing={2}
                         >
-                            <ProductReviews reviews={[]} />
-                            <ProductQuestions questions={[]} />
                             <RelatedProducts
                                 related_products={related_products}
                             />

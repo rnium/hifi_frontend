@@ -3,12 +3,18 @@ import { setAuthenticated, setData, setLoaded } from '@/redux/accountReducer';;
 import { useGet } from './useApi';
 import { useCallback, useEffect } from 'react';
 
-export const useUser = () => {
+
+export const useUserState = () => {
     const userInfo = useSelector(state => state.account.data);
     const userIsAuthenticated = useSelector(state => state.account.isAuthenticated);
     const userIsLoaded = useSelector(state => state.account.isLoaded);
+    return {userInfo, userIsAuthenticated, userIsLoaded}
+}
+
+export const useUser = () => {
+    const {userInfo, userIsAuthenticated, userIsLoaded} = useUserState();
     const dispatch = useDispatch();
-    const { data, loading, success, error, perform_get } = useGet(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/me/', true);
+    const { data, loading, success, error, perform_get, reset: requestReset } = useGet(process.env.NEXT_PUBLIC_API_HOST + 'auth/users/me/', true);
 
     useEffect(() => {
         if (!userIsLoaded) {
@@ -16,16 +22,21 @@ export const useUser = () => {
         }
     }, [userIsLoaded])
 
-    useEffect(() => {        
+    useEffect(() => {
+        console.log('userdata init', success, Boolean(error), loading);
         if ( !userIsLoaded && !loading && success && data) {
+            console.log('setting userdata now');
             dispatch(setData(data));
             dispatch(setLoaded(true));
             dispatch(setAuthenticated(true));
+            requestReset();
         } else if (error) {
+            console.log('Error setting userdata', error)
             dispatch(setLoaded(true));
             dispatch(setAuthenticated(false));
+            requestReset();
         }
-    }, [data, success, error, userIsLoaded, loading])
+    }, [data, success, error, userIsLoaded, loading, requestReset])
 
     const reset = useCallback(() => {
         dispatch(setLoaded(false));
