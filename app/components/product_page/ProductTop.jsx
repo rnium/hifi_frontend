@@ -103,7 +103,7 @@ const ProductTop = ({ product, inModal }) => {
                                             variant='body1'
                                             fontSize={{
                                                 xs: '0.8rem',
-                                                md: '1.2rem'
+                                                md: '1rem'
                                             }}
                                         >
                                             {f}

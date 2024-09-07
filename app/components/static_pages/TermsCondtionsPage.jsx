@@ -2,7 +2,7 @@ import React from 'react'
 import TopSection from './micro/TopSection'
 import TermsSection from './micro/TermsSection';
 import { Container, Divider } from '@mui/material';
-import { termsAndConditions, termsAndConditionsBangla } from '@/lib/t&c';
+import { termsAndConditions } from '@/lib/t&c';
 
 
 const TermsCondtionsPage = () => {
