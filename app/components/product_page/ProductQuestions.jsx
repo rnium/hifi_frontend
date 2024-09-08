@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useCallback, useMemo, useState } from 'react';
 import {
     Stack, Box, Typography, Divider
 } from '@mui/material';
@@ -10,14 +10,31 @@ import QuestionForm from './mircro/QuestionForm';
 import { useGet } from '@/hooks/useApi';
 import { api_endpoints, api_host, api_suffixes } from '@/lib/data';
 
+
 const ProductQuestions = ({ product }) => {
+    const question_api_url = `${api_host}${api_endpoints.view_product}${product.slug}${api_suffixes.questions}`;
     const {
-        data: questions, perform_get, loaded
-    } = useGet(`${api_host}${api_endpoints.view_product}${product.slug}${api_suffixes.questions}`, false, []);
+        data: questions_data, perform_get, loaded
+    } = useGet(question_api_url, false, []);
+    const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
         perform_get();
     }, [])
+
+    useEffect(() => {
+        if (questions_data?.results) {
+            setQuestions(questions_data.results)
+        }
+    }, [questions_data, setQuestions])
+
+    const insertQuestion = useCallback((q) => {
+        setQuestions(prevData => ([
+            ...prevData,
+            q
+        ]))
+    }, [setQuestions])
+
 
     return (
         <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
@@ -30,7 +47,11 @@ const ProductQuestions = ({ product }) => {
             </Typography>
             {
                 questions.map((r, idx) => (
-                    <Question key={idx} sx={{ mb: 1.5, p: 1 }} question={r} />
+                    <Question
+                        key={idx}
+                        sx={{ mb: 1.5, p: 1 }}
+                        question={r}
+                    />
                 ))
             }
             {
@@ -45,7 +66,10 @@ const ProductQuestions = ({ product }) => {
             }
 
             <Divider sx={{ my: 2 }} />
-            <QuestionForm />
+            <QuestionForm
+                api={question_api_url}
+                insertQuestion={insertQuestion}
+            />
         </Box>
     )
 }
