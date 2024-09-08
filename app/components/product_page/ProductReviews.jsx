@@ -1,14 +1,40 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react';
 import {
     Stack, Box, Typography, Divider
 } from '@mui/material';
 import { Empty } from 'antd';
 import Review from './mircro/Review';
 import ReviewForm from './mircro/ReviewForm';
+import { useGet } from '@/hooks/useApi';
+import { api_endpoints, api_host, api_suffixes } from '@/lib/data';
 
 
-const ProductReviews = ({reviews}) => {
+const ProductReviews = ({ slug }) => {
+    const review_api_url = `${api_host}${api_endpoints.view_product}${slug}${api_suffixes.reviews}`;
+    const {
+        data: reviews_data, perform_get, loaded
+    } = useGet(review_api_url, false, []);
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        perform_get();
+    }, [])
+
+    useEffect(() => {
+        if (reviews_data?.results) {
+            setReviews(reviews_data.results)
+        }
+    }, [reviews_data, setReviews])
+
+    const insertReview = useCallback((r) => {
+        setReviews(prevData => ([
+            ...prevData,
+            r
+        ]))
+    }, [setReviews])
+
     return (
         <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
             <Typography
@@ -32,7 +58,10 @@ const ProductReviews = ({reviews}) => {
             }
 
             <Divider sx={{ my: 2 }} />
-            <ReviewForm />
+            <ReviewForm 
+                insertReview={insertReview}
+                api={review_api_url}
+            />
         </Box>
     )
 }

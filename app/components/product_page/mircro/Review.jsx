@@ -2,17 +2,19 @@ import React from 'react';
 import { Typography, Avatar, Stack, Paper, Rating } from '@mui/material';
 import dateFormat from 'dateformat';
 
-const Review = (props) => {
-    let review = props.review;
+const Review = ({ review, sx = {} }) => {
     return (
-        <Paper sx={{ ...props.sx, p: 2 }} elevation={0} className='border rounded-lg' >
+        <Paper sx={{ ...sx, p: 2 }} elevation={0} className='border rounded-lg' >
             <Stack direction="row" spacing={1} alignItems="center">
-                <Avatar src={review.user_avatar} sx={{ width: 40, height: 40 }} />
+                <Avatar src={review.account.avatar} sx={{ width: 40, height: 40 }} />
                 <Stack>
-                    <Typography color="secondary" variant='body1'>{review.name}</Typography>
-                    <Typography color="text.secondary" variant='caption'>{dateFormat(review.posted_on, "h:MM TT, mmmm dS, yyyy")}</Typography>
+                    <Typography color="secondary" variant='body1'>
+                        {review.account?.first_name} {review?.account?.last_name ? review.account.last_name : null}
+                    </Typography>
+                    <Typography color="text.secondary" variant='caption'>
+                        {dateFormat(review.added_at, "h:MM TT, mmmm dS, yyyy")}
+                    </Typography>
                 </Stack>
-
             </Stack>
             <Rating
                 value={review.rating}
@@ -23,10 +25,8 @@ const Review = (props) => {
                 readOnly
             />
             <Typography variant='body2' >
-                {review.review}
+                {review.description}
             </Typography>
-
-
         </Paper>
     )
 }

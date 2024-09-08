@@ -62,13 +62,11 @@ const Product = ({ product, related_products }) => {
                                 </Typography>
                                 <ProductSpecTables tables={product.spec_tables} />
                             </Box>
-                            {/* <ProductReviews
-                                reviews={[]}
-                                product={product}
-                            /> */}
+                            <ProductReviews
+                                slug={product.slug}
+                            />
                             <ProductQuestions
-                                product={product}
-                                sx={{ mt: 2 }}
+                                slug={product.slug}
                             />
                         </Stack>
 

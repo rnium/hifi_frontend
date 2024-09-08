@@ -11,8 +11,8 @@ import { useGet } from '@/hooks/useApi';
 import { api_endpoints, api_host, api_suffixes } from '@/lib/data';
 
 
-const ProductQuestions = ({ product }) => {
-    const question_api_url = `${api_host}${api_endpoints.view_product}${product.slug}${api_suffixes.questions}`;
+const ProductQuestions = ({ slug }) => {
+    const question_api_url = `${api_host}${api_endpoints.view_product}${slug}${api_suffixes.questions}`;
     const {
         data: questions_data, perform_get, loaded
     } = useGet(question_api_url, false, []);
