@@ -61,7 +61,7 @@ const ProductQuestions = ({ slug }) => {
                 ))
             }
             {
-                loaded && questions_data?.total_pages && (
+                loaded && questions_data?.total_pages && questions_data.total_pages > 1 && (
                     <Stack
                         justifyContent="center"
                         alignItems="center"

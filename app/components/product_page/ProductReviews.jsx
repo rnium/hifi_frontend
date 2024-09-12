@@ -56,7 +56,7 @@ const ProductReviews = ({ slug }) => {
                 ))
             }
             {
-                loaded && reviews_data?.total_pages && (
+                loaded && reviews_data?.total_pages && reviews_data.total_pages > 1 && (
                     <Stack
                         justifyContent="center"
                         alignItems="center"
