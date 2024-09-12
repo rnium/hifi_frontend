@@ -66,7 +66,7 @@ const ProductTop = ({ product, inModal }) => {
                         />
                         <Link href="#">
                             <Stack direction="row" spacing={1} alignItems="center">
-                                <Typography variant='body1' container="span">{product.rating}</Typography>
+                                <Typography variant='body1' container="span">{Math.round(product.rating * 100) / 100}</Typography>
                                 <Typography variant='body2' container="span" color="text.secondary">out of {product.num_ratings} Reviews</Typography>
                             </Stack>
                         </Link>

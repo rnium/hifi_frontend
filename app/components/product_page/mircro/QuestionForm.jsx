@@ -24,6 +24,7 @@ const QuestionForm = ({ insertQuestion, api }) => {
         if (success && new_q) {
             message.success("Question Posted");
             insertQuestion(new_q);
+            setDescription("")
             reset();
         }
         if (error) {
@@ -43,16 +44,17 @@ const QuestionForm = ({ insertQuestion, api }) => {
 
     return (
         <Stack alignItems="center" spacing={1}>
-            <Typography color="secondary" variant='body1'>Ask A Question</Typography>
             {
                 userIsAuthenticated ?
                     <>
+                        <Typography color="secondary" variant='body1'>Ask A Question</Typography>
                         <TextField
                             fullWidth
                             label="Query details"
                             variant='filled'
                             color='secondary'
                             multiline
+                            value={description}
                             onChange={handleChange}
                             rows={3}
                         />
@@ -60,7 +62,7 @@ const QuestionForm = ({ insertQuestion, api }) => {
                             onClick={handleSubmit}
                             variant='contained'
                             fullWidth
-                            disabled={loading}
+                            disabled={loading || description.length === 0}
                         >
                             Post Question
                         </Button>

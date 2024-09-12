@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback, useMemo, useState } from 'react';
 import {
-    Stack, Box, Typography, Divider
+    Stack, Box, Typography, Divider, Pagination
 } from '@mui/material';
 import { Empty } from 'antd';
 import Question from './mircro/Question';
@@ -35,6 +35,12 @@ const ProductQuestions = ({ slug }) => {
         ]))
     }, [setQuestions])
 
+    const handleChange = (event, value) => {
+        perform_get({
+            page: value
+        });
+    }
+
 
     return (
         <Box sx={{ bgcolor: '#ffffff', borderRadius: '10px', p: 3 }}>
@@ -55,7 +61,22 @@ const ProductQuestions = ({ slug }) => {
                 ))
             }
             {
-                loaded && questions.length === 0 && (
+                loaded && questions_data?.total_pages && (
+                    <Stack
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Pagination 
+                            count={questions_data.total_pages}
+                            onChange={handleChange}
+                            color="primary"
+                            variant='outlined'
+                        />
+                    </Stack>
+                )
+            }
+            {
+                loaded && (questions.length === 0) && (
                     <Stack justifyContent="center" alignItems="center" sx={{ my: 5 }}>
                         <Empty
                             image={Empty.PRESENTED_IMAGE_SIMPLE}

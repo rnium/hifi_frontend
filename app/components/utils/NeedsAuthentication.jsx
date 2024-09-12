@@ -1,6 +1,6 @@
 import { Typography, Box, Stack } from "@mui/material";
 import Image from "next/image";
-import auth_img from '@/public/images/key.svg';
+import auth_img from '@/public/images/login.png';
 
 const NeedsAuthentication = ({ description = "Authentication Required" }) => {
     return (
@@ -12,7 +12,7 @@ const NeedsAuthentication = ({ description = "Authentication Required" }) => {
             <Image
                 src={auth_img}
                 alt="Icon"
-                width={60}
+                width={50}
             />
             <Typography color='text.secondary'>
                 {description}
