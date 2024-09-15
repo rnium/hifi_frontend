@@ -3,7 +3,7 @@
   z-index: 99999;
 }
 .mainappbar .topstrip {
-  background-color: #d32f2f;
+  background-image: linear-gradient(to right, #cf3c3c, #562962);
   padding: 3px 0;
 }
 @keyframes blinktext {

@@ -15,7 +15,9 @@ $topstrip-text: #e1e7ec;
     background-color: #ffffff;
     z-index: 99999;
     .topstrip {
-        background-color: #d32f2f;
+        // background-color: #404a6f;
+        background-image: linear-gradient(to right, #cf3c3c, #562962);
+        // border-bottom: 1px dotted gray;
         padding: 3px 0;
         @keyframes blinktext {
             0% {color: $topstrip-text;}
