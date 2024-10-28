@@ -191,6 +191,9 @@ ul.navlinks li:hover {
   padding: 4px 10px;
   display: inline-block;
   color: #415864;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 .product-categories .content ul li .cat-item .sub-menu ul li a {
   width: 100%;

@@ -214,6 +214,9 @@ ul.navlinks {
                                 padding: 4px 10px;
                                 display: inline-block;
                                 color: #415864;
+                                word-wrap: break-word;
+                                overflow-wrap: break-word;
+                                white-space: normal;
                                 a {
                                     width: 100%;                                    
                                     display: inline-block;
