@@ -8,7 +8,7 @@
 $active-color: #ffbcbc;
 $active-color-dark: #d32f2f;
 $menu-bg: #d32f2f;
-$shadow: rgba(126, 125, 125, 0.2);
+$shadow: rgba(126, 125, 125, 0.3);
 $topstrip-text: #e1e7ec;
 
 .mainappbar {
@@ -65,7 +65,7 @@ $topstrip-text: #e1e7ec;
     .btn {
         @include flexer(row);
         padding: 7px 1rem;
-        background-color: #8a8a8a;
+        background-color: #b9b9b9;
         cursor: pointer;
         .icon, .title {
             color: white;
@@ -191,28 +191,36 @@ ul.navlinks {
                         top: 110%;
                         z-index: 100;
                         white-space: nowrap;
-                        background-color: rgba(255, 255, 255, 0.9);
-                        color: #566877;
+                        background-color: white;
                         // border: 1px solid #fa6363;
                         border-top: 3px solid #fa6363;
                         backdrop-filter: blur(10px);
-                        padding: 10px 20px 10px 10px;
-                        box-shadow: 2px 2px 5px $shadow, -2px 2px 5px $shadow;
+                        padding: 5px 0; 
+                        box-shadow: 2px 2px 10px $shadow, -2px 2px 10px $shadow;
                         border-radius: 0 0 3px 3px;
                         opacity: 0;
                         visibility: hidden;
                         transition: all 150ms;
+                        display: flex;
+                        flex-direction: row;
+                        
                         ul {
                             @include flexer(column);
                             align-items: flex-start;
+                            justify-content: flex-start;
                             li {
-                                font-size: 0.9rem;
-                                transition: all 200ms;
+                                width: 150px;
+                                cursor: pointer;
+                                padding: 4px 10px;
+                                display: inline-block;
+                                color: #415864;
                                 a {
-                                    transition: all 200ms;
-                                    &:hover {
-                                        color: $menu-bg;
-                                    }
+                                    width: 100%;                                    
+                                    display: inline-block;
+                                }
+                                &:hover {
+                                    background-color: $menu-bg;
+                                    color: white;
                                 }
                             }
                         }
