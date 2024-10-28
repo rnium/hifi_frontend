@@ -211,6 +211,9 @@ ul.navlinks li:hover {
   opacity: 1;
   visibility: visible;
 }
+.product-categories .content ul li:hover .cat-item {
+  color: #d32f2f;
+}
 
 .searchbox {
   position: relative;

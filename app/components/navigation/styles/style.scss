@@ -239,6 +239,11 @@ ul.navlinks {
                         }
                     }
                 }
+                &:hover {
+                    .cat-item {
+                        color: $menu-bg;
+                    }
+                }
             }
         }
     }
