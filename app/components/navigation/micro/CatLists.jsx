@@ -12,8 +12,8 @@ const CatLists = ({ items }) => {
     return (
         <>
             {
-                item_groups.map(grp_cats => (
-                    <ul>
+                item_groups.map((grp_cats, idx) => (
+                    <ul key={idx}>
                         {
                             grp_cats.map(scat => (
                                 <li key={scat.slug}>
