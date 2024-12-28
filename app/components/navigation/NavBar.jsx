@@ -21,7 +21,11 @@ import { links } from '@/lib/site_data';
 
 
 const NavBar = async ({ homepage = false }) => {
-  const mainCategories = await getAPIData(api_endpoints.main_categories, 'force-cache');
+  const mainCategories = await getAPIData(
+    api_endpoints.main_categories,
+    null,
+    60
+  );
   const facebook = links?.socials.find(social => social.name === 'Facebook')
   return (
     <AppBar className='mainappbar border-b shadow-md' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
