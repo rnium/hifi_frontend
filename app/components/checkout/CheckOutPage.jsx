@@ -25,7 +25,7 @@ const required_message = 'This field is required'
 
 const CheckOutPage = () => {
     const router = useRouter();
-    const { cartInfo, prodData, totalAmount, totalItems, serverSynced } = useCart();
+    const { cartInfo, prodData, totalAmount, totalItems, allInStock, serverSynced } = useCart();
     const { userIsAuthenticated, userIsLoaded, userInfo } = useUser();
     const addToCart = useAddToCart();
     const { removeProduct, decrementFromCart } = useRemoveFromCart();
@@ -386,9 +386,18 @@ const CheckOutPage = () => {
                                                         <Typography>৳ {(totalAmount + (shipping_charges[values.location] * totalItems) - couponDiscount).toLocaleString('en-in')}</Typography>
                                                     </Stack>
                                                 </Stack>
+                                                {
+                                                    allInStock !== undefined && !allInStock && (
+                                                        <Alert severity='error'>
+                                                            <AlertTitle>Out of Stock</AlertTitle>
+                                                            Some products are out of stock. Please remove them from the cart to proceed.
+                                                        </Alert>
+                                                    )
+                                                }
                                                 <Button
                                                     variant='contained'
                                                     // disabled={isSubmitting}
+                                                    disabled={!allInStock ?? false}
                                                     onClick={handleSubmit}
                                                     fullWidth
                                                 >

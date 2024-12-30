@@ -15,6 +15,7 @@ const cartSlice = createSlice({
         cartProductData: [],
         cartTotalItems: 0,
         cartTotalAmount: 0,
+        allInStock: undefined,
     },
     reducers: {
         setCartInfo: (state, action) => {
@@ -37,6 +38,9 @@ const cartSlice = createSlice({
         setCartTotalAmount: (state, action) => {
             state.cartTotalAmount = action.payload;
         },
+        setAllInStock: (state, action) => {
+            state.allInStock = action.payload;
+        },
     }
 })
 
@@ -46,6 +50,7 @@ export const {
     setServerSynced, 
     setLocalStorageLoaded,
     setCartTotalAmount,
-    setCartTotalItems
+    setCartTotalItems,
+    setAllInStock,
 } = cartSlice.actions;
 export default cartSlice.reducer;

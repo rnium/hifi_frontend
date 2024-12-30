@@ -12,6 +12,7 @@ import {
     setLocalStorageLoaded,
     setCartTotalItems,
     setCartTotalAmount,
+    setAllInStock,
     cart_storage_key,
     cart_id_storage_key
 } from "@/redux/cartReducer";
@@ -30,6 +31,7 @@ export const useCart = () => {
     const localStorageLoaded = useSelector(state => state.cart.localStorageLoaded);
     const totalAmount = useSelector(state => state.cart.cartTotalAmount);
     const totalItems = useSelector(state => state.cart.cartTotalItems);
+    const allInStock = useSelector(state => state.cart.allInStock);
     const { data, perform_post, success } = usePost(`${process.env.NEXT_PUBLIC_API_HOST}${api_endpoints.cartproducts}`, true, postConfig, []);
 
     const dispatch = useDispatch();
@@ -58,6 +60,7 @@ export const useCart = () => {
             dispatch(setCartProductData(data.prod_data));
             dispatch(setCartTotalItems(data.total_items));
             dispatch(setCartTotalAmount(data.total_amount));
+            dispatch(setAllInStock(data.all_in_stock));
         }
     }, [data, success])
 
@@ -70,7 +73,7 @@ export const useCart = () => {
         dispatch(setCartTotalAmount(0));
     }, [])
 
-    return { prodData, cartInfo, totalAmount, totalItems, success, serverSynced, afterOrderCleanUp };
+    return { prodData, cartInfo, totalAmount, totalItems, allInStock, success, serverSynced, afterOrderCleanUp };
 }
 
 

@@ -8,6 +8,7 @@ import { RiCloseLine, RiShoppingCartLine } from '@remixicon/react';
 
 function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decrementFromCart }) {
     const product_link = "/product/" + product.slug;
+    console.log(product);
     return (
         <Card
             className='rounded border shadow-sm'
@@ -18,7 +19,7 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
             }}
             elevation={0}
         >
-            <Image 
+            <Image
                 src={product.cover}
                 width={120}
                 height={120}
@@ -36,6 +37,17 @@ function ProductCheckout({ product, cartInfo, addToCart, removeProduct, decremen
                     <Typography variant='caption' color="secondary">Unit Price: </Typography>
                     <Typography variant='caption'>{(product.priceSale || product.price).toLocaleString('en-in') + "৳"}</Typography>
                 </Stack>
+                {
+                    !product.in_stock && (
+                        <Stack direction="row" alignItems="center" gap={1}>
+                            <Chip
+                                label="Out of Stock"
+                                size="small"
+                                color="error"
+                            />
+                        </Stack>
+                    )
+                }
                 <Stack sx={{ mt: 1 }} direction="row" alignItems="center" gap={2} justifyContent="space-between">
                     <div className="p-count-inp">
                         <button onClick={() => addToCart(product.id)}>+</button>
