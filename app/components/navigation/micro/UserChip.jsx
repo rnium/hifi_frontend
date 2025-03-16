@@ -38,10 +38,10 @@ const UserChip = () => {
     if (!userIsLoaded) {
         return (
             <Stack direction="row" alignItems="center" spacing={1}>
-                <Skeleton width="40px" height="40px" variant='circular' />
+                <Skeleton sx={{bgcolor: 'gray'}} width="40px" height="40px" variant='circular' />
                 <Stack spacing={0.5}>
-                    <Skeleton width="70px" height="10px" variant='rounded' />
-                    <Skeleton width="100px" height="20px" variant='rounded' />
+                    <Skeleton sx={{bgcolor: 'gray'}} width="70px" height="10px" variant='rounded' />
+                    <Skeleton sx={{bgcolor: 'gray'}} width="100px" height="20px" variant='rounded' />
                 </Stack>
             </Stack>
         )
@@ -60,8 +60,8 @@ const UserChip = () => {
                             />
                         </IconButton>
                         <Stack justifyItems="center">
-                            <Typography variant='caption' color="text.secondary" sx={{ "&:hover": { color: 'primary' }, fontSize: '0.7rem' }} >Welcome</Typography>
-                            <Typography variant='body1' color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >{userInfo.first_name}</Typography>
+                            <Typography variant='caption' color="white" sx={{ "&:hover": { color: 'primary' }, fontSize: '0.7rem' }} >Welcome</Typography>
+                            <Typography variant='body1' color="white" sx={{ "&:hover": { color: 'primary' } }} >{userInfo.first_name}</Typography>
 
                         </Stack>
                     </> :
@@ -71,7 +71,7 @@ const UserChip = () => {
                             alt='Avatar'
                         />
                         <Link href={pathname !== '/login' ? `/login?next=${pathname}` : `/login`}>
-                            <Typography color="text.primary" sx={{ "&:hover": { color: 'primary' } }} >User Login</Typography>
+                            <Typography color="white" sx={{ "&:hover": { color: 'primary' } }} >User Login</Typography>
                         </Link>
                     </>
             }

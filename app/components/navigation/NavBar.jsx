@@ -2,9 +2,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Image from 'next/image';
-import hifilogo from '@/public/f5s2df.svg';
 import hifilogostripped from '@/public/hifi_logo_stripped.png';
-import { Stack, Badge, IconButton, Button, Typography, Box, Divider, Container } from '@mui/material';
+import { Stack, Box, Divider, Container } from '@mui/material';
 import Link from 'next/link';
 import UserChip from './micro/UserChip';
 import MobileMenu from './MobileMenu';
@@ -31,7 +30,7 @@ const NavBar = async ({ homepage = false }) => {
     <AppBar className='mainappbar border-b shadow-md' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
       <Box
         className="topstrip"
-        sx={{ display: { xs: 'none', md: 'block' } }}
+        sx={{ display: { xs: 'none', md: 'none' } }}
       >
         <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Stack direction="row" spacing={2} alignItems="center">
@@ -89,7 +88,7 @@ const NavBar = async ({ homepage = false }) => {
           </Stack>
         </Container>
       </Box>
-      <Toolbar sx={{ py: 2 }} >
+      <Toolbar sx={{ py: 2, backgroundColor: '#22223b' }} >
 
         <Box
           sx={{
@@ -97,7 +96,7 @@ const NavBar = async ({ homepage = false }) => {
             display: { xs: 'flex', md: 'none' },
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <MobileMenu cat_data={mainCategories} />
@@ -114,14 +113,11 @@ const NavBar = async ({ homepage = false }) => {
         </Box>
 
         <Box
-          sx={{ display: { xs: 'none', md: 'flex' }, width: '100%' }}
+          sx={{ display: { xs: 'none', md: 'flex' }, width: '100%', px: 6 }}
         >
           <Stack alignItems="center" direction="row" spacing={2}>
             <Link href="/">
-              <Image src={hifilogo} alt='Hifi Computer Logo' width={60} />
-            </Link>
-            <Link href="/">
-              <Typography className='brand' color="primary" variant='h4'>Hi-Fi Computer</Typography>
+              <Image src={hifilogostripped} alt="HiFi Logo" width={200} />
             </Link>
           </Stack>
 

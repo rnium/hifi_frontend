@@ -13,7 +13,6 @@ const cursorTypography = {
     cursor: 'pointer'
 };
 
-
 const Shoppingbtn = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -33,7 +32,6 @@ const Shoppingbtn = () => {
         setDrawerOpen(true);
     }
 
-
     return (
         <>
             <Stack
@@ -45,15 +43,15 @@ const Shoppingbtn = () => {
                 <IconButton
                     onClick={handleWishlistClick}
                 >
-                    <Badge badgeContent={products.length} color="primary" variant='dot'>
-                        <FavoriteBorderIcon />
+                    <Badge badgeContent={products.length} color="white" variant='dot'>
+                        <FavoriteBorderIcon sx={{ fill: 'white' }} />
                     </Badge>
                 </IconButton>
                 <IconButton
                     onClick={handleCartClick}
                 >
-                    <Badge badgeContent={totalItems} color="primary" variant='dot'>
-                        <ShoppingCartOutlinedIcon />
+                    <Badge badgeContent={totalItems} color="white" variant='dot'>
+                        <ShoppingCartOutlinedIcon sx={{ fill: 'white' }} />
                     </Badge>
                 </IconButton>
             </Stack>
@@ -68,10 +66,10 @@ const Shoppingbtn = () => {
             >
                 <IconButton>
                     <Badge badgeContent={products.length} color="primary" variant='dot'>
-                        <FavoriteBorderIcon />
+                        <FavoriteBorderIcon sx={{ fill: 'red' }} />
                     </Badge>
                 </IconButton>
-                <Typography style={cursorTypography} color="text.primary" variant='body2'>Wishlist</Typography>
+                <Typography style={cursorTypography} color="white" variant='body2'>Wishlist</Typography>
             </Stack>
             <Stack
                 sx={{
@@ -85,12 +83,12 @@ const Shoppingbtn = () => {
             >
                 <IconButton>
                     <Badge badgeContent={totalItems} color="primary" variant='dot'>
-                        <ShoppingCartOutlinedIcon />
+                        <ShoppingCartOutlinedIcon sx={{ fill: 'red' }} />
                     </Badge>
                 </IconButton>
                 <Stack style={cursorTypography}>
-                    <Typography variant='body2' color="text.primary">My Cart</Typography>
-                    <Typography color="primary" variant='body2' fontSize="0.7rem">৳ {totalAmount.toLocaleString('en-in')}</Typography>
+                    <Typography variant='body2' color="white">My Cart</Typography>
+                    <Typography color="beige" variant='body2' fontSize="0.7rem">৳ {totalAmount.toLocaleString('en-in')}</Typography>
                 </Stack>
             </Stack>
             <WishListMenu
