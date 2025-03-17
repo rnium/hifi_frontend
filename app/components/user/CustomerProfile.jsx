@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Avatar, Card, CardContent, CardHeader, Typography, Table, TableBody, TableCell, TableHead, TableRow, Badge, IconButton } from '@mui/material'
+import { Avatar, Card, CardContent, CardHeader, Typography, Table, TableBody, TableCell, TableHead, TableRow, Badge, IconButton } from '@mui/material'
 import { Mail as MailIcon, Phone as PhoneIcon, LocationOn as LocationOnIcon, Edit as EditIcon } from '@mui/icons-material'
+import ProfileEditDialog from './ProfileEditDialog'
 
 const CustomerProfileWithOrders = () => {
   const [profile, setProfile] = useState({
@@ -128,76 +129,14 @@ const CustomerProfileWithOrders = () => {
         </CardContent>
       </Card>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Edit Profile</DialogTitle>
-        <DialogContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <TextField
-                id="profilePicture"
-                name="profilePicture"
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                fullWidth
-              />
-            </div>
-            <div className="space-y-2">
-              <TextField
-                id="name"
-                name="name"
-                label="Name"
-                value={profile.name}
-                onChange={handleInputChange}
-                required
-                fullWidth
-              />
-            </div>
-            <div className="space-y-2">
-              <TextField
-                id="email"
-                name="email"
-                label="Email"
-                type="email"
-                value={profile.email}
-                onChange={handleInputChange}
-                required
-                fullWidth
-              />
-            </div>
-            <div className="space-y-2">
-              <TextField
-                id="phone"
-                name="phone"
-                label="Phone"
-                value={profile.phone}
-                onChange={handleInputChange}
-                required
-                fullWidth
-              />
-            </div>
-            <div className="space-y-2">
-              <TextField
-                id="address"
-                name="address"
-                label="Address"
-                value={profile.address}
-                onChange={handleInputChange}
-                required
-                fullWidth
-              />
-            </div>
-            <DialogActions>
-              <Button onClick={() => setOpen(false)} color="primary">
-                Cancel
-              </Button>
-              <Button type="submit" color="primary">
-                Save Changes
-              </Button>
-            </DialogActions>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <ProfileEditDialog
+        open={open}
+        handleClose={() => setOpen(false)}
+        profile={profile}
+        handleInputChange={handleInputChange}
+        handleFileChange={handleFileChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   )
 }
