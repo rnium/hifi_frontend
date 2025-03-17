@@ -57,6 +57,7 @@ const UserChip = () => {
                             <Avatar
                                 sx={{ width: 40, height: 40 }}
                                 alt='Avatar'
+                                src={userInfo?.avatar || '/images/avatar-3.svg'}
                             />
                         </IconButton>
                         <Stack justifyItems="center">
