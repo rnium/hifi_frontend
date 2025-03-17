@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { Avatar, Typography, Stack, Skeleton, Popover, MenuItem, IconButton } from '@mui/material';
+import { Avatar, Typography, Stack, Skeleton, Popover, MenuItem, IconButton, Divider } from '@mui/material';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useUser } from '@/hooks/useUser';
@@ -82,6 +82,23 @@ const UserChip = () => {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
+                <MenuItem
+                    disableRipple
+                    disableTouchRipple
+                    onClick={() => { /* Navigate to My Orders */ }}
+                    sx={{ typography: 'body2', py: 1.5 }}
+                >
+                    My Orders
+                </MenuItem>
+                <MenuItem
+                    disableRipple
+                    disableTouchRipple
+                    onClick={() => { /* Navigate to My Account */ }}
+                    sx={{ typography: 'body2', py: 1.5 }}
+                >
+                    My Account
+                </MenuItem>
+                <Divider />
                 <MenuItem
                     disableRipple
                     disableTouchRipple
