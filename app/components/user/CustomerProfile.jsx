@@ -10,15 +10,7 @@ import Spinner from '../utils/Spinner';
 
 const CustomerProfileWithOrders = () => {
   const { userInfo, userIsAuthenticated, userIsLoaded } = useUserState();
-  const [profile, setProfile] = useState({
-    name: 'Jane Doe',
-    email: 'jane.doe@example.com',
-    phone: '(555) 123-4567',
-    address: '123 Main St, Anytown, AN 12345',
-    avatar_url: null
-  })
 
-  const [profilePicture, setProfilePicture] = useState(null)
   const [open, setOpen] = useState(false)
 
   const [orders, setOrders] = useState([
@@ -28,29 +20,6 @@ const CustomerProfileWithOrders = () => {
     { id: '1004', date: '2023-07-05', total: 99.99, status: 'processing', image: '/placeholder.svg?height=80&width=80' },
     { id: '1005', date: '2023-07-12', total: 189.99, status: 'shipped', image: '/placeholder.svg?height=80&width=80' },
   ])
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setProfile(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleFileChange = (e) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setProfilePicture(reader.result)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Here you would typically send the updated profile to your backend
-    console.log('Updated profile:', { ...profile, profilePicture })
-    setOpen(false)
-  }
 
   if (!userIsLoaded) {
     return (
@@ -155,9 +124,6 @@ const CustomerProfileWithOrders = () => {
         open={open}
         handleClose={() => setOpen(false)}
         profile={userInfo}
-        handleInputChange={handleInputChange}
-        handleFileChange={handleFileChange}
-        handleSubmit={handleSubmit}
       />
     </div>
   )
