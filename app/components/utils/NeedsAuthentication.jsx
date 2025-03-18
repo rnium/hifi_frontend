@@ -2,10 +2,10 @@ import { Typography, Box, Stack } from "@mui/material";
 import Image from "next/image";
 import auth_img from '@/public/images/login.png';
 
-const NeedsAuthentication = ({ description = "Authentication Required" }) => {
+const NeedsAuthentication = ({ description = "Authentication Required", sx={} }) => {
     return (
         <Stack
-            sx={{ py: 3 }}
+            sx={{ py: 3, ...sx }}
             alignItems="center"
             spacing={1}
         >

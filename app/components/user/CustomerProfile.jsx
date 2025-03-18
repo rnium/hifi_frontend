@@ -1,11 +1,15 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Avatar, Card, CardContent, CardHeader, Typography, Table, TableBody, TableCell, TableHead, TableRow, Badge, IconButton } from '@mui/material'
 import { Mail as MailIcon, Phone as PhoneIcon, LocationOn as LocationOnIcon, Edit as EditIcon } from '@mui/icons-material'
-import ProfileEditDialog from './ProfileEditDialog'
+import ProfileEditDialog from './ProfileEditDialog';
+import { useUserState } from '@/hooks/useUser';
+import NeedsAuthentication from '../utils/NeedsAuthentication';
+import Spinner from '../utils/Spinner';
 
 const CustomerProfileWithOrders = () => {
+  const { userInfo, userIsAuthenticated, userIsLoaded } = useUserState();
   const [profile, setProfile] = useState({
     name: 'Jane Doe',
     email: 'jane.doe@example.com',
@@ -48,6 +52,24 @@ const CustomerProfileWithOrders = () => {
     setOpen(false)
   }
 
+  if (!userIsLoaded) {
+    return (
+      <Spinner 
+        description='Loading your profile...'
+      />
+    )
+  }
+
+  if (!userIsAuthenticated) {
+    return (
+      <NeedsAuthentication 
+        description='Please login to view your profile'
+        sx={{my: 10}}
+      />
+    )
+  }
+    
+
   return (
     <div className="container mx-auto p-4 space-y-8">
       <Card className="w-full" elevation={0}>
@@ -59,28 +81,28 @@ const CustomerProfileWithOrders = () => {
             </IconButton>
           }
         />
-        <CardContent sx={{pt: 0}}>
+        <CardContent sx={{ pt: 0 }}>
           <Typography variant="body2" color="textSecondary" component="p">
             View your account details
           </Typography>
           <div className="flex flex-col md:flex-row gap-8 mt-7">
             <div className="flex flex-col items-center space-y-4">
-              <Avatar src={profile?.avatar_url || '/images/avatar-3.svg'} alt={profile.name} style={{ width: 160, height: 160 }} />
-              <Typography variant="h5">{profile.name}</Typography>
+              <Avatar src={userInfo?.avatar || '/images/avatar-3.svg'} alt={userInfo.name} style={{ width: 160, height: 160 }} />
+              <Typography variant="h5">{userInfo.first_name}</Typography>
             </div>
             <div className="flex-grow space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center space-x-2">
                   <MailIcon />
-                  <span>{profile.email}</span>
+                  <span>{userInfo.email}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <PhoneIcon />
-                  <span>{profile.phone}</span>
+                  <span>{userInfo.phone}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <LocationOnIcon />
-                  <span>{profile.address}</span>
+                  <span>{userInfo.address}</span>
                 </div>
               </div>
             </div>
@@ -115,7 +137,7 @@ const CustomerProfileWithOrders = () => {
                       <Badge
                         color={
                           order.status === 'delivered' ? 'primary' :
-                          order.status === 'shipped' ? 'secondary' : 'default'
+                            order.status === 'shipped' ? 'secondary' : 'default'
                         }
                       >
                         {order.status}
@@ -132,7 +154,7 @@ const CustomerProfileWithOrders = () => {
       <ProfileEditDialog
         open={open}
         handleClose={() => setOpen(false)}
-        profile={profile}
+        profile={userInfo}
         handleInputChange={handleInputChange}
         handleFileChange={handleFileChange}
         handleSubmit={handleSubmit}

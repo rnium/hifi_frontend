@@ -1,7 +1,54 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 
-const ProfileEditDialog = ({ open, handleClose, profile, handleInputChange, handleFileChange, handleSubmit }) => {
+const ProfileEditDialog = ({ open, handleClose, profile }) => {
+  const [formData, setFormData] = useState({
+    first_name: '',
+    email: '',
+    phone: '',
+    address: '',
+    avatar_b64: ''
+  })
+
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        first_name: profile.first_name,
+        email: profile.email,
+        phone: profile.phone,
+        address: profile.address,
+      })
+    }
+  }, [profile])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }))
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          avatar_b64: reader.result
+        }))
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // handle form submission logic
+    console.log('Updated profile:', formData)
+  }
+
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle>Edit Profile</DialogTitle>
@@ -10,9 +57,9 @@ const ProfileEditDialog = ({ open, handleClose, profile, handleInputChange, hand
           <div className="space-y-2 mt-3">
             <TextField
               id="name"
-              name="name"
+              name="first_name"
               label="Name"
-              value={profile.name}
+              value={formData.first_name}
               onChange={handleInputChange}
               required
               fullWidth
@@ -24,7 +71,7 @@ const ProfileEditDialog = ({ open, handleClose, profile, handleInputChange, hand
               name="email"
               label="Email"
               type="email"
-              value={profile.email}
+              value={formData.email}
               onChange={handleInputChange}
               required
               fullWidth
@@ -35,7 +82,7 @@ const ProfileEditDialog = ({ open, handleClose, profile, handleInputChange, hand
               id="phone"
               name="phone"
               label="Phone"
-              value={profile.phone}
+              value={formData.phone}
               onChange={handleInputChange}
               required
               fullWidth
@@ -46,7 +93,7 @@ const ProfileEditDialog = ({ open, handleClose, profile, handleInputChange, hand
               id="address"
               name="address"
               label="Address"
-              value={profile.address}
+              value={formData.address}
               onChange={handleInputChange}
               required
               fullWidth
