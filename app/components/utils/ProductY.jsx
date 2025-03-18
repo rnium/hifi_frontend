@@ -22,7 +22,6 @@ const ProductY = ({ product }) => {
             <div className="actions">
                 <ProductHoverActions  
                     product={product}
-                    showWishlist
                 />
             </div>
             <CardContent sx={{ minHeight: '340px', display: 'flex', flexDirection: 'column' }}>

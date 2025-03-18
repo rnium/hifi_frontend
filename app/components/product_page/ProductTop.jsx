@@ -11,12 +11,9 @@ import './styles/style.css';
 import ProductAction from './ProductAction';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DisplayImage from './mircro/DisplayImage';
-import { useAddToWishlistWithMessage } from '@/hooks/useWishList';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
 const ProductTop = ({ product, inModal }) => {
-    const add2wishlist = useAddToWishlistWithMessage();
     return (
         <Grid container spacing={4} >
             <Grid item xs={12} md={5}>
@@ -29,13 +26,6 @@ const ProductTop = ({ product, inModal }) => {
                         fontSize={{ xs: '1.2rem', md: '1.5rem' }}
                     >
                         {product.title}
-                        <div
-                            className="inline-block ms-1"
-                        >
-                            <IconButton onClick={() => add2wishlist(product.id)}>
-                                <FavoriteBorderIcon />
-                            </IconButton>
-                        </div>
                     </Typography>
                     <Stack direction="row" spacing={1}>
                         {
