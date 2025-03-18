@@ -14,8 +14,8 @@ const UserChip = () => {
     const [open, setOpen] = useState(null);
     const { logout, success } = useLogout();
     const pathname = usePathname();
-    
-    
+
+
     const handleOpen = (event) => {
         setOpen(event.currentTarget);
     };
@@ -38,10 +38,10 @@ const UserChip = () => {
     if (!userIsLoaded) {
         return (
             <Stack direction="row" alignItems="center" spacing={1}>
-                <Skeleton sx={{bgcolor: 'gray'}} width="40px" height="40px" variant='circular' />
+                <Skeleton sx={{ bgcolor: 'gray' }} width="40px" height="40px" variant='circular' />
                 <Stack spacing={0.5}>
-                    <Skeleton sx={{bgcolor: 'gray'}} width="70px" height="10px" variant='rounded' />
-                    <Skeleton sx={{bgcolor: 'gray'}} width="100px" height="20px" variant='rounded' />
+                    <Skeleton sx={{ bgcolor: 'gray' }} width="70px" height="10px" variant='rounded' />
+                    <Skeleton sx={{ bgcolor: 'gray' }} width="100px" height="20px" variant='rounded' />
                 </Stack>
             </Stack>
         )
@@ -83,23 +83,16 @@ const UserChip = () => {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
-                <MenuItem
-                    disableRipple
-                    disableTouchRipple
-                    onClick={() => { /* Navigate to My Orders */ }}
-                    sx={{ typography: 'body2', py: 1.5 }}
-                >
-                    My Orders
-                </MenuItem>
-                <MenuItem
-                    disableRipple
-                    disableTouchRipple
-                    onClick={() => { /* Navigate to My Account */ }}
-                    sx={{ typography: 'body2', py: 1.5 }}
-                >
-                    My Account
-                </MenuItem>
-                <Divider />
+                <Link href="/user/account">
+                    <MenuItem
+                        disableRipple
+                        disableTouchRipple
+                        sx={{ typography: 'body2', py: 1.5 }}
+                    >
+                        My Account
+                    </MenuItem>
+                </Link>
+                <Divider sx={{ borderStyle: 'dashed', m: 0 }} />
                 <MenuItem
                     disableRipple
                     disableTouchRipple
