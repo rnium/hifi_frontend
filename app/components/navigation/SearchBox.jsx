@@ -54,6 +54,7 @@ const SearchBox = ({ mobile = false }) => {
                             value={searchTerm}
                             onChange={handleChange}
                             onKeyUp={handleKeyUp}
+                            className="w-[200px] lg:w-[350px]"
                         />
                         <IconButton
                             size='small'

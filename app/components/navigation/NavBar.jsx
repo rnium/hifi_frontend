@@ -27,7 +27,7 @@ const NavBar = async ({ homepage = false }) => {
   );
   const facebook = links?.socials.find(social => social.name === 'Facebook')
   return (
-    <AppBar className='mainappbar border-b shadow-md' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
+    <AppBar className='mainappbar border-b' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
       <Box
         className="topstrip"
         sx={{ display: { xs: 'none', md: 'none' } }}
