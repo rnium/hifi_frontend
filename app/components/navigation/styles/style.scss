@@ -65,10 +65,12 @@ $topstrip-text: #e1e7ec;
     .btn {
         @include flexer(row);
         padding: 7px 1rem;
-        background-color: #b9b9b9;
+        background-color: white;
+        border-left: 1px solid #d3d3d3;
+        border-right: 1px solid #d3d3d3;
         cursor: pointer;
         .icon, .title {
-            color: white;
+            color: gray;
         }
         .icon {
             margin-right: 20px;

@@ -9,7 +9,7 @@ import UserChip from './micro/UserChip';
 import MobileMenu from './MobileMenu';
 import SearchBox from './SearchBox';
 import './styles/style.css';
-import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine } from "@remixicon/react";
+import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine, RiMenu2Line } from "@remixicon/react";
 import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
 import Categories from './Categories';
 import CategoryNav from './micro/CategoryNav';
@@ -136,7 +136,7 @@ const NavBar = async ({ homepage = false }) => {
       <Container sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: "row", alignItems: 'center' }}>
         <div className={homepage ? 'category-container homepage' : 'category-container'} >
           <div className="btn">
-            <RiMenuLine
+            <RiMenu2Line
               size={24}
               className='icon'
             />

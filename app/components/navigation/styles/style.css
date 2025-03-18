@@ -58,11 +58,13 @@
   justify-content: center;
   align-items: center;
   padding: 7px 1rem;
-  background-color: #b9b9b9;
+  background-color: white;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
   cursor: pointer;
 }
 .category-container .btn .icon, .category-container .btn .title {
-  color: white;
+  color: gray;
 }
 .category-container .btn .icon {
   margin-right: 20px;
