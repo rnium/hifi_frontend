@@ -17,7 +17,8 @@ import Shoppingbtn from './Shoppingbtn';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
 import { links } from '@/lib/site_data';
-
+import { nav_links } from '@/lib/data';
+import NavLink from './NavLink';
 
 const NavBar = async ({ homepage = false }) => {
   const mainCategories = await getAPIData(
@@ -149,19 +150,15 @@ const NavBar = async ({ homepage = false }) => {
             <Categories cat_data={mainCategories} />
           </div>
         </div>
-        {/* <ul className='navlinks' >
-          {
-            navLinks.map((l, idx) => (
-              <Link href={l.uri}>
-                <li key={idx}>
-                  {l.title}
-                </li>
-              </Link>
-            ))
-          }
-        </ul> */}
+      
         <CategoryNav />
-        <div className="search-btn"></div>
+        <Divider orientation="vertical" sx={{ mx: 3 }} flexItem variant='middle' />
+        <Stack direction="row" spacing={2} alignItems="center">
+          {nav_links.map((link, index) => (
+            <NavLink key={index} {...link} />
+          ))}
+        </Stack>
+
       </Container>
     </AppBar>
   );
