@@ -37,6 +37,16 @@ const ProfileEditDialog = ({ open, handleClose, profile, setUserData }) => {
   const handleFileChange = (e) => {
     const file = e.target.files?.[0]
     if (file) {
+      // check if file is an image
+      if (!file.type.startsWith('image')) {
+        message.error('Only image files are allowed')
+        return
+      }
+      // check if file size is less than 1MB
+      if (file.size > 1024 * 1024) {
+        message.error('File size should be less than 1MB')
+        return
+      }
       const reader = new FileReader()
       reader.onloadend = () => {
         setFormData((prevData) => ({
