@@ -9,7 +9,7 @@ import NeedsAuthentication from '../utils/NeedsAuthentication';
 import Spinner from '../utils/Spinner';
 
 const CustomerProfileWithOrders = () => {
-  const { userInfo, userIsAuthenticated, userIsLoaded } = useUserState();
+  const { userInfo, userIsAuthenticated, userIsLoaded, setUserData } = useUserState();
 
   const [open, setOpen] = useState(false)
 
@@ -124,6 +124,7 @@ const CustomerProfileWithOrders = () => {
         open={open}
         handleClose={() => setOpen(false)}
         profile={userInfo}
+        setUserData={setUserData}
       />
     </div>
   )

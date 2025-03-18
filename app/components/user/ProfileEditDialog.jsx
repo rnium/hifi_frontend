@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react'
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import { message } from 'antd';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { usePost } from '@/hooks/useApi';
 
-const ProfileEditDialog = ({ open, handleClose, profile }) => {
+
+const ProfileEditDialog = ({ open, handleClose, profile, setUserData }) => {
   const [formData, setFormData] = useState({
     first_name: '',
     email: '',
     phone: '',
     address: '',
-    avatar_b64: ''
+    avatar_b64: null
   })
+
+  const { data, loading, success, error, perform_post, reset } = usePost(process.env.NEXT_PUBLIC_API_HOST + 'account/profile/update/', true);
 
   useEffect(() => {
     if (profile) {
@@ -45,9 +50,24 @@ const ProfileEditDialog = ({ open, handleClose, profile }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // handle form submission logic
-    console.log('Updated profile:', formData)
+    perform_post(formData)
   }
+
+  useEffect(() => {
+    if (success) {
+      message.success('Profile updated successfully')
+      const newData = {...formData}
+      delete newData.avatar_b64
+      newData.avatar = formData.avatar_b64 ? formData.avatar_b64 : profile.avatar
+      setUserData(newData)
+      reset()
+      handleClose()
+    }
+    if (error) {
+      message.error('Failed to update profile')
+      reset()
+    }
+  }, [success, formData, reset, setUserData, handleClose, error])
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
@@ -112,10 +132,10 @@ const ProfileEditDialog = ({ open, handleClose, profile }) => {
             />
           </div>
           <DialogActions>
-            <Button onClick={handleClose} color="primary" variant='outlined'>
+            <Button onClick={handleClose} color="primary" variant='outlined' disabled={loading}>
               Cancel
             </Button>
-            <Button type="submit" color="primary" variant='contained'>
+            <Button type="submit" color="primary" variant='contained' disabled={loading}>
               Save Changes
             </Button>
           </DialogActions>

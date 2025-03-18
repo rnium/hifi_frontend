@@ -8,7 +8,9 @@ export const useUserState = () => {
     const userInfo = useSelector(state => state.account.data);
     const userIsAuthenticated = useSelector(state => state.account.isAuthenticated);
     const userIsLoaded = useSelector(state => state.account.isLoaded);
-    return {userInfo, userIsAuthenticated, userIsLoaded}
+    const dispatch = useDispatch();
+    const setUserData = useCallback((data) => dispatch(setData(data)), [dispatch]);
+    return {userInfo, userIsAuthenticated, userIsLoaded, setUserData};
 }
 
 export const useUser = () => {
@@ -25,7 +27,6 @@ export const useUser = () => {
     useEffect(() => {
         console.log('userdata init', success, Boolean(error), loading);
         if ( !userIsLoaded && !loading && success && data) {
-            console.log('setting userdata now');
             dispatch(setData(data));
             dispatch(setLoaded(true));
             dispatch(setAuthenticated(true));
