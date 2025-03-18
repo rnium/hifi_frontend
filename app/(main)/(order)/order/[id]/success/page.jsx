@@ -9,18 +9,20 @@ const Page = ({ params }) => {
     const { afterOrderCleanUp } = useCart();
     useEffect(() => {
         afterOrderCleanUp();
-    })
+    }, [afterOrderCleanUp]);
+
     return (
         <Container
-            sx={{ py: 15 }}
+            sx={{ py: 10 }}
         >
             <Stack
                 spacing={1}
                 alignItems='center'
             >
-                <RiCheckLine
-                    size={70}
-                    color='green'
+                <img 
+                    src='/images/ordering-taxi.svg'
+                    alt='Success'
+                    width='320'
                 />
                 <Stack
                     direction='row'
