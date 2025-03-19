@@ -1,39 +1,26 @@
 import dateFormat from 'dateformat';
 
 import {
-  Box, Grid, Stack, Typography
+  Box, Grid, Stack, Typography, Container
 } from '@mui/material';
 
 
-import StatusChip from './micro/StatusChip';
-import ItemsTable from './micro/ItemsTable';
-import OrderStepper from './micro/OrderStepper';
+import StatusChip from '../order/micro/StatusChip';
+import ItemsTable from '../order/micro/ItemsTable';
+import OrderStepper from '../order/micro/OrderStepper';
 
 
-const OrderDetails = ({ data, fetchOrder }) => {
+const OrderDetails = ({ data }) => {
   if (!data) {
     return null;
   }
   return (
-    <>
+    <Container sx={{ my: 10 }}>
       <Grid
         container
-        spacing={2}
+        spacing={3}
       >
         <Grid item xs={12} md={6}>
-          <Stack
-            direction='row'
-            spacing={1}
-          >
-            <Typography
-              sx={{ fontWeight: 'bold' }}
-            >
-              Order No:
-            </Typography>
-            <Typography>
-              {data.id}
-            </Typography>
-          </Stack>
           <Stack
             direction='row'
             spacing={1}
@@ -76,13 +63,13 @@ const OrderDetails = ({ data, fetchOrder }) => {
               Status:
             </Typography>
             <StatusChip
-              status={data.status}
+              status={data.status.charAt(0).toUpperCase() + data.status.slice(1)}
             />
           </Stack>
         </Grid>
       </Grid>
       <Box
-        sx={{ py: 3 }}
+        sx={{ py: 5 }}
       >
         <OrderStepper
           status={data.status}
@@ -91,7 +78,7 @@ const OrderDetails = ({ data, fetchOrder }) => {
       <ItemsTable
         cart={data.cart}
       />
-    </>
+    </Container>
   )
 }
 

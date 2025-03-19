@@ -5,6 +5,7 @@ import OrderIdInput from './OrderIdInput';
 import { useGet } from '@/hooks/useApi';
 import { api_endpoints } from '@/lib/data';
 import { message } from 'antd';
+import OrderDetails from './OrderDetails';
 
 const TrackOrderPage = () => {
   const { data, perform_get, success, error, apiUrl, setApiUrl, reset } = useGet(null);
@@ -25,6 +26,14 @@ const TrackOrderPage = () => {
     }
   }, [error])
 
+  if (success && data) {
+    return (
+      <OrderDetails
+        data={data}
+      />
+    )
+  }
+  
   return (
     <OrderIdInput
       setUrl={setUrl}

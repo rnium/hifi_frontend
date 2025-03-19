@@ -1,4 +1,5 @@
 import { Image } from 'antd';
+import Link from 'next/link';
 
 import {
     Paper, Stack, Table, TableRow, TableHead,
@@ -16,14 +17,13 @@ const ItemsTable = ({ cart }) => {
                 variant="h6"
                 color="text.secondary"
             >
-                Cart Items
+                Ordered Products
             </Typography>
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>Product</TableCell>
-                            <TableCell>Category</TableCell>
                             <TableCell>Quantity</TableCell>
                             <TableCell>Unit Price</TableCell>
                             <TableCell>Total</TableCell>
@@ -47,20 +47,13 @@ const ItemsTable = ({ cart }) => {
                                             />
 
                                             <Stack>
-                                                <Typography>
-                                                    {itm.product.title}
-                                                </Typography>
-                                                <Typography
-                                                    variant='caption'
-                                                    color="text.secondary"
-                                                >
-                                                    ID: {itm.product.id}
-                                                </Typography>
+                                                <Link href={`/product/${itm.product.slug}`}>
+                                                    <Typography>
+                                                        {itm.product.title.length > 70 ? itm.product.title.slice(0, 70) + '...' : itm.product.title}
+                                                    </Typography>
+                                                </Link>
                                             </Stack>
                                         </Stack>
-                                    </TableCell>
-                                    <TableCell>
-                                        {itm.product.category}
                                     </TableCell>
                                     <TableCell>
                                         {itm.quantity}
