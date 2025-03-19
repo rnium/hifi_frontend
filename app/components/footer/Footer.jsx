@@ -103,7 +103,7 @@ const Footer = async () => {
                 <Stack direction={{ xs: "column", md: "row" }} justifyContent="space-between" spacing={2}>
                     <Stack direction={{ xs: "column", md: "row" }} alignItems="center" spacing={1}>
                         <CopyrightIcon fontSize='small' />
-                        <Typography variant='body2' color="text.secondary">2024 HIFI Computer. All rights reserved</Typography>
+                        <Typography variant='body2' color="text.secondary">2025 HIFI Computer. All rights reserved</Typography>
                     </Stack>
                     <Stack sx={{ pt: { xs: 3, md: 0 } }} direction={{ xs: "column", md: "row" }} alignItems="center" spacing={2}>
                         <Stack direction="row" alignItems="center" spacing={1}>
