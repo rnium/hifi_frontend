@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Stack, Typography, Container, Box, useMediaQuery } from '@mui/material';
 import { Input, Button } from "antd";
 
-const OrderIdInput = ({ setUrl }) => {
+const OrderIdInput = ({ setUrl, loading }) => {
     const [orderId, setOrderId] = useState('');
     const isMobile = useMediaQuery('(max-width:756px)');
     const handleTrackOrder = () => {
@@ -37,6 +37,8 @@ const OrderIdInput = ({ setUrl }) => {
                             type="primary"
                             onClick={handleTrackOrder}
                             style={{ width: isMobile ? '100%' : 'auto' }}
+                            disabled={loading}
+                            loading={loading}
                         >
                             Track Order
                         </Button>

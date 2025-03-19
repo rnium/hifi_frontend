@@ -1,16 +1,15 @@
 import dateFormat from 'dateformat';
 
 import {
-  Box, Grid, Stack, Typography, Container
+  Box, Grid, Stack, Typography, Container, Button
 } from '@mui/material';
-
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 
 import StatusChip from '../order/micro/StatusChip';
 import ItemsTable from '../order/micro/ItemsTable';
 import OrderStepper from '../order/micro/OrderStepper';
 
-
-const OrderDetails = ({ data }) => {
+const OrderDetails = ({ data, retrack }) => {
   if (!data) {
     return null;
   }
@@ -65,6 +64,13 @@ const OrderDetails = ({ data }) => {
             <StatusChip
               status={data.status.charAt(0).toUpperCase() + data.status.slice(1)}
             />
+          </Stack>
+        </Grid>
+        <Grid item xs={12} md={6} display="flex" justifyContent="flex-end">
+          <Stack>
+            <Button variant="outlined" color="primary" onClick={retrack} startIcon={<TrackChangesIcon />} sx={{ borderRadius: 10}}>
+              Track Another
+            </Button>
           </Stack>
         </Grid>
       </Grid>

@@ -8,9 +8,14 @@ import { message } from 'antd';
 import OrderDetails from './OrderDetails';
 
 const TrackOrderPage = () => {
-  const { data, perform_get, success, error, apiUrl, setApiUrl, reset } = useGet(null);
+  const { data, perform_get, success, loading, error, apiUrl, setApiUrl, reset } = useGet(null);
   const setUrl = orderId => {
     setApiUrl(process.env.NEXT_PUBLIC_API_HOST + api_endpoints.order_detail_prefix + orderId + '/');
+  }
+
+  const retrackOrder = () => {
+    reset();
+    setApiUrl(null);
   }
 
   useEffect(() => {
@@ -30,6 +35,7 @@ const TrackOrderPage = () => {
     return (
       <OrderDetails
         data={data}
+        retrack={retrackOrder}
       />
     )
   }
@@ -37,6 +43,7 @@ const TrackOrderPage = () => {
   return (
     <OrderIdInput
       setUrl={setUrl}
+      loading={loading}
     />
   )
 }
