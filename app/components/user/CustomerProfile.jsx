@@ -27,6 +27,7 @@ const CustomerProfileWithOrders = () => {
       <NeedsAuthentication 
         description='Please login to view your profile'
         sx={{my: 10}}
+        img_w={100}
       />
     )
   }

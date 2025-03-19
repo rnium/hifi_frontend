@@ -1,8 +1,8 @@
 import { Typography, Box, Stack } from "@mui/material";
 import Image from "next/image";
-import auth_img from '@/public/images/login.png';
+import auth_img from '@/public/images/ic-login.svg';
 
-const NeedsAuthentication = ({ description = "Authentication Required", sx={} }) => {
+const NeedsAuthentication = ({ description = "Authentication Required", sx={}, img_w=70 }) => {
     return (
         <Stack
             sx={{ py: 3, ...sx }}
@@ -12,7 +12,7 @@ const NeedsAuthentication = ({ description = "Authentication Required", sx={} })
             <Image
                 src={auth_img}
                 alt="Icon"
-                width={50}
+                width={img_w}
             />
             <Typography color='text.secondary'>
                 {description}

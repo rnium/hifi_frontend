@@ -9,14 +9,12 @@ import UserChip from './micro/UserChip';
 import MobileMenu from './MobileMenu';
 import SearchBox from './SearchBox';
 import './styles/style.css';
-import { RiFacebookCircleFill, RiGlobalFill, RiInstagramFill, RiLinkedinFill, RiMailOpenFill, RiMenuLine, RiMenu2Line } from "@remixicon/react";
-import { RiArrowDownSLine, RiCustomerService2Line } from '@remixicon/react';
+import { RiArrowDownSLine, RiMenu2Line } from '@remixicon/react';
 import Categories from './Categories';
 import CategoryNav from './micro/CategoryNav';
 import Shoppingbtn from './Shoppingbtn';
 import { getAPIData } from '@/utils/fetchData';
 import { api_endpoints } from '@/lib/data';
-import { links } from '@/lib/site_data';
 import { nav_links } from '@/lib/data';
 import NavLink from './NavLink';
 
@@ -26,69 +24,8 @@ const NavBar = async ({ homepage = false }) => {
     null,
     60
   );
-  const facebook = links?.socials.find(social => social.name === 'Facebook')
   return (
     <AppBar className='mainappbar border-b' position="static" style={{ backgroundColor: 'white' }} elevation={0}>
-      <Box
-        className="topstrip"
-        sx={{ display: { xs: 'none', md: 'none' } }}
-      >
-        <Container sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <div className="t-item ">
-              <RiGlobalFill
-                size={20}
-                className='icon'
-              />
-              <div className="text">www.hificomputerbd.com</div>
-            </div>
-            <div className="divider"></div>
-            <div className="t-item social">
-              <a href={facebook ? facebook.url : '#'} target='_blank'>
-                <RiFacebookCircleFill
-                  size={20}
-                  className='icon'
-                />
-              </a>
-            </div>
-            <div className="t-item social">
-              <a href="#">
-                <RiInstagramFill
-                  size={20}
-                  className='icon'
-                />
-              </a>
-            </div>
-            <div className="t-item social">
-              <a href="#">
-                <RiLinkedinFill
-                  size={20}
-                  className='icon'
-                />
-              </a>
-            </div>
-
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <div className="t-item">
-              <a href="mailto:hificomputerbd@gmail.com">
-                <RiMailOpenFill
-                  size={20}
-                  className='icon'
-                />
-                <div className="text">hificomputerbd@gmail.com</div>
-              </a>
-            </div>
-            <div className="t-item">
-              <RiCustomerService2Line
-                size={20}
-                className='icon'
-              />
-              <div className="text phone-no">+8801973809453</div>
-            </div>
-          </Stack>
-        </Container>
-      </Box>
       <Toolbar sx={{ py: 2, backgroundColor: '#22223b' }} >
 
         <Box
