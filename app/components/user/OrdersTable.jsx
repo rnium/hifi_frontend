@@ -53,7 +53,9 @@ const OrdersTable = ({ data, fetchOrders }) => {
                                     <TableCell>{order.oid}</TableCell>
                                     <TableCell>{order.payable.toLocaleString('en-In')}</TableCell>
                                     <TableCell>{dateFormat(order.added_at, "mmmm dS, yyyy, h:MM:ss TT")}</TableCell>
-                                    <TableCell>{order.status}</TableCell>
+                                    <TableCell>
+                                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                                    </TableCell>
                                 </TableRow>
                             ))
                         }

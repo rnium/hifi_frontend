@@ -67,7 +67,7 @@ const ContactUs = () => {
   ];
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ my: 7 }}>
       <Typography
         variant="h3"
         component="h2"

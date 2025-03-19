@@ -88,6 +88,7 @@ const UserChip = () => {
                         disableRipple
                         disableTouchRipple
                         sx={{ typography: 'body2', py: 1.5 }}
+                        onClick={handleClose}
                     >
                         My Account
                     </MenuItem>
