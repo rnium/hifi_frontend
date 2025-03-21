@@ -43,7 +43,7 @@ const SearchBox = ({ mobile = false }) => {
                             size='small'
                             onClick={() => setOpen(true)}
                         >
-                            <SearchIcon />
+                            <SearchIcon  sx={{ fill: 'white' }} />
                         </IconButton>
                     </Stack>
                     :

@@ -21,7 +21,7 @@ export default function MobileMenu({ cat_data }) {
       <IconButton
         onClick={() => setOpen(true)}
       >
-        <RiMenuLine />
+        <RiMenuLine  color='white' />
       </IconButton>
       <Drawer open={open} onClose={toggleDrawer(false)} anchor='left'>
         <Box sx={{ width: { xs: '250px', md: '350px' } }} role="presentation" className='p-3'>
