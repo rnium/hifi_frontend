@@ -20,7 +20,8 @@ const inter = Roboto({ subsets: ['latin'], weight: '100' });
 
 export const metadata = {
   title: "Hifi Computer",
-  description: "HIFI Computer is the most trusted and largest IT solution in Sylhet, Empowerong businesses and individuals by providing authorized products and reliable services",
+  description: "HIFI Computer is the most trusted and largest IT solution in Sylhet, Empowerong businesses and individuals by providing authorized products and reliable services. হাইফাই কম্পিউটার, সিলেট",
+  keywords: "HIFI Computer, IT solution, Sylhet, authorized products, reliable services, হাইফাই কম্পিউটার, সিলেট",
 };
 
 export default function RootLayout({ children }) {
